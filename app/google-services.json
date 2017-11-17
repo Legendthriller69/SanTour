@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1045692825082",
+    "firebase_url": "https://santour-e9abc.firebaseio.com",
+    "project_id": "santour-e9abc",
+    "storage_bucket": "santour-e9abc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045692825082:android:b2d2f323a569505c",
+        "android_client_info": {
+          "package_name": "com.example.group3.santour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045692825082-gb0cjq4heq9046rot5l5153m6cb0eve8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa8swf2uO6gTR3xd8WxHy1k5spOKIDw9U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
