@@ -1,4 +1,4 @@
-package com.example.group3.santour;
+package com.example.group3.santour.Activity;
 
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
@@ -8,6 +8,7 @@ import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.DTO.Type;
 import com.example.group3.santour.DTO.User;
 import com.example.group3.santour.Firebase.FirebaseDB;
+import com.example.group3.santour.R;
 
 public class MainActivity extends AppCompatActivity {
 
