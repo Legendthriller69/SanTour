@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         role = new Role("admin");
         writeDatabase.writeNewRole(role);
 
+        
+
         //create a new
         user = new User("root", "root", "root@root.ch", role);
         writeDatabase.writeNewUser(user);
