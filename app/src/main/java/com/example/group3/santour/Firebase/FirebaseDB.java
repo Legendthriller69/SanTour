@@ -1,7 +1,5 @@
 package com.example.group3.santour.Firebase;
 
-import android.util.Log;
-
 import com.example.group3.santour.DTO.Role;
 import com.example.group3.santour.DTO.User;
 import com.google.firebase.database.DatabaseReference;
