@@ -1,7 +1,7 @@
 package com.example.group3.santour;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
 
 import com.example.group3.santour.DTO.Role;
 import com.example.group3.santour.DTO.Track;
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         //create a new role into the db
         role = new Role("admin");
         writeDatabase.writeNewRole(role);
+
+        
 
         //create a new
         user = new User("root", "root", "root@root.ch", role);
