@@ -9,23 +9,25 @@ public class Type {
     private String id;
     private String name;
 
-    public Type(){
-    }
-
-    public Type (String name){
+    public Type(String name) {
         this.name = name;
     }
 
     //getter
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
+    //setter
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

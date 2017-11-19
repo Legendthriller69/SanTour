@@ -6,54 +6,67 @@ package com.example.group3.santour.DTO;
 
 public class Track {
 
-        private String id;
-        private String name;
-        private String description;
-        private double distance;
-        private int duration;
-        private Type type;
+    private String id;
+    private String name;
+    private String description;
+    private double distance;
+    private int duration;
+    private String idType;
 
+    public Track(String name, String description, double distance, int duration, String idType) {
+        this.name = name;
+        this.description = description;
+        this.distance = distance;
+        this.duration = duration;
+        this.idType = idType;
+    }
 
-        public Track(){
+    //getter
+    public String getId() {
+        return this.id;
+    }
 
-        }
+    public String getName() {
+        return this.name;
+    }
 
-        public Track(String name, String description, double distance, int duration, Type type){
+    public String getDescription() {
+        return this.description;
+    }
 
-            this.name = name;
-            this.description = description;
-            this.distance = distance;
-            this.duration = duration;
-            this.type = type;
-        }
+    public double getDistance() {
+        return this.distance;
+    }
 
-        //getter
-        public String getId() {
-            return this.id;
-        }
+    public int getDuration() {
+        return this.duration;
+    }
 
-        public String getName() {
-            return this.name;
-        }
+    public String getType() {
+        return this.idType;
+    }
 
-        public String getDescription() {
-            return this.description;
-        }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-        public double getDistance() {
-            return this.distance;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public int getDuration() {
-            return this.duration;
-        }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-        public Type getType() {
-            return this.type;
-        }
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
 
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 
-        public void setId(String id) {
-                this.id=id;
-        }
+    public void setIdType(String idType) {
+        this.idType = idType;
+    }
 }

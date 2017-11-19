@@ -7,28 +7,24 @@ package com.example.group3.santour.DTO;
 public class User {
 
     private String id;
-    private String pseudo;
+    private String username;
     private String password;
     private String mail;
-    private Role role;
+    private String idRole;
 
-    public User(){
-
-    }
-
-    public User(String pseudo, String password, String mail, Role role) {
-        this.pseudo = pseudo;
+    public User(String username, String password, String mail, String idRole) {
+        this.username = username;
         this.password = password;
         this.mail = mail;
-        this.role = role;
+        this.idRole = idRole;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getPseudo() {
-        return pseudo;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -39,11 +35,32 @@ public class User {
         return mail;
     }
 
-    public Role getRole() {
-        return role;
+    public String getRole() {
+        return idRole;
     }
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setRole(String idRole) {
+        this.idRole = idRole;
+    }
+
+    @Override
+    public String toString() {
+        return "Id : " + id + ", pseudo : " + username + ", mail : " + mail;
     }
 }
