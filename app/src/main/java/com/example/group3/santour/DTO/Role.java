@@ -1,9 +1,12 @@
 package com.example.group3.santour.DTO;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by aleks on 17.11.2017.
  */
 
+@IgnoreExtraProperties
 public class Role {
 
     private String id;
@@ -14,6 +17,11 @@ public class Role {
     }
 
     public Role(String name) {
+        this.name = name;
+    }
+
+    public Role(String id, String name) {
+        this.id = id;
         this.name = name;
     }
 

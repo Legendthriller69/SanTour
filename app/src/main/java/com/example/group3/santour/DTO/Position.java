@@ -1,11 +1,14 @@
 package com.example.group3.santour.DTO;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.Date;
 
 /**
  * Created by aleks on 21.11.2017.
  */
 
+@IgnoreExtraProperties
 public class Position {
 
     private String id;
@@ -13,19 +16,17 @@ public class Position {
     private double latitude;
     private double altitude;
     private Date dateTime;
-    private String idTrack;
 
     public Position(){
 
     }
 
-    public Position(String id, double latitude, double longitude, double altitude, Date dateTime, String idTrack) {
+    public Position(String id, double latitude, double longitude, double altitude, Date dateTime) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.altitude = altitude;
         this.dateTime = dateTime;
-        this.idTrack = idTrack;
     }
 
     public String getId() {
@@ -66,13 +67,5 @@ public class Position {
 
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
-    }
-
-    public String getIdTrack() {
-        return idTrack;
-    }
-
-    public void setIdTrack(String idTrack) {
-        this.idTrack = idTrack;
     }
 }

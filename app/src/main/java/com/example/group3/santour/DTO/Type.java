@@ -1,9 +1,12 @@
 package com.example.group3.santour.DTO;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by DarkFace on 17 nov. 2017.
  */
 
+@IgnoreExtraProperties
 public class Type {
 
     private String id;
@@ -13,7 +16,8 @@ public class Type {
 
     }
 
-    public Type(String name) {
+    public Type(String id, String name) {
+        this.id = id;
         this.name = name;
     }
 

@@ -1,23 +1,17 @@
 package com.example.group3.santour.DTO;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.Map;
 
 /**
  * Created by aleks on 21.11.2017.
  */
 
+@IgnoreExtraProperties
 public class POD extends Point {
 
     public POD() {
-    }
-
-    public POD(String id, String name, String picture, String description, double longitude, double latitude, String idTrack) {
-        super(id, name, picture, description, longitude, latitude, idTrack);
-    }
-
-    @Override
-    public String toString() {
-        return "POD : ";
     }
 
 }

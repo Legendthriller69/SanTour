@@ -10,22 +10,18 @@ public abstract class Point {
     private String name;
     private String picture;
     private String description;
-    private double longitude;
-    private double latitude;
-    private String idTrack;
+    private Position position;
 
     public Point(){
 
     }
 
-    public Point(String id, String name, String picture, String description, double longitude, double latitude, String idTrack) {
+    public Point(String id, String name, String picture, String description, Position position) {
         this.id = id;
         this.name = name;
         this.picture = picture;
         this.description = description;
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.idTrack = idTrack;
+        this.position = position;
     }
 
     public String getId() {
@@ -60,27 +56,11 @@ public abstract class Point {
         this.description = description;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getIdTrack() {
-        return idTrack;
-    }
-
-    public void setIdTrack(String idTrack) {
-        this.idTrack = idTrack;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

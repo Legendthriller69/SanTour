@@ -1,39 +1,42 @@
 package com.example.group3.santour.DTO;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by aleks on 21.11.2017.
  */
 
+@IgnoreExtraProperties
 public class PODCategory {
 
-    private String idPOD;
-    private String idCategory;
+    private POD pod;
+    private Category category;
     private int value;
 
     public PODCategory() {
 
     }
 
-    public PODCategory(String idPOD, String idCategory, int value) {
-        this.idPOD = idPOD;
-        this.idCategory = idCategory;
+    public PODCategory(POD pod, Category category, int value) {
+        this.pod = pod;
+        this.category = category;
         this.value = value;
     }
 
-    public String getIdPOD() {
-        return idPOD;
+    public POD getPod() {
+        return pod;
     }
 
-    public void setIdPOD(String idPOD) {
-        this.idPOD = idPOD;
+    public void setPod(POD pod) {
+        this.pod = pod;
     }
 
-    public String getIdCategory() {
-        return idCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setIdCategory(String idCategory) {
-        this.idCategory = idCategory;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getValue() {

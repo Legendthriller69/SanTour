@@ -1,17 +1,16 @@
 package com.example.group3.santour.DTO;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by aleks on 21.11.2017.
  */
 
+@IgnoreExtraProperties
 public class POI extends Point{
 
     public POI(){
         super();
-    }
-
-    public POI(String id, String name, String picture, String description, double longitude, double latitude, String idTrack) {
-        super(id, name, picture, description, longitude, latitude, idTrack);
     }
 
     @Override

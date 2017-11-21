@@ -1,6 +1,10 @@
 package com.example.group3.santour.Firebase;
 
+import android.support.annotation.NonNull;
+
 import com.example.group3.santour.DTO.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,20 +27,21 @@ public class UserDB {
 
     }
 
-    /**
-     * Create new user into the firebase db
-     * @param username
-     * @param password
-     * @param mail
-     * @param idRole
-     */
-    public static void createUser(String username, String password, String mail, String idRole){
+    public static void createUser(User user){
         DatabaseReference id = USER_REFERENCE.push();
-        id.child("id").setValue(id.getKey());
-        id.child("username").setValue(username);
-        id.child("password").setValue(password);
-        id.child("mail").setValue(mail);
-        id.child("idRole").setValue(idRole);
+        id.setValue(user);
+        id.child("idRole").setValue(user.getRole().getId());
+    }
+
+    public static void createUser(User user, DataListener dataListener){
+        DatabaseReference id = USER_REFERENCE.push();
+        id.setValue(user);
+        id.child("idRole").setValue(user.getRole().getName()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+            }
+        });
     }
 
     /**
