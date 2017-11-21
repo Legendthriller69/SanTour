@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class POD extends Point {
 
-    private Map<POD, Integer> PODCategories;
-
     public POD() {
     }
 
@@ -22,11 +20,4 @@ public class POD extends Point {
         return "POD : ";
     }
 
-    public Map<POD, Integer> getPODCategories() {
-        return PODCategories;
-    }
-
-    public void setPODCategories(Map<POD, Integer> PODCategories) {
-        this.PODCategories = PODCategories;
-    }
 }
