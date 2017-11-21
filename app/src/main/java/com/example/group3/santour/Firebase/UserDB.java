@@ -54,6 +54,7 @@ public class UserDB {
                 List<User> users = new ArrayList<User>();
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     User user = userSnapshot.getValue(User.class);
+                    user.setId(dataSnapshot.getKey());
                     users.add(user);
                 }
                 dataListener.onSuccess(users);
@@ -77,6 +78,7 @@ public class UserDB {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
+                user.setId(dataSnapshot.getKey());
                 dataListener.onSuccess(user);
             }
 
