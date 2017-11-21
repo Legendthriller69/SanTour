@@ -9,6 +9,10 @@ public class Type {
     private String id;
     private String name;
 
+    public Type(){
+
+    }
+
     public Type(String name) {
         this.name = name;
     }

@@ -13,6 +13,10 @@ public class Track {
     private int duration;
     private String idType;
 
+    public Track(){
+
+    }
+
     public Track(String name, String description, double distance, int duration, String idType) {
         this.name = name;
         this.description = description;

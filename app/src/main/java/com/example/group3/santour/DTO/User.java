@@ -12,6 +12,10 @@ public class User {
     private String mail;
     private String idRole;
 
+    public User() {
+
+    }
+
     public User(String username, String password, String mail, String idRole) {
         this.username = username;
         this.password = password;
@@ -35,7 +39,7 @@ public class User {
         return mail;
     }
 
-    public String getRole() {
+    public String getIdRole() {
         return idRole;
     }
 
@@ -55,7 +59,7 @@ public class User {
         this.mail = mail;
     }
 
-    public void setRole(String idRole) {
+    public void setIdRole(String idRole) {
         this.idRole = idRole;
     }
 

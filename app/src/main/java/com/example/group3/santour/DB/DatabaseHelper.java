@@ -1,6 +1,6 @@
 package com.example.group3.santour.DB;
 
-import android.content.Context ;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -11,165 +11,164 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Logcat tag
-    private final String LOG = "DatabaseHelper" ;
+    private final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 1 ;
+    private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "dbSanTour" ;
+    private static final String DATABASE_NAME = "dbSanTour";
 
     // Table Names
-    private final String TABLE_USER = "user" ;
-    private final String TABLE_ROLE = "role" ;
-    private final String TABLE_TRACK = "track" ;
-    private final String TABLE_POI = "POI" ;
-    private final String TABLE_POD = "POD" ;
-    private final String TABLE_PODCATEGORY = "PODCategory" ;
-    private final String TABLE_CATEGORY = "category" ;
-    private final String TABLE_POSITION = "position" ;
-    private final String TABLE_TYPE = "type" ;
+    private final String TABLE_USER = "user";
+    private final String TABLE_ROLE = "role";
+    private final String TABLE_TRACK = "track";
+    private final String TABLE_POI = "POI";
+    private final String TABLE_POD = "POD";
+    private final String TABLE_PODCATEGORY = "PODCategory";
+    private final String TABLE_CATEGORY = "category";
+    private final String TABLE_POSITION = "position";
+    private final String TABLE_TYPE = "type";
 
     // Common column names
-    private final String KEY_ID = "id" ;
+    private final String KEY_ID = "id";
 
     // User Table - column names
-    private final String KEY_USER_USERNAME = "username" ;
-    private final String KEY_USER_PASSWORD = "password" ;
-    private final String KEY_USER_EMAIL = "email" ;
-    private final String KEY_USER_ROLEID = "idRole" ;
+    private final String KEY_USER_USERNAME = "username";
+    private final String KEY_USER_PASSWORD = "password";
+    private final String KEY_USER_EMAIL = "email";
+    private final String KEY_USER_ROLEID = "idRole";
 
     // Role Table - column names
-    private final String KEY_ROLE_NAME = "name" ;
+    private final String KEY_ROLE_NAME = "name";
 
     // Track Table - column names
-    private final String KEY_TRACK_NAME = "name" ;
-    private final String KEY_TRACK_DESC = "description" ;
-    private final String KEY_TRACK_DISTANCE = "distance" ;
-    private final String KEY_TRACK_DURATION = "duration" ;
-    private final String KEY_TRACK_TYPEID = "idType" ;
+    private final String KEY_TRACK_NAME = "name";
+    private final String KEY_TRACK_DESC = "description";
+    private final String KEY_TRACK_DISTANCE = "distance";
+    private final String KEY_TRACK_DURATION = "duration";
+    private final String KEY_TRACK_TYPEID = "idType";
 
     // Type Table - column names
-    private final String KEY_TYPE_NAME = "name" ;
+    private final String KEY_TYPE_NAME = "name";
 
     //POI Table - column names
-    private final String KEY_POI_NAME = "name" ;
-    private final String KEY_POI_PICTURE = "name" ;
-    private final String KEY_POI_DESCRIPTION = "description" ;
-    private final String KEY_POI_POSITIONID = "idPosition" ;
-    private final String KEY_POI_TRACKID = "idTrack" ;
+    private final String KEY_POI_NAME = "name";
+    private final String KEY_POI_PICTURE = "name";
+    private final String KEY_POI_DESCRIPTION = "description";
+    private final String KEY_POI_POSITIONID = "idPosition";
+    private final String KEY_POI_TRACKID = "idTrack";
 
     // Position Table - column names
-    private final String KEY_POSITION_TRACKID = "idTrack" ;
-    private final String KEY_POSITION_LATITUDE = "latitude" ;
-    private final String KEY_POSITION_LONGITUDE = "longitude" ;
-    private final String KEY_POSITION_DATETIME = "datetime" ;
-    private final String KEY_POSITION_ALTITUDE = "altitude" ;
+    private final String KEY_POSITION_TRACKID = "idTrack";
+    private final String KEY_POSITION_LATITUDE = "latitude";
+    private final String KEY_POSITION_LONGITUDE = "longitude";
+    private final String KEY_POSITION_DATETIME = "datetime";
+    private final String KEY_POSITION_ALTITUDE = "altitude";
 
     // POD Table - column names
-    private final String KEY_POD_NAME = "name" ;
-    private final String KEY_POD_PICTURE = "picture" ;
-    private final String KEY_POD_DESCRIPTION = "description" ;
-    private final String KEY_POD_POSITIONID = "idPosition" ;
-    private final String KEY_POD_TRACKID = "idTrack" ;
+    private final String KEY_POD_NAME = "name";
+    private final String KEY_POD_PICTURE = "picture";
+    private final String KEY_POD_DESCRIPTION = "description";
+    private final String KEY_POD_POSITIONID = "idPosition";
+    private final String KEY_POD_TRACKID = "idTrack";
 
     // Category Table - column names
-    private final String KEY_CATEGORY_NAME = "name" ;
+    private final String KEY_CATEGORY_NAME = "name";
 
     // PODCategory Table - column names
-    private final String KEY_PODCATEGORY_PODID = "idPOD" ;
-    private final String KEY_PODCATEGORY_CATEGORYID = "idCategory" ;
-    private final String KEY_PODCATEGORY_VALUE = "value" ;
+    private final String KEY_PODCATEGORY_PODID = "idPOD";
+    private final String KEY_PODCATEGORY_CATEGORYID = "idCategory";
+    private final String KEY_PODCATEGORY_VALUE = "value";
 
 
     // Table Create Statements
     // User table create statement
     private final String CREATE_TABLE_USER =
             "CREATE TABLE " + TABLE_USER
-            + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_USER_USERNAME + " TEXT NOT NULL,"
-            + KEY_USER_PASSWORD + " TEXT NOT NULL,"
-            + KEY_USER_EMAIL + " TEXT NOT NULL,"
-            + KEY_USER_ROLEID + " INTEGER NOT NULL"
-            + "FOREIGN KEY (" +KEY_USER_ROLEID+") REFERENCES " + TABLE_ROLE +"("+KEY_ID+"))";
+                    + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + KEY_USER_USERNAME + " TEXT NOT NULL,"
+                    + KEY_USER_PASSWORD + " TEXT NOT NULL,"
+                    + KEY_USER_EMAIL + " TEXT NOT NULL,"
+                    + KEY_USER_ROLEID + " INTEGER NOT NULL"
+                    + "FOREIGN KEY (" + KEY_USER_ROLEID + ") REFERENCES " + TABLE_ROLE + "(" + KEY_ID + "))";
 
     // Role table create statement
     private final String CREATE_TABLE_ROLE =
             "CREATE TABLE " + TABLE_ROLE
-            + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_ROLE_NAME + " TEXT NOT NULL)" ;
+                    + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + KEY_ROLE_NAME + " TEXT NOT NULL)";
 
     // Track table create statement
     private final String CREATE_TABLE_TRACK =
             "CREATE TABLE " + TABLE_TRACK
-            + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_TRACK_NAME + " TEXT NOT NULL,"
-            + KEY_TRACK_DESC + " TEXT NOT NULL,"
-            + KEY_TRACK_DISTANCE + " REAL NOT NULL,"
-            + KEY_TRACK_DURATION + " INTEGER NOT NULL,"
-            + KEY_TRACK_TYPEID + " INTEGER NOT NULL,"
-            + "FOREIGN KEY ("+KEY_TRACK_TYPEID+") REFERENCES "+TABLE_TYPE+"("+KEY_ID+ "))" ;
+                    + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + KEY_TRACK_NAME + " TEXT NOT NULL,"
+                    + KEY_TRACK_DESC + " TEXT NOT NULL,"
+                    + KEY_TRACK_DISTANCE + " REAL NOT NULL,"
+                    + KEY_TRACK_DURATION + " INTEGER NOT NULL,"
+                    + KEY_TRACK_TYPEID + " INTEGER NOT NULL,"
+                    + "FOREIGN KEY (" + KEY_TRACK_TYPEID + ") REFERENCES " + TABLE_TYPE + "(" + KEY_ID + "))";
 
     // Type table create statement
     private final String CREATE_TABLE_TYPE =
             "CREATE TABLE " + TABLE_TYPE
-            + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_TYPE_NAME + " TEXT NOT NULL)";
+                    + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + KEY_TYPE_NAME + " TEXT NOT NULL)";
 
     // Position table create statement
     private final String CREATE_TABLE_POSITION =
             "CREATE TABLE " + TABLE_POSITION
-            + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_POSITION_LATITUDE + " REAL NOT NULL,"
-            + KEY_POSITION_LONGITUDE + " REAL NOT NULL,"
-            + KEY_POSITION_ALTITUDE + " REAL NOT NULL,"
-            + KEY_POSITION_DATETIME + " DATETIME NOT NULL,"
-            + KEY_POSITION_TRACKID + " INTEGER NOT NULL,"
-            + "FOREIGN KEY ("+KEY_POSITION_TRACKID+") REFERENCES "+TABLE_TRACK+"("+KEY_ID+ "))" ;
+                    + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + KEY_POSITION_LATITUDE + " REAL NOT NULL,"
+                    + KEY_POSITION_LONGITUDE + " REAL NOT NULL,"
+                    + KEY_POSITION_ALTITUDE + " REAL NOT NULL,"
+                    + KEY_POSITION_DATETIME + " DATETIME NOT NULL,"
+                    + KEY_POSITION_TRACKID + " INTEGER NOT NULL,"
+                    + "FOREIGN KEY (" + KEY_POSITION_TRACKID + ") REFERENCES " + TABLE_TRACK + "(" + KEY_ID + "))";
 
     // POI table create statement
     private final String CREATE_TABLE_POI =
             "CREATE TABLE " + TABLE_POI
-            + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_POI_NAME + " TEXT NOT NULL,"
-            + KEY_POI_DESCRIPTION + "TEXT,"
-            + KEY_POI_PICTURE + "TEXT,"
-            + KEY_POI_POSITIONID + " INTEGER NOT NULL,"
-            + "FOREIGN KEY ("+KEY_POI_POSITIONID+") REFERENCES "+TABLE_POSITION+"("+KEY_ID+ "),"
-            + KEY_POI_TRACKID + " INTEGER NOT NULL,"
-            + "FOREIGN KEY ("+KEY_POI_TRACKID+") REFERENCES "+TABLE_TRACK+"("+KEY_ID+ "))" ;
+                    + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + KEY_POI_NAME + " TEXT NOT NULL,"
+                    + KEY_POI_DESCRIPTION + "TEXT,"
+                    + KEY_POI_PICTURE + "TEXT,"
+                    + KEY_POI_POSITIONID + " INTEGER NOT NULL,"
+                    + "FOREIGN KEY (" + KEY_POI_POSITIONID + ") REFERENCES " + TABLE_POSITION + "(" + KEY_ID + "),"
+                    + KEY_POI_TRACKID + " INTEGER NOT NULL,"
+                    + "FOREIGN KEY (" + KEY_POI_TRACKID + ") REFERENCES " + TABLE_TRACK + "(" + KEY_ID + "))";
 
     // Category table create statement
     private final String CREATE_TABLE_CATEGORY =
             "CREATE TABLE " + TABLE_CATEGORY
-            +"(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_CATEGORY_NAME + " TEXT NOT NULL)" ;
+                    + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + KEY_CATEGORY_NAME + " TEXT NOT NULL)";
 
     // POD table create statement
     private final String CREATE_TABLE_POD =
             "CREATE TABLE " + TABLE_POD
-            +"(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_POD_NAME + " TEXT NOT NULL,"
-            + KEY_POD_DESCRIPTION + " TEXT,"
-            + KEY_POD_PICTURE + " TEXT,"
-            + KEY_POD_POSITIONID + " INTEGER NOT NULL,"
-            + "FOREIGN KEY ("+KEY_POD_POSITIONID+") REFERENCES "+TABLE_POSITION+"("+KEY_ID+ "),"
-            + KEY_POD_TRACKID + " INTEGER NOT NULL,"
-            + "FOREIGN KEY ("+KEY_POD_TRACKID+") REFERENCES "+TABLE_TRACK+"("+KEY_ID+ "))" ;
+                    + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + KEY_POD_NAME + " TEXT NOT NULL,"
+                    + KEY_POD_DESCRIPTION + " TEXT,"
+                    + KEY_POD_PICTURE + " TEXT,"
+                    + KEY_POD_POSITIONID + " INTEGER NOT NULL,"
+                    + "FOREIGN KEY (" + KEY_POD_POSITIONID + ") REFERENCES " + TABLE_POSITION + "(" + KEY_ID + "),"
+                    + KEY_POD_TRACKID + " INTEGER NOT NULL,"
+                    + "FOREIGN KEY (" + KEY_POD_TRACKID + ") REFERENCES " + TABLE_TRACK + "(" + KEY_ID + "))";
 
     // PODCategory table create statement
     private final String CREATE_TABLE_PODCATEGORY =
             "CREATE TABLE " + TABLE_PODCATEGORY
-            + KEY_PODCATEGORY_PODID + " INTEGER NOT NULL,"
-            + KEY_PODCATEGORY_CATEGORYID + " INTEGER NOT NULL,"
-            + KEY_PODCATEGORY_VALUE + " INTEGER NOT NULL,"
-            + "PRIMARY KEY(" + KEY_PODCATEGORY_PODID + "," + KEY_PODCATEGORY_CATEGORYID + ")"
-            + "FOREIGN KEY (" + KEY_PODCATEGORY_PODID + ") REFERENCES " + TABLE_POD + "("+KEY_ID+"),"
-            + "FOREIGN KEY (" + KEY_PODCATEGORY_CATEGORYID + ") REFERENCES " + TABLE_CATEGORY + "("+KEY_ID+"))";
+                    + KEY_PODCATEGORY_PODID + " INTEGER NOT NULL,"
+                    + KEY_PODCATEGORY_CATEGORYID + " INTEGER NOT NULL,"
+                    + KEY_PODCATEGORY_VALUE + " INTEGER NOT NULL,"
+                    + "PRIMARY KEY(" + KEY_PODCATEGORY_PODID + "," + KEY_PODCATEGORY_CATEGORYID + ")"
+                    + "FOREIGN KEY (" + KEY_PODCATEGORY_PODID + ") REFERENCES " + TABLE_POD + "(" + KEY_ID + "),"
+                    + "FOREIGN KEY (" + KEY_PODCATEGORY_CATEGORYID + ") REFERENCES " + TABLE_CATEGORY + "(" + KEY_ID + "))";
 
 
-
-    public DatabaseHelper(Context context){
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
