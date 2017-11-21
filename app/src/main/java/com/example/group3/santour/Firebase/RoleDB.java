@@ -9,17 +9,17 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RoleDB {
 
-    private final static DatabaseReference roleReference = FirebaseDatabase.getInstance().getReference("roles");
+    private final static DatabaseReference ROLE_REFERENCE = FirebaseDatabase.getInstance().getReference("roles");
 
     private RoleDB(){
 
     };
 
-    public static void createRole(String name, DataListener dataListener){
-        DatabaseReference id = roleReference.push();
+    public static String createRole(String name){
+        DatabaseReference id = ROLE_REFERENCE.push();
         id.child("id").setValue(id.getKey());
         id.child("name").setValue(name);
-        dataListener.onSuccess(id.getKey());
+        return id.getKey();
     }
 
 }

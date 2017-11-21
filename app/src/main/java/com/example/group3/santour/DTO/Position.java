@@ -9,8 +9,8 @@ import java.util.Date;
 public class Position {
 
     private String id;
-    private double latitude;
     private double longitude;
+    private double latitude;
     private double altitude;
     private Date dateTime;
     private String idTrack;

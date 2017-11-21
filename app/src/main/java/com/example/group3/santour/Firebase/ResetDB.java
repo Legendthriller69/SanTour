@@ -9,17 +9,8 @@ import com.google.firebase.database.DatabaseError;
 public class ResetDB {
 
     public static void resetDB(){
-        RoleDB.createRole("admin", new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-                String idRole = (String) object;
-                UserDB.createUser("root", "root", "root@root.ch", idRole);
-            }
-
-            @Override
-            public void onFailed(DatabaseError dbError) {
-
-            }
-        });
+        //create the role admin
+        String idRole = RoleDB.createRole("admin");
+        UserDB.createUser("root", "root", "root@root.ch", idRole);
     }
 }

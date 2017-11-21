@@ -10,8 +10,8 @@ public class POI extends Point{
         super();
     }
 
-    public POI(String id, String name, String picture, String description, String idPosition, String idTrack) {
-        super(id, name, picture, description, idPosition, idTrack);
+    public POI(String id, String name, String picture, String description, double longitude, double latitude, String idTrack) {
+        super(id, name, picture, description, longitude, latitude, idTrack);
     }
 
     @Override

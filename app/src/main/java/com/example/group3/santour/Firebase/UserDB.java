@@ -17,7 +17,7 @@ import java.util.List;
 
 public class UserDB {
 
-    private final static DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("users");
+    private final static DatabaseReference USER_REFERENCE = FirebaseDatabase.getInstance().getReference("users");
 
     private UserDB(){
 
@@ -31,7 +31,7 @@ public class UserDB {
      * @param idRole
      */
     public static void createUser(String username, String password, String mail, String idRole){
-        DatabaseReference id = userReference.push();
+        DatabaseReference id = USER_REFERENCE.push();
         id.child("id").setValue(id.getKey());
         id.child("username").setValue(username);
         id.child("password").setValue(password);
@@ -45,7 +45,7 @@ public class UserDB {
      * @param dataListener
      */
     public static void getAllUsers(final DataListener dataListener){
-        userReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        USER_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<User> users = new ArrayList<User>();
@@ -69,7 +69,7 @@ public class UserDB {
      * @param dataListener
      */
     public static void getUserById(String id, final DataListener dataListener){
-        Query query = userReference.child(id);
+        Query query = USER_REFERENCE.child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

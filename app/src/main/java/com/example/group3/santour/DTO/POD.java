@@ -11,8 +11,8 @@ public class POD extends Point {
     public POD() {
     }
 
-    public POD(String id, String name, String picture, String description, String idPosition, String idTrack) {
-        super(id, name, picture, description, idPosition, idTrack);
+    public POD(String id, String name, String picture, String description, double longitude, double latitude, String idTrack) {
+        super(id, name, picture, description, longitude, latitude, idTrack);
     }
 
     @Override
