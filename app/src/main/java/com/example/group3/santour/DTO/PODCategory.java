@@ -9,34 +9,28 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class PODCategory {
 
-    private POD pod;
-    private Category category;
+    private String idCategory;
     private int value;
 
     public PODCategory() {
 
     }
 
-    public PODCategory(POD pod, Category category, int value) {
-        this.pod = pod;
-        this.category = category;
+    public PODCategory(String idCategory, int value) {
+        this.idCategory = idCategory;
         this.value = value;
     }
 
-    public POD getPod() {
-        return pod;
+    public PODCategory(int value) {
+        this.value = value;
     }
 
-    public void setPod(POD pod) {
-        this.pod = pod;
+    public String getIdCategory() {
+        return idCategory;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setIdCategory(String idCategory) {
+        this.idCategory = idCategory;
     }
 
     public int getValue() {

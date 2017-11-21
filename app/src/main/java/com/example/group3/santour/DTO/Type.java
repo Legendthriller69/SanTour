@@ -21,6 +21,10 @@ public class Type {
         this.name = name;
     }
 
+    public Type(String name){
+        this.name = name;
+    }
+
     //getter
     public String getId() {
         return this.id;

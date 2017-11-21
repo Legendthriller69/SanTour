@@ -1,4 +1,4 @@
-package com.example.group3.santour.Utils;
+package com.example.group3.santour.Logic;
 
 import android.Manifest;
 import android.app.Activity;

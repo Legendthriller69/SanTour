@@ -2,8 +2,8 @@ package com.example.group3.santour.Firebase;
 
 import android.support.annotation.NonNull;
 
+import com.example.group3.santour.DTO.Category;
 import com.example.group3.santour.DTO.Role;
-import com.example.group3.santour.DTO.Track;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -14,35 +14,35 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 /**
- * Created by kevin on 21/11/17.
+ * Created by aleks on 21.11.2017.
  */
 
-public class TrackDB {
+public class CategoryDB {
 
-    private final static DatabaseReference TRACK_REFERENCE = FirebaseDatabase.getInstance().getReference("tracks");
+    private final static DatabaseReference CATEGORY_REFERENCE = FirebaseDatabase.getInstance().getReference("categories");
 
-    private TrackDB() {
+    private CategoryDB() {
 
     }
 
-    public static void createTrack(Track track, final DataListener dataListener) {
-        final DatabaseReference id = TRACK_REFERENCE.push();
-        id.setValue(track).addOnCompleteListener(new OnCompleteListener<Void>() {
+    public static void createCategory(Category category, final DataListener dataListener) {
+        final DatabaseReference id = CATEGORY_REFERENCE.push();
+        id.setValue(category).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                getTrackById(id.getKey(), dataListener);
+                getCategoryById(id.getKey(), dataListener);
             }
         });
     }
 
-    public static void getTrackById(final String id, final DataListener dataListener) {
-        Query query = TRACK_REFERENCE.child(id);
+    public static void getCategoryById(final String id, final DataListener dataListener) {
+        Query query = CATEGORY_REFERENCE.child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Track track = dataSnapshot.getValue(Track.class);
-                track.setId(id);
-                dataListener.onSuccess(track);
+                Category category = dataSnapshot.getValue(Category.class);
+                category.setId(id);
+                dataListener.onSuccess(category);
             }
 
             @Override
@@ -51,6 +51,5 @@ public class TrackDB {
             }
         });
     }
-
 
 }

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.group3.santour.Firebase.ResetDB;
 import com.example.group3.santour.R;
-import com.example.group3.santour.Utils.Permissions;
 
 public class MainActivity extends AppCompatActivity {
 

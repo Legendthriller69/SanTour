@@ -2,6 +2,7 @@ package com.example.group3.santour.DTO;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,14 +20,16 @@ public class Track {
     private List<POI> pois;
     private List<POD> pods;
     private List<Position> positions;
-    private Type type;
-    private User user;
+    private String idUser;
+    private String idType;
 
-    public Track(){
-
+    public Track() {
+        pois = new ArrayList<>();
+        pods = new ArrayList<>();
+        positions = new ArrayList<>();
     }
 
-    public Track(String id, String name, String description, double distance, int duration, List<POI> pois, List<POD> pods, List<Position> positions, Type type, User user) {
+    public Track(String id, String name, String description, double distance, int duration, List<POI> pois, List<POD> pods, List<Position> positions, String idUser, String idType) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -35,11 +38,11 @@ public class Track {
         this.pois = pois;
         this.pods = pods;
         this.positions = positions;
-        this.type = type;
-        this.user = user;
+        this.idUser = idUser;
+        this.idType = idType;
     }
 
-    public Track(String name, String description, double distance, int duration, List<POI> pois, List<POD> pods, List<Position> positions, Type type, User user) {
+    public Track(String name, String description, double distance, int duration, List<POI> pois, List<POD> pods, List<Position> positions, String idUser, String idType) {
         this.name = name;
         this.description = description;
         this.distance = distance;
@@ -47,8 +50,8 @@ public class Track {
         this.pois = pois;
         this.pods = pods;
         this.positions = positions;
-        this.type = type;
-        this.user = user;
+        this.idUser = idUser;
+        this.idType = idType;
     }
 
     public String getId() {
@@ -115,11 +118,20 @@ public class Track {
         this.positions = positions;
     }
 
-    public Type getType() {
-        return type;
+    public String getIdUser() {
+        return idUser;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getIdType() {
+        return idType;
+    }
+
+    public void setIdType(String idType) {
+        this.idType = idType;
     }
 }
+

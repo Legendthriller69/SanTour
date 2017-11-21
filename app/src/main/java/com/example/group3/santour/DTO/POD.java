@@ -2,7 +2,8 @@ package com.example.group3.santour.DTO;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aleks on 21.11.2017.
@@ -11,7 +12,28 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class POD extends Point {
 
+    private List<PODCategory> podCategories;
+
     public POD() {
+        super();
+        podCategories = new ArrayList<>();
     }
 
+    public POD(String id, String name, String picture, String description, Position position, List<PODCategory> podCategories) {
+        super(id, name, picture, description, position);
+        this.podCategories = podCategories;
+    }
+
+    public POD(String name, String picture, String description, Position position, List<PODCategory> podCategories) {
+        super(name, picture, description, position);
+        this.podCategories = podCategories;
+    }
+
+    public List<PODCategory> getPodCategories() {
+        return podCategories;
+    }
+
+    public void setPodCategories(List<PODCategory> podCategories) {
+        this.podCategories = podCategories;
+    }
 }

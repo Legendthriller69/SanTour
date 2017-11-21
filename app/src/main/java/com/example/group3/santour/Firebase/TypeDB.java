@@ -1,6 +1,10 @@
 package com.example.group3.santour.Firebase;
 
+import android.support.annotation.NonNull;
+
 import com.example.group3.santour.DTO.Type;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,15 +24,20 @@ public class TypeDB {
 
     }
 
-    /**
-     * Create a new Type of track
-     *
-     * @param name
-     */
-    public static void createType(String name) {
+
+    public static void createType(Type type) {
         DatabaseReference id = TYPE_REFERENCE.push();
-        id.child("id").setValue(id.getKey());
-        id.child("name").setValue(name);
+        id.setValue(type);
+    }
+
+    public static void createType(Type type, final DataListener dataListener) {
+        final DatabaseReference id = TYPE_REFERENCE.push();
+        id.setValue(type).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                getTypeById(id.getKey(), dataListener);
+            }
+        });
     }
 
     /**
@@ -43,6 +52,7 @@ public class TypeDB {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Type type = dataSnapshot.getValue(Type.class);
+                type.setId(dataSnapshot.getKey());
                 dataListener.onSuccess(type);
             }
 

@@ -24,6 +24,13 @@ public abstract class Point {
         this.position = position;
     }
 
+    public Point(String name, String picture, String description, Position position) {
+        this.name = name;
+        this.picture = picture;
+        this.description = description;
+        this.position = position;
+    }
+
     public String getId() {
         return id;
     }

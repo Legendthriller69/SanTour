@@ -29,17 +29,15 @@ public class UserDB {
 
     public static void createUser(User user){
         DatabaseReference id = USER_REFERENCE.push();
-        id.setValue(user);
-        id.child("idRole").setValue(user.getRole().getId());
+        id.setValue(user);;
     }
 
-    public static void createUser(User user, DataListener dataListener){
-        DatabaseReference id = USER_REFERENCE.push();
-        id.setValue(user);
-        id.child("idRole").setValue(user.getRole().getName()).addOnCompleteListener(new OnCompleteListener<Void>() {
+    public static void createUser(User user, final DataListener dataListener){
+        final DatabaseReference id = USER_REFERENCE.push();
+        id.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
+                getUserById(id.getKey(), dataListener);
             }
         });
     }

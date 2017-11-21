@@ -16,21 +16,21 @@ public class User {
     private String username;
     private String password;
     private String mail;
-    private Role role;
+    private String idRole;
 
-    public User(String id, String username, String password, String mail, Role role) {
+    public User(String id, String username, String password, String mail, String idRole) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.mail = mail;
-        this.role = role;
+        this.idRole = idRole;
     }
 
-    public User(String username, String password, String mail, Role role) {
+    public User(String username, String password, String mail, String idRole) {
         this.username = username;
         this.password = password;
         this.mail = mail;
-        this.role = role;
+        this.idRole = idRole;
     }
 
     public User(){
@@ -69,17 +69,22 @@ public class User {
         this.mail = mail;
     }
 
-    @Exclude
-    public Role getRole() {
-        return role;
+    public String getIdRole() {
+        return idRole;
     }
-    @Exclude
-    public void setRole(Role role) {
-        this.role = role;
+
+    public void setIdRole(String idRole) {
+        this.idRole = idRole;
     }
 
     @Override
     public String toString() {
-        return "Id : " + id + ", pseudo : " + username + ", mail : " + mail;
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", mail='" + mail + '\'' +
+                ", idRole='" + idRole + '\'' +
+                '}';
     }
 }

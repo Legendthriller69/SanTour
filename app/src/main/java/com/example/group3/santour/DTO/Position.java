@@ -15,16 +15,23 @@ public class Position {
     private double longitude;
     private double latitude;
     private double altitude;
-    private Date dateTime;
+    private String dateTime;
 
     public Position(){
 
     }
 
-    public Position(String id, double latitude, double longitude, double altitude, Date dateTime) {
+    public Position(String id, double latitude, double longitude, double altitude, String dateTime) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.altitude = altitude;
+        this.dateTime = dateTime;
+    }
+
+    public Position(double longitude, double latitude, double altitude, String dateTime) {
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.altitude = altitude;
         this.dateTime = dateTime;
     }
@@ -61,11 +68,11 @@ public class Position {
         this.altitude = altitude;
     }
 
-    public Date getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 }
