@@ -15,10 +15,11 @@ public class RoleDB {
 
     };
 
-    public static void createRole(String name){
+    public static void createRole(String name, DataListener dataListener){
         DatabaseReference id = roleReference.push();
         id.child("id").setValue(id.getKey());
         id.child("name").setValue(name);
+        dataListener.onSuccess(id.getKey());
     }
 
 }
