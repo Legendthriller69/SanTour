@@ -48,6 +48,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMinZoomPreference(15.0f);
 
         // Add a marker in Sydney, Australia, and move the camera.
         LatLng sydney = new LatLng(-34, 151);
@@ -55,8 +56,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         //Create a new Record object
-        Record record = new Record();
-        record.getUserCurrentPosition(MainActivity.this, mMap);
+        Record record = new Record(MainActivity.this, mMap);
+        record.startRecording();
     }
 
     @Override
