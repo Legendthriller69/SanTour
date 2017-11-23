@@ -14,7 +14,11 @@ import static android.os.Build.VERSION_CODES.M;
 
 public class Permissions {
 
-    public static void checkPermissions(Activity activity){
+    public Permissions(){
+
+    }
+
+    public void checkPermissions(Activity activity){
         int PERMISSION_ALL = 1;
 
         //List of all the permissions needed by the app
@@ -27,7 +31,7 @@ public class Permissions {
         }
     }
 
-    private static boolean hasPermissions(Context context, String... permissions) {
+    private boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= M && context != null && permissions != null) {
             for (String permission : permissions) {
                 if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {

@@ -14,7 +14,7 @@ public class Record {
 
     }
 
-    public void getUserPosition(){
+    public void getUserCurrentPosition(){
 
     }
 
