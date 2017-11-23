@@ -1,19 +1,27 @@
 package com.example.group3.santour.Activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.example.group3.santour.Firebase.ResetDB;
 import com.example.group3.santour.Logic.Permissions;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.Map;
 
@@ -33,11 +41,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mapView.getMapAsync(this);
 
         //first ask for the permissions
-        Permissions.checkPermissions(MainActivity.this);
-
-        //Create a new Record object
-        Record record = new Record();
-
+        Permissions permissions = new Permissions();
+        permissions.checkPermissions(MainActivity.this);
     }
 
     @Override
@@ -48,6 +53,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        //Create a new Record object
+        Record record = new Record();
+        record.getUserCurrentPosition(MainActivity.this, mMap);
     }
 
     @Override
@@ -73,7 +82,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         super.onLowMemory();
         mapView.onLowMemory();
     }
-    
+
 }
 
 

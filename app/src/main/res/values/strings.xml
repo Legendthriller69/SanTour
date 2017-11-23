@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SanTour</string>
     <string name="google_maps_key">AIzaSyCjv9bDs81moFlsCCn8kh4L_Y216XF6_jI</string>
+    <string name="check_location_activity">Error: Please check that your location is activated</string>
 </resources>
