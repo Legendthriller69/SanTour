@@ -5,8 +5,10 @@
 
     <string name="app_name">SanTour</string>
     <string name="google_maps_key">AIzaSyCjv9bDs81moFlsCCn8kh4L_Y216XF6_jI</string>
-
-
+    <string name="check_location_activity">Error: Please check that your location is activated</string>
+    <string name="application_close">Closing the application</string>
+    <string name="track_lost_message">Are you sure you want to quit the application. Your current track will be lost !</string>
+    <string name="title_activity_test">TestActivity</string>
     <string name="Input_Poi_Name">Write name of point interest</string>
     <string name="Input_Pod_Name">Write name of point Difficulty</string>
     <string name="inputGps">GPS</string>
@@ -15,13 +17,14 @@
     <string name="input_description_pod">write a descritpion for the pod</string>
     <string name="btn_save">save</string>
     <string name="labeldescritpion">Description</string>
-
     <string name="trackName">Name</string>
     <string name="TitlePod">POD</string>
     <string name="TitlePoi">POI</string>
-    <string name="km">KM</string>
+    <string name="distance">Distance</string>
     <string name="TitleTime">Time</string>
     <string name="nbKM">TextView</string>
     <string name="btn_savePodDetails">Save</string>
+    <string name="save_track_confirmation_title">Saving the track</string>
+    <string name="save_track_confirmation_text">Are you sure you want to finish the record ?</string>
 
 </resources>

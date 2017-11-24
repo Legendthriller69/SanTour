@@ -13,12 +13,17 @@ import static android.os.Build.VERSION_CODES.M;
  */
 
 public class Permissions {
+    private String[] permissions;
 
-    public static void checkPermissions(Activity activity){
+    public Permissions(){
+
+    }
+
+    public void checkPermissions(Activity activity){
         int PERMISSION_ALL = 1;
 
         //List of all the permissions needed by the app
-        String[] permissions = new String[]{
+        permissions = new String[]{
                 Manifest.permission.ACCESS_FINE_LOCATION,
         };
 
@@ -27,7 +32,7 @@ public class Permissions {
         }
     }
 
-    private static boolean hasPermissions(Context context, String... permissions) {
+    public boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= M && context != null && permissions != null) {
             for (String permission : permissions) {
                 if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -36,5 +41,9 @@ public class Permissions {
             }
         }
         return true;
+    }
+
+    public String[] getPermissions() {
+        return permissions;
     }
 }

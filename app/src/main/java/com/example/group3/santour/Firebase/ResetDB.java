@@ -123,6 +123,7 @@ public class ResetDB {
             public void onFailed(DatabaseError dbError) {
 
             }
+
         });
     }
 }

@@ -1,13 +1,11 @@
 package com.example.group3.santour.Activity;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.example.group3.santour.Firebase.ResetDB;
 import com.example.group3.santour.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,4 +27,14 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.main_container, fragment).commit();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(fragment instanceof Record_Fragment){
+            ((Record_Fragment) fragment).onBackPressed();
+        }
+    }
 }
+
+
