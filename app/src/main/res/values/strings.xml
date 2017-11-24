@@ -15,5 +15,6 @@
     <string name="trackName">Name</string>
     <string name="TitlePod">POD</string>
     <string name="TitlePoi">POI</string>
+    <string name="btn_savePodDetails">Save</string>
 
 </resources>
