@@ -1,0 +1,145 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.group3.santour.Activity.Record_Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/NameTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/trackName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.903"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView2"
+            android:layout_width="273dp"
+            android:layout_height="195dp"
+            android:layout_alignEnd="@+id/TitlePOI"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/TitlePOI"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="32dp" />
+
+        <ImageButton
+            android:id="@+id/ButtonPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/TitlePOI"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="120dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/common_google_play_services_enable_button"
+            android:src="@android:drawable/ic_media_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ButtonPause"
+            app:layout_constraintStart_toEndOf="@+id/mapView2"
+            app:layout_constraintTop_toBottomOf="@+id/NameTrack" />
+
+        <ImageButton
+            android:id="@+id/ButtonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ButtonPause"
+            android:layout_alignStart="@+id/ButtonPause"
+            android:layout_below="@+id/ButtonPause"
+            android:layout_marginBottom="120dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="8dp"
+            android:src="@android:drawable/ic_menu_save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/NameTrack"
+            android:layout_marginRight="40dp" />
+
+        <ImageButton
+            android:id="@+id/ButtonPause"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ButtonPlay"
+            android:layout_alignStart="@+id/ButtonPlay"
+            android:layout_below="@+id/ButtonPlay"
+            android:layout_marginBottom="120dp"
+            android:layout_marginTop="8dp"
+            android:src="@android:drawable/ic_media_pause"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/NameTrack"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="416dp" />
+
+        <TextView
+            android:id="@+id/TitlePOI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButtonAddPOI"
+            android:layout_alignLeft="@+id/NameTrack"
+            android:layout_alignStart="@+id/NameTrack"
+            android:layout_marginTop="24dp"
+            android:text="@string/TitlePoi"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@+id/ButtonPlay"
+            tools:ignore="MissingConstraints,UnknownId"
+            tools:layout_editor_absoluteX="378dp" />
+
+        <TextView
+            android:id="@+id/textViewPOD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButtonAddPOD"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/imageButtonAddPOD"
+            android:layout_toRightOf="@+id/imageButtonAddPOD"
+            android:text="@string/TitlePod"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@+id/ButtonSave"
+            tools:ignore="MissingConstraints,UnknownId"
+            tools:layout_editor_absoluteX="486dp" />
+
+        <ImageButton
+            android:id="@+id/ButtonAddPOI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@android:drawable/ic_input_add"
+            app:layout_constraintTop_toBottomOf="@+id/TitlePOI"
+            tools:layout_editor_absoluteX="360dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/ButtonAddPOD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@android:drawable/ic_input_add"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPOD"
+            tools:layout_editor_absoluteX="475dp"
+            tools:ignore="MissingConstraints" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>
