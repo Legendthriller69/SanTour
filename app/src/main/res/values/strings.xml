@@ -1,4 +1,8 @@
 <resources>
+    <!-- Titres fragment -->
+    <string name="start_recording">Record Tracks</string>
+
+
     <string name="app_name">SanTour</string>
     <string name="google_maps_key">AIzaSyCjv9bDs81moFlsCCn8kh4L_Y216XF6_jI</string>
 
@@ -15,6 +19,9 @@
     <string name="trackName">Name</string>
     <string name="TitlePod">POD</string>
     <string name="TitlePoi">POI</string>
+    <string name="km">KM</string>
+    <string name="TitleTime">Time</string>
+    <string name="nbKM">TextView</string>
     <string name="btn_savePodDetails">Save</string>
 
 </resources>
