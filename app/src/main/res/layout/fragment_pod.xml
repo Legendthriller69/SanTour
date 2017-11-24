@@ -11,16 +11,20 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="105dp"
-            android:layout_height="109dp"
+            android:layout_width="214dp"
+            android:layout_height="97dp"
 
-            android:layout_marginEnd="148dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginEnd="84dp"
+            android:layout_marginRight="148dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.987"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_NamePod"
-            android:layout_marginRight="148dp" />
+            android:layout_marginLeft="8dp" />
 
         <TextView
             android:id="@+id/label_Gps"
