@@ -86,14 +86,19 @@ public class Record {
                         public void onSuccess(Location location) {
                             // Got last known location. In some rare situations this can be null.
                             mMap.clear();
+                            LatLng currentLocation;
                             if (location != null) {
                                 // Logic to handle location object
-                                LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                                currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                                 mMap.addMarker(new MarkerOptions().position(currentLocation).title("You are here"));
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
                                 positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
-                            } else
+                            } else{
                                 Toast.makeText(activity, activity.getString(R.string.check_location_activity), Toast.LENGTH_LONG).show();
+                                currentLocation = new LatLng(7.5333, 46.3);
+                                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Sierre"));
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+                            }
                         }
                     });
         } catch (SecurityException e) {
@@ -113,13 +118,13 @@ public class Record {
             public void onLocationResult(LocationResult locationResult) {
                 for (Location location : locationResult.getLocations()) {
                     lastPosition = positions.get(positions.size() - 1);
-                    if (location.getLongitude() != positions.get(positions.size() - 1).getLongitude() || location.getLatitude() != positions.get(positions.size() - 1).getLatitude() || location.getAltitude() != positions.get(positions.size() - 1).getAltitude()){
+                    if (location.getLongitude() != positions.get(positions.size() - 1).getLongitude() || location.getLatitude() != positions.get(positions.size() - 1).getLatitude() || location.getAltitude() != positions.get(positions.size() - 1).getAltitude()) {
                         positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
                         Location.distanceBetween(lastPosition.getLatitude(), lastPosition.getLongitude(), location.getLatitude(), location.getLongitude(), distances);
                         distance += distances[0];
                         String text = String.valueOf(Math.floor(distance * 100) / 100);
                         txtDistance.setText(text);
-                        Log.e("DISTANCE", distance +"");
+                        Log.e("DISTANCE", distance + "");
                     }
                 }
             }
