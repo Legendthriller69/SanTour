@@ -8,19 +8,15 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Logic.Permissions;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.example.group3.santour.TestActivity;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -31,7 +27,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private Button btnStart;
     private Button btnPause;
     private Button btnStop;
-    private Button btnTest;
 
 
     @Override
@@ -48,7 +43,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         btnStart = (Button) findViewById(R.id.btnStart);
         btnPause = (Button) findViewById(R.id.btnPause);
         btnStop = (Button) findViewById(R.id.btnStop);
-        btnTest = (Button) findViewById(R.id.btnTest);
 
         //first ask for the permissions
         Permissions permissions = new Permissions();
@@ -101,14 +95,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
-
-        btnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TestActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
 
@@ -117,14 +103,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void onResume() {
         super.onResume();
         mapView.onResume();
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mapView.onPause();
-        record.pauseLocationUpdates();
     }
 
     @Override

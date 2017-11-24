@@ -5,4 +5,15 @@
     <string name="application_close">Closing the application</string>
     <string name="track_lost_message">Are you sure you want to quit the application. Your current track will be lost !</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="Input_Poi_Name">Write name of point interest</string>
+    <string name="Input_Pod_Name">Write name of point Difficulty</string>
+    <string name="inputGps">GPS</string>
+    <string name="labelvaluesgps">values gps</string>
+    <string name="input_description">write a descritpion</string>
+    <string name="input_description_pod">write a descritpion for the pod</string>
+    <string name="btn_save">save</string>
+    <string name="labeldescritpion">Description</string>
+    <string name="trackName">Name</string>
+    <string name="TitlePod">POD</string>
+    <string name="TitlePoi">POI</string>
 </resources>
