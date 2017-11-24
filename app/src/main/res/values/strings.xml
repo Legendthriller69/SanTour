@@ -20,9 +20,11 @@
     <string name="trackName">Name</string>
     <string name="TitlePod">POD</string>
     <string name="TitlePoi">POI</string>
-    <string name="km">KM</string>
+    <string name="distance">Distance</string>
     <string name="TitleTime">Time</string>
     <string name="nbKM">TextView</string>
     <string name="btn_savePodDetails">Save</string>
+    <string name="save_track_confirmation_title">Saving the track</string>
+    <string name="save_track_confirmation_text">Are you sure you want to finish the record ?</string>
 
 </resources>

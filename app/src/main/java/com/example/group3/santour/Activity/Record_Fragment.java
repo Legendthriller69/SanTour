@@ -1,80 +1,70 @@
 package com.example.group3.santour.Activity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
-
-    //buttons
-    private Button btnStart;
-    private Button btnPause;
-    private Button btnStop;
-    private Button btnAddPoi;
-    private Button btnAddPod;
+    //elements
+    private ImageButton btnStart;
+    private ImageButton btnPause;
+    private ImageButton btnStop;
+    private ImageButton btnAddPoi;
+    private ImageButton btnAddPod;
+    private TextView txtDistance;
+    private Chronometer chrono;
 
     //Record object
     private Record record;
 
     //Google map object
+    private MapView mapView;
     private GoogleMap mMap;
-
-    private OnFragmentInteractionListener mListener;
-
-public class Record_Fragment extends Fragment {
+    private Long timeWhenPause;
 
     public Record_Fragment() {
-        // Required empty public constructor
+        timeWhenPause = Long.valueOf(0);
     }
 
-    public static Record_Fragment newInstance(String param1, String param2) {
-        Record_Fragment fragment = new Record_Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record, container, false);
 
-        //get all buttons
-        btnStart = (Button) view.findViewById(R.id.ButtonPlay);
-        btnPause = (Button) view.findViewById(R.id.ButtonPause);
-        btnStop = (Button) view.findViewById(R.id.ButtonSave);
-        btnAddPod = (Button) view.findViewById(R.id.ButtonAddPOD);
-        btnAddPoi = (Button) view.findViewById(R.id.ButtonAddPOI);
+        //instantiate map view
+        mapView = (MapView) view.findViewById(R.id.Map);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
-        //disable btnpause and stop
+        //instantiate all the elements
+        btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
+        btnPause = (ImageButton) view.findViewById(R.id.ButtonPause);
+        btnStop = (ImageButton) view.findViewById(R.id.ButtonSave);
+        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
+        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
+        txtDistance = (TextView) view.findViewById(R.id.txtDistance);
+        chrono = (Chronometer) view.findViewById(R.id.chrono);
+
+        //disable btnPause and btnStop
         btnPause.setEnabled(false);
         btnStop.setEnabled(false);
 
@@ -82,48 +72,24 @@ public class Record_Fragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMinZoomPreference(15.0f);
 
+        //add buttons listeners
+        btnStart.setOnClickListener(new StartRecording());
+        btnPause.setOnClickListener(new PauseRecording());
+        btnStop.setOnClickListener(new StopRecording());
+
         //create the record object
-        record = new Record(getActivity(), mMap);
+        record = new Record(getActivity(), mMap, txtDistance);
         record.setUserCurrentPosition();
 
     }
 
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-    private class StartRecording implements View.OnClickListener{
+    private class StartRecording implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
@@ -131,11 +97,12 @@ public class Record_Fragment extends Fragment {
             btnStart.setEnabled(false);
             btnPause.setEnabled(true);
             btnStop.setEnabled(true);
-
+            chrono.setBase(SystemClock.elapsedRealtime() + timeWhenPause);
+            chrono.start();
         }
     }
 
-    private class PauseRecording implements View.OnClickListener{
+    private class PauseRecording implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
@@ -143,17 +110,19 @@ public class Record_Fragment extends Fragment {
             btnStart.setEnabled(true);
             btnPause.setEnabled(false);
             btnStop.setEnabled(false);
+            timeWhenPause = chrono.getBase() - SystemClock.elapsedRealtime();
+            chrono.stop();
         }
     }
 
-    private class StopRecording implements View.OnClickListener{
+    private class StopRecording implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
             new AlertDialog.Builder(getActivity())
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(R.string.application_close)
-                    .setMessage(R.string.track_lost_message)
+                    .setTitle(R.string.save_track_confirmation_title)
+                    .setMessage(R.string.save_track_confirmation_text)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -165,4 +134,57 @@ public class Record_Fragment extends Fragment {
                     .show();
         }
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    public void onBackPressed() {
+        if (record != null && record.isRecording()) {
+            new AlertDialog.Builder(getActivity())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.application_close)
+                    .setMessage(R.string.track_lost_message)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getActivity().finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        } else {
+            getActivity().finish();
+        }
+    }
+
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
 }

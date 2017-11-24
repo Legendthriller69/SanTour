@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.location.Location;
 import android.util.Log;
 import android.widget.Chronometer;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group3.santour.DTO.POD;
@@ -36,6 +37,7 @@ public class Record {
     private LocationCallback locationCallback;
     private GoogleMap mMap;
     private boolean isRecording;
+    private TextView txtDistance;
 
     //all linked to tracks
     private String name;
@@ -56,7 +58,7 @@ public class Record {
 
     private float[] distances;
 
-    public Record(Activity activity, GoogleMap mMap) {
+    public Record(Activity activity, GoogleMap mMap, TextView txtDistance) {
         this.activity = activity;
         this.mMap = mMap;
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
@@ -66,6 +68,7 @@ public class Record {
         isRecording = false;
         distance = 0;
         distances = new float[1];
+        this.txtDistance = txtDistance;
     }
 
     public void startRecording() {
@@ -114,6 +117,8 @@ public class Record {
                         positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
                         Location.distanceBetween(lastPosition.getLatitude(), lastPosition.getLongitude(), location.getLatitude(), location.getLongitude(), distances);
                         distance += distances[0];
+                        String text = String.valueOf(Math.floor(distance * 100) / 100);
+                        txtDistance.setText(text);
                         Log.e("DISTANCE", distance +"");
                     }
                 }

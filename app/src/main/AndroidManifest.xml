@@ -9,9 +9,6 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
-    <!--API Key Google Developper-->
-    <meta-data android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyBAqnvAEzghVR8S9m-oRz1AXFfWg6-PnoE"/>
 
     <application
         android:allowBackup="true"
