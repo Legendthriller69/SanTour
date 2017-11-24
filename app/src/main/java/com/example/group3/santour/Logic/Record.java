@@ -3,8 +3,11 @@ package com.example.group3.santour.Logic;
 import android.app.Activity;
 import android.location.Location;
 import android.util.Log;
+import android.widget.Chronometer;
 import android.widget.Toast;
 
+import com.example.group3.santour.DTO.POD;
+import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -32,15 +35,37 @@ public class Record {
     private LocationRequest mLocationRequest;
     private LocationCallback locationCallback;
     private GoogleMap mMap;
-    private List<Position> positions;
     private boolean isRecording;
+
+    //all linked to tracks
+    private String name;
+    private String description;
+    private double distance;
+    private int duration;
+    private List<POI> pois;
+    private List<POD> pods;
+    private List<Position> positions;
+    private String idUser;
+    private String idType;
+
+    //Chrono
+    private Chronometer chrono;
+
+    //Last position
+    private Position lastPosition;
+
+    private float[] distances;
 
     public Record(Activity activity, GoogleMap mMap) {
         this.activity = activity;
         this.mMap = mMap;
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
         positions = new ArrayList<>();
+        pois = new ArrayList<>();
+        pods = new ArrayList<>();
         isRecording = false;
+        distance = 0;
+        distances = new float[1];
     }
 
     public void startRecording() {
@@ -84,8 +109,13 @@ public class Record {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 for (Location location : locationResult.getLocations()) {
-                    if (location.getLongitude() != positions.get(positions.size() - 1).getLongitude() || location.getLatitude() != positions.get(positions.size() - 1).getLatitude() || location.getAltitude() != positions.get(positions.size() - 1).getAltitude())
+                    lastPosition = positions.get(positions.size() - 1);
+                    if (location.getLongitude() != positions.get(positions.size() - 1).getLongitude() || location.getLatitude() != positions.get(positions.size() - 1).getLatitude() || location.getAltitude() != positions.get(positions.size() - 1).getAltitude()){
                         positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
+                        Location.distanceBetween(lastPosition.getLatitude(), lastPosition.getLongitude(), location.getLatitude(), location.getLongitude(), distances);
+                        distance += distances[0];
+                        Log.e("DISTANCE", distance +"");
+                    }
                 }
             }
         };
@@ -101,11 +131,7 @@ public class Record {
 
     public void pauseLocationUpdates() {
         if (locationCallback != null)
-            try {
-                mFusedLocationClient.removeLocationUpdates(locationCallback);
-            } catch (IllegalArgumentException e) {
-                Log.e("Error", e.getMessage());
-            }
+            mFusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
     public void restartLocationUpdates() {
@@ -116,11 +142,7 @@ public class Record {
     public void stopLocationUpdates() {
         //stop the location update
         if (locationCallback != null)
-            try {
-                mFusedLocationClient.removeLocationUpdates(locationCallback);
-            } catch (IllegalArgumentException e) {
-                Log.e("Error", e.getMessage());
-            }
+            mFusedLocationClient.removeLocationUpdates(locationCallback);
 
 
         //create a new track with all informations
