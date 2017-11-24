@@ -17,7 +17,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.example.group3.santour.DTO.Point;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,27 +33,31 @@ public class Record {
     private LocationCallback locationCallback;
     private GoogleMap mMap;
     private List<Position> positions;
+    private boolean isRecording;
 
     public Record(Activity activity, GoogleMap mMap) {
         this.activity = activity;
         this.mMap = mMap;
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
         positions = new ArrayList<>();
+        isRecording = false;
     }
 
     public void startRecording() {
-        getUserCurrentPosition();
+        setUserCurrentPosition();
         createLocationRequest();
         startLocationUpdates();
+        isRecording = true;
     }
 
-    public void getUserCurrentPosition() {
+    public void setUserCurrentPosition() {
         try {
             mFusedLocationClient.getLastLocation()
                     .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             // Got last known location. In some rare situations this can be null.
+                            mMap.clear();
                             if (location != null) {
                                 // Logic to handle location object
                                 LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
@@ -81,7 +84,7 @@ public class Record {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 for (Location location : locationResult.getLocations()) {
-                    if(location.getLongitude() != positions.get(positions.size() - 1).getLongitude() || location.getLatitude() != positions.get(positions.size() - 1).getLatitude() || location.getAltitude() != positions.get(positions.size() - 1).getAltitude())
+                    if (location.getLongitude() != positions.get(positions.size() - 1).getLongitude() || location.getLatitude() != positions.get(positions.size() - 1).getLatitude() || location.getAltitude() != positions.get(positions.size() - 1).getAltitude())
                         positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
                 }
             }
@@ -92,6 +95,43 @@ public class Record {
                     locationCallback,
                     null /* Looper */);
         } catch (SecurityException e) {
+            Log.e("Security Exception", e.getMessage());
         }
+    }
+
+    public void pauseLocationUpdates() {
+        if (locationCallback != null)
+            try {
+                mFusedLocationClient.removeLocationUpdates(locationCallback);
+            } catch (IllegalArgumentException e) {
+                Log.e("Error", e.getMessage());
+            }
+    }
+
+    public void restartLocationUpdates() {
+        if (locationCallback != null)
+            startLocationUpdates();
+    }
+
+    public void stopLocationUpdates() {
+        //stop the location update
+        if (locationCallback != null)
+            try {
+                mFusedLocationClient.removeLocationUpdates(locationCallback);
+            } catch (IllegalArgumentException e) {
+                Log.e("Error", e.getMessage());
+            }
+
+
+        //create a new track with all informations
+
+    }
+
+    public boolean isRecording() {
+        return isRecording;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
     }
 }

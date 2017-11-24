@@ -2,13 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.group3.santour">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <!-- Access camera to take a picture -->
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
-
-
 
     <application
         android:allowBackup="true"
@@ -17,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- Changed main launcher -->
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
@@ -26,9 +26,15 @@
             </intent-filter>
         </activity>
 
-        <!--API Key Google Developper-->
-        <meta-data android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyBAqnvAEzghVR8S9m-oRz1AXFfWg6-PnoE"/>
+        <!-- API Key Google Developper -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyBAqnvAEzghVR8S9m-oRz1AXFfWg6-PnoE" />
+
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
