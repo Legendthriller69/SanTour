@@ -2,7 +2,6 @@ package com.example.group3.santour.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -13,7 +12,6 @@ import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Logic.Permissions;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
-import com.example.group3.santour.TestActivity;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
