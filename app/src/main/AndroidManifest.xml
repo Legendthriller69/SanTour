@@ -34,11 +34,5 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBAqnvAEzghVR8S9m-oRz1AXFfWg6-PnoE" />
-
-        <activity
-            android:name=".TestActivity"
-            android:label="@string/title_activity_test"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
-
 </manifest>

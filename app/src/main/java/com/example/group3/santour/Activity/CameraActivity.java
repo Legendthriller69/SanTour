@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -109,12 +108,12 @@ public class CameraActivity extends AppCompatActivity {
         String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
         DatabaseReference ref = FirebaseDatabase.getInstance()
                 .getReference("tracks")
-                .child("-KzVcArNHH3TgHscp6A2")
+                .child("-KzVcArNHH3TgHscp6A2") //Need to change hard coded <-
                 .child("pois")
-                .child("0")
+                .child("0") //Need to change hard coded <-
                 .child("picture");
         ref.setValue(imageEncoded);
-        Log.i("YOLO-OL", "encodeBitmapAndSaveToFirebase: " + imageEncoded);
+        //Log.i("YOLO-OL", "encodeBitmapAndSaveToFirebase: " + imageEncoded);
         decodeB64Bitmap(imageEncoded);
     }
 
