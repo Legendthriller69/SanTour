@@ -38,6 +38,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     private OnFragmentInteractionListener mListener;
 
+public class Record_Fragment extends Fragment {
+
     public Record_Fragment() {
         // Required empty public constructor
     }

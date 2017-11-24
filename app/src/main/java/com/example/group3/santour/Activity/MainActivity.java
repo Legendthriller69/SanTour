@@ -1,7 +1,8 @@
 package com.example.group3.santour.Activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -27,24 +28,22 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private Button btnStop;
 
 
+    private Fragment fragment;
+    private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //create the map view
-        mapView = (MapView) findViewById(R.id.mapView3);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
+        fragmentManager = getSupportFragmentManager();
 
-        //create the buttons
-        btnStart = (Button) findViewById(R.id.btnStart);
-        btnPause = (Button) findViewById(R.id.btnPause);
-        btnStop = (Button) findViewById(R.id.btnStop);
+        this.setTitle(this.getString(R.string.start_recording));
 
-        //first ask for the permissions
-        Permissions permissions = new Permissions();
-        permissions.checkPermissions(MainActivity.this);
+        fragment = new Record_Fragment();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_container, fragment).commit();
+
     }
 
     @Override
