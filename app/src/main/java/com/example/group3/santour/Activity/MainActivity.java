@@ -6,24 +6,29 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.group3.santour.Logic.Permissions;
 import com.example.group3.santour.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle(this.getString(R.string.start_recording));
+
+        //ask for permissions
+        Permissions permissions = new Permissions();
+        permissions.checkPermissions(this);
 
         fragmentManager = getSupportFragmentManager();
 
-        this.setTitle(this.getString(R.string.start_recording));
-
         fragment = new Record_Fragment();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, fragment).commit();
 
     }
