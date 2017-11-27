@@ -26,6 +26,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
+    //Hello
+
     //elements
     private ImageButton btnStart;
     private ImageButton btnPause;
