@@ -1,7 +1,10 @@
 package com.example.group3.santour.Activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
@@ -39,6 +42,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private MapView mapView;
     private GoogleMap mMap;
     private Long timeWhenPause;
+    private LocationManager locationManager ;
 
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
@@ -54,6 +58,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mapView = (MapView) view.findViewById(R.id.Map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
         //instantiate all the elements
         btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
@@ -85,8 +91,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         //create the record object
         record = new Record(getActivity(), mMap, txtDistance);
-        record.setUserCurrentPosition();
-
+        record.moveCameraToUserPosition();
     }
 
     private class StartRecording implements View.OnClickListener {
@@ -135,11 +140,13 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
         mapView.onResume();
+        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            createGpsDisabledAlert();
+        }
     }
 
     @Override
@@ -187,4 +194,30 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mapView.onLowMemory();
     }
 
+    private void createGpsDisabledAlert() {
+        AlertDialog.Builder localBuilder = new AlertDialog.Builder(getActivity());
+        localBuilder
+                .setMessage("Le GPS est inactif, voulez-vous l'activer ?")
+                .setCancelable(false)
+                .setPositiveButton("Activer GPS ",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                                Record_Fragment.this.showGpsOptions();
+                            }
+                        }
+                );
+        localBuilder.setNegativeButton("Ne pas l'activer ",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        paramDialogInterface.cancel();
+                        getActivity().finish();
+                    }
+                }
+        );
+        localBuilder.create().show();
+    }
+
+    private void showGpsOptions() {
+        startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+    }
 }
