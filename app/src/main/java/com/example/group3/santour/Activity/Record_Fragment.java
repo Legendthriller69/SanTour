@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Logic.Record;
@@ -39,6 +42,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private MapView mapView;
     private GoogleMap mMap;
     private Long timeWhenPause;
+
+    private Fragment fragment;
+    private FragmentManager fragmentManager;
 
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
@@ -67,6 +73,35 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         //disable btnPause and btnStop
         btnPause.setEnabled(false);
         btnStop.setEnabled(false);
+
+
+        //navigation button to pod
+        btnAddPod=(ImageButton) view.findViewById(R.id.ButtonAddPOD);
+        btnAddPod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
+                fragment = new Pod_Fragment();
+                fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_container, fragment).commit();
+                transaction.addToBackStack(null);
+            }
+        });
+
+        //navigation button to pod
+        btnAddPoi=(ImageButton) view.findViewById(R.id.ButtonAddPOI);
+        btnAddPoi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
+                fragment = new Poi_Fragment();
+                fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_container, fragment).commit();
+                transaction.addToBackStack(null);
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;
