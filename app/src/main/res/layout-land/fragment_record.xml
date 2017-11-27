@@ -81,16 +81,15 @@
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/Map"
-            android:layout_width="296dp"
-            android:layout_height="223dp"
+            android:layout_width="290dp"
+            android:layout_height="171dp"
             android:layout_alignEnd="@+id/TitlePOI"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/TitlePOI"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="16dp" />
 
         <ImageButton
             android:id="@+id/ButtonPause"
