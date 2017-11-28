@@ -1,10 +1,13 @@
 package com.example.group3.santour.Activity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +20,9 @@ import android.widget.TextView;
 import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.Date;
@@ -41,6 +44,7 @@ public class Pod_Fragment extends Fragment {
     //Track's objects
     private POD pod;
     private Position position;
+    private Camera camera;
 
     //fragments
     private Fragment fragment;
@@ -79,6 +83,7 @@ public class Pod_Fragment extends Fragment {
                 txtLatLng.setText(latLng);
                 position = new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString());
             }
+
             @Override
             public void onFailed(DatabaseError dbError) {
             }
@@ -86,6 +91,7 @@ public class Pod_Fragment extends Fragment {
 
         //on click for buttons
         btnNext.setOnClickListener(new NextPOD());
+        btnTakePicture.setOnClickListener(new TakePicture());
 
         return view;
     }
@@ -110,10 +116,33 @@ public class Pod_Fragment extends Fragment {
             //switch to the new fragment with transaction
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.main_container, fragment);
             transaction.addToBackStack(null);
-            transaction.replace(R.id.main_container, fragment).commit();
+            transaction.commit();
+            Log.e("COUNT pod fragment", fragmentManager.getBackStackEntryCount() + "");
+
         }
     }
 
+    private class TakePicture implements View.OnClickListener {
 
+        @Override
+        public void onClick(View view) {
+            camera = new Camera();
+            camera.launchCamera(Pod_Fragment.this);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //get the bitmap from the intent
+        Bundle extras = data.getExtras();
+        Bitmap bitmap = (Bitmap) extras.get("data");
+
+        //first add the image to the camera
+        camera.addToImageView(requestCode, resultCode, bitmap, getActivity(), pictureView);
+
+        //then encode the picture and add to the string
+        pod.setPicture(camera.encodeBitmap(bitmap));
+    }
 }

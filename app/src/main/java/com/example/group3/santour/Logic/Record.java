@@ -77,13 +77,6 @@ public class Record {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
     }
 
-    public Record(Activity activity, GoogleMap mMap) {
-        this.activity = activity;
-        this.mMap = mMap;
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
-    }
-
-
     public void startRecording() {
         setUserCurrentPosition();
         createLocationRequest();

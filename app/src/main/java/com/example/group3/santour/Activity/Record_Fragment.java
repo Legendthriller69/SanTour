@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group3.santour.DTO.Position;
+import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -79,10 +80,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         txtDistance = (TextView) view.findViewById(R.id.txtDistance);
         chrono = (Chronometer) view.findViewById(R.id.chrono);
 
-        //disable btnPause and btnStop
+        //disable btnPause and btnStop and addpod addpoi
         btnPause.setEnabled(false);
         btnStop.setEnabled(false);
-
+        btnAddPoi.setEnabled(false);
+        btnAddPod.setEnabled(false);
 
         //navigation button to pod
         btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
@@ -108,7 +110,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         btnStop.setOnClickListener(new StopRecording());
 
         //create the record object
-        record = new Record(getActivity(), mMap);
+        record = new Record(getActivity(), mMap, txtDistance);
         record.moveCameraToUserPosition();
     }
 
@@ -118,8 +120,10 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             fragment = new Pod_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.main_container, fragment);
             transaction.addToBackStack(null);
-            transaction.replace(R.id.main_container, fragment).commit();
+            transaction.commit();
+            Log.e("COUNT record fragment", fragmentManager.getBackStackEntryCount() + "");
         }
     }
 
@@ -138,10 +142,20 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         @Override
         public void onClick(View view) {
+            //create a new track in the main activity now that he has started the track
+            MainActivity.setTrack(new Track());
+
+            //call the method to start recording
             record.startRecording();
+
+            //enable or disable buttons needed
             btnStart.setEnabled(false);
             btnPause.setEnabled(true);
             btnStop.setEnabled(true);
+            btnAddPod.setEnabled(true);
+            btnAddPoi.setEnabled(true);
+
+            //start the chronometer
             chrono.setBase(SystemClock.elapsedRealtime() + timeWhenPause);
             chrono.start();
         }

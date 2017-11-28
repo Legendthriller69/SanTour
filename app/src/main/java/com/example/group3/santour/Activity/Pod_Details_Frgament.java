@@ -2,6 +2,7 @@ package com.example.group3.santour.Activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 
 import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.PODCategory;
+import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.R;
 
 import java.util.List;
@@ -21,16 +23,17 @@ public class Pod_Details_Frgament extends Fragment {
     private Button btnSave;
 
     //Track's objects
+    private Track track;
     private POD pod;
     private List<PODCategory> podCategoryList;
 
     //fragment
     private Bundle bundle;
+    private FragmentManager fragmentManager;
 
     public Pod_Details_Frgament() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +43,9 @@ public class Pod_Details_Frgament extends Fragment {
 
         //instantiate all elements
         btnSave = (Button) view.findViewById(R.id.btn_savePodDetails);
+
+        //add listener to buttons
+        btnSave.setOnClickListener(new SavePOD());
 
         //get current POD from Bundle
         bundle = getArguments();
@@ -53,7 +59,15 @@ public class Pod_Details_Frgament extends Fragment {
 
         @Override
         public void onClick(View view) {
-            //get values from Slider to create new PODCategories
+            track = MainActivity.getTrack();
+            List<POD> pods = track.getPods();
+            pods.add(pod);
+            track.setPods(pods);
+            MainActivity.setTrack(track);
+            fragmentManager = getActivity().getSupportFragmentManager();
+            Log.e("COUNT pod details frag", fragmentManager.getBackStackEntryCount() + "");
+            fragmentManager.popBackStack();
+            fragmentManager.popBackStack();
 
 
         }
