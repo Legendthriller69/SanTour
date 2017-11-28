@@ -7,17 +7,14 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -79,31 +76,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         //navigation button to pod
         btnAddPod=(ImageButton) view.findViewById(R.id.ButtonAddPOD);
-        btnAddPod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
-                fragment = new Pod_Fragment();
-                fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.main_container, fragment).commit();
-                transaction.addToBackStack(null);
-            }
-        });
+        btnAddPod.setOnClickListener(new AddPOD());
 
         //navigation button to pod
         btnAddPoi=(ImageButton) view.findViewById(R.id.ButtonAddPOI);
-        btnAddPoi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
-                fragment = new Poi_Fragment();
-                fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.main_container, fragment).commit();
-                transaction.addToBackStack(null);
-            }
-        });
+        btnAddPoi.setOnClickListener(new AddPOI());
 
         // Inflate the layout for this fragment
         return view;
@@ -124,6 +101,30 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         record = new Record(getActivity(), mMap, txtDistance);
         record.setUserCurrentPosition();
 
+    }
+
+    private class AddPOD implements  View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
+            fragment = new Pod_Fragment();
+            fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.main_container, fragment).commit();
+        }
+    }
+
+    private class AddPOI implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getContext(), "Btn add POI pushed", Toast.LENGTH_SHORT).show();
+            fragment = new Poi_Fragment();
+            fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.main_container, fragment).commit();
+        }
     }
 
     private class StartRecording implements View.OnClickListener {

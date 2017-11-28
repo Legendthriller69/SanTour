@@ -70,9 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        if(fragment instanceof Record_Fragment){
-            ((Record_Fragment) fragment).onBackPressed();
+        if(fragmentManager.getBackStackEntryCount()>0){
+            fragmentManager.popBackStack();
+        }
+        else {
+            super.onBackPressed();
         }
     }
 }
