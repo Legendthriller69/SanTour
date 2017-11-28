@@ -29,9 +29,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
-    //Hello
-
-
     //elements
     private ImageButton btnStart;
     private ImageButton btnPause;
@@ -44,14 +41,17 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     //Record object
     private Record record;
 
-    //Google map object
+    //Maps objects
     private MapView mapView;
     private GoogleMap mMap;
     private Long timeWhenPause;
-    private LocationManager locationManager ;
+    private LocationManager locationManager;
 
+    //fragments
     private Fragment fragment;
     private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
+
 
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
@@ -85,11 +85,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
 
         //navigation button to pod
-        btnAddPod=(ImageButton) view.findViewById(R.id.ButtonAddPOD);
+        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
         btnAddPod.setOnClickListener(new AddPOD());
 
         //navigation button to poi
-        btnAddPoi=(ImageButton) view.findViewById(R.id.ButtonAddPOI);
+        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
         btnAddPoi.setOnClickListener(new AddPOI());
 
         // Inflate the layout for this fragment
@@ -108,17 +108,16 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         btnStop.setOnClickListener(new StopRecording());
 
         //create the record object
-        record = new Record(getActivity(), mMap, txtDistance);
+        record = new Record(getActivity(), mMap);
         record.moveCameraToUserPosition();
     }
 
-    private class AddPOD implements  View.OnClickListener {
+    private class AddPOD implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
             fragment = new Pod_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction = fragmentManager.beginTransaction();
             transaction.addToBackStack(null);
             transaction.replace(R.id.main_container, fragment).commit();
         }
@@ -127,10 +126,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private class AddPOI implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Btn add POI pushed", Toast.LENGTH_SHORT).show();
             fragment = new Poi_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction = fragmentManager.beginTransaction();
             transaction.addToBackStack(null);
             transaction.replace(R.id.main_container, fragment).commit();
         }
@@ -186,7 +184,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     public void onResume() {
         super.onResume();
         mapView.onResume();
-        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             createGpsDisabledAlert();
         }
     }

@@ -2,6 +2,7 @@ package com.example.group3.santour.DTO;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  */
 
 @IgnoreExtraProperties
-public class POD extends Point {
+public class POD extends Point implements Serializable {
 
     private List<PODCategory> podCategories;
 
@@ -35,5 +36,12 @@ public class POD extends Point {
 
     public void setPodCategories(List<PODCategory> podCategories) {
         this.podCategories = podCategories;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n POD{" +
+                "podCategories=" + podCategories +
+                '}';
     }
 }

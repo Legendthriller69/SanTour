@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
+import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -59,9 +60,9 @@ public class Record {
     private float[] distances;
 
     public Record(Activity activity, GoogleMap mMap, TextView txtDistance) {
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
         this.activity = activity;
         this.mMap = mMap;
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
         positions = new ArrayList<>();
         pois = new ArrayList<>();
         pods = new ArrayList<>();
@@ -70,6 +71,18 @@ public class Record {
         distances = new float[1];
         this.txtDistance = txtDistance;
     }
+
+    public Record(Activity activity) {
+        this.activity = activity;
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+    }
+
+    public Record(Activity activity, GoogleMap mMap) {
+        this.activity = activity;
+        this.mMap = mMap;
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+    }
+
 
     public void startRecording() {
         setUserCurrentPosition();
@@ -94,6 +107,23 @@ public class Record {
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
                             } else
                                 Toast.makeText(activity, activity.getString(R.string.check_location_activity), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        } catch (SecurityException e) {
+        }
+    }
+
+    public void getUserLatLng(final DataListener dataListener) {
+        try {
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                // Logic to handle location object
+                                dataListener.onSuccess(location);
+                            }
                         }
                     });
         } catch (SecurityException e) {

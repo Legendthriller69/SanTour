@@ -2,13 +2,30 @@ package com.example.group3.santour.Activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.group3.santour.DTO.POD;
+import com.example.group3.santour.DTO.PODCategory;
 import com.example.group3.santour.R;
 
+import java.util.List;
+
 public class Pod_Details_Frgament extends Fragment {
+
+
+    //elements
+    private Button btnSave;
+
+    //Track's objects
+    private POD pod;
+    private List<PODCategory> podCategoryList;
+
+    //fragment
+    private Bundle bundle;
 
     public Pod_Details_Frgament() {
         // Required empty public constructor
@@ -19,8 +36,27 @@ public class Pod_Details_Frgament extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pod__details, container, false);
+        View view = inflater.inflate(R.layout.fragment_pod__details, container, false);
+
+        //instantiate all elements
+        btnSave = (Button) view.findViewById(R.id.btn_savePodDetails);
+
+        //get current POD from Bundle
+        bundle = getArguments();
+        pod = (POD) bundle.getSerializable("POD");
+
+
+        return view;
     }
 
+    private class SavePOD implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            //get values from Slider to create new PODCategories
+
+
+        }
+    }
 
 }
