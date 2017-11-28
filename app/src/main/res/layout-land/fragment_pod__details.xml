@@ -6,6 +6,12 @@
     tools:context="com.example.group3.santour.Activity.Pod_Details_Frgament">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

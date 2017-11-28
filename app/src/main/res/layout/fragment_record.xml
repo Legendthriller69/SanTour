@@ -86,7 +86,7 @@
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/Map"
-            android:layout_width="236dp"
+            android:layout_width="match_parent"
             android:layout_height="170dp"
             android:layout_alignEnd="@+id/TitlePOI"
             android:layout_alignParentTop="true"
@@ -135,7 +135,7 @@
             android:id="@+id/ButtonAddPOI"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:src="@android:drawable/ic_input_add"
             app:layout_constraintBottom_toTopOf="@+id/ButtonAddPOD"
@@ -202,7 +202,8 @@
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/TitleSize"
             app:layout_constraintTop_toBottomOf="@+id/NameTrack"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:layout_marginLeft="40dp" />
 
 
     </android.support.constraint.ConstraintLayout>

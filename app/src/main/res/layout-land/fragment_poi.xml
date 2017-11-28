@@ -81,7 +81,7 @@
         <EditText
             android:id="@+id/constraintLayout"
             android:layout_width="550dp"
-            android:layout_height="70dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="20dp"
             android:hint="@string/input_description"
@@ -94,13 +94,13 @@
             android:layout_width="124dp"
             android:layout_height="49dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="8dp"
             android:text="@string/btn_save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.333" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
