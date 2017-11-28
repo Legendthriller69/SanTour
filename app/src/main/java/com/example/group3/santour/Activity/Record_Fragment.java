@@ -7,14 +7,17 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,6 +27,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     //Hello
+
 
     //elements
     private ImageButton btnStart;
@@ -78,7 +82,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         btnAddPod=(ImageButton) view.findViewById(R.id.ButtonAddPOD);
         btnAddPod.setOnClickListener(new AddPOD());
 
-        //navigation button to pod
+        //navigation button to poi
         btnAddPoi=(ImageButton) view.findViewById(R.id.ButtonAddPOI);
         btnAddPoi.setOnClickListener(new AddPOI());
 

@@ -1,12 +1,15 @@
 package com.example.group3.santour.Activity;
 
+import android.content.Context;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -55,8 +58,8 @@ public class Pod_Fragment extends Fragment {
                 fragment = new Pod_Details_Frgament();
                 fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
+                transaction.addToBackStack(null);
             }
         });
 

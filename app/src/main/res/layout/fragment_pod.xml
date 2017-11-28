@@ -61,6 +61,7 @@
             android:text="@string/labelvaluesgps"
             app:layout_constraintBottom_toBottomOf="@+id/label_Gps"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.073"
             app:layout_constraintStart_toEndOf="@+id/label_Gps"
             app:layout_constraintTop_toBottomOf="@+id/input_NamePod"
             app:layout_constraintVertical_bias="0.0"
