@@ -152,7 +152,7 @@ public class Pod_Fragment extends Fragment {
             bitmap = (Bitmap) extras.get("data");
 
             //first add the image to the camera
-            camera.addToImageView(requestCode, resultCode, bitmap, getActivity(), pictureView);
+            camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
 
             //then encode the picture and add to the string
             pod.setPicture(camera.encodeBitmap(bitmap));
