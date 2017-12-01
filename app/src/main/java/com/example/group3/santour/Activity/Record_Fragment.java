@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,10 +84,15 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         chrono = (Chronometer) view.findViewById(R.id.chrono);
 
         //disable btnPause and btnStop and addpod addpoi
+        btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         btnPause.setEnabled(false);
+        btnPause.setBackgroundColor(Color.TRANSPARENT);
         btnStop.setEnabled(false);
+        btnStop.setBackgroundColor(Color.TRANSPARENT);
         btnAddPoi.setEnabled(false);
+        btnAddPoi.setBackgroundColor(Color.TRANSPARENT);
         btnAddPod.setEnabled(false);
+        btnAddPod.setBackgroundColor(Color.TRANSPARENT);
 
         //navigation button to pod
         btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
@@ -151,10 +158,15 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
             //enable or disable buttons needed
             btnStart.setEnabled(false);
+            btnStart.setBackgroundColor(Color.TRANSPARENT);
             btnPause.setEnabled(true);
+            btnPause.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnStop.setEnabled(true);
+            btnStop.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnAddPod.setEnabled(true);
+            btnAddPod.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnAddPoi.setEnabled(true);
+            btnAddPoi.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
             //start the chronometer
             chrono.setBase(SystemClock.elapsedRealtime() + timeWhenPause);
@@ -168,8 +180,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         public void onClick(View view) {
             record.pauseLocationUpdates();
             btnStart.setEnabled(true);
+            btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             btnPause.setEnabled(false);
+            btnPause.setBackgroundColor(Color.TRANSPARENT);
             btnStop.setEnabled(false);
+            btnStop.setBackgroundColor(Color.TRANSPARENT);
             timeWhenPause = chrono.getBase() - SystemClock.elapsedRealtime();
             chrono.stop();
         }

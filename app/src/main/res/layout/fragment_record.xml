@@ -105,15 +105,14 @@
             android:layout_alignLeft="@+id/ButtonPlay"
             android:layout_alignStart="@+id/ButtonPlay"
             android:layout_below="@+id/ButtonPlay"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
             android:src="@android:drawable/ic_media_pause"
             app:layout_constraintEnd_toEndOf="@+id/ButtonPlay"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/ButtonPlay"
             app:layout_constraintTop_toBottomOf="@+id/ButtonPlay"
-            tools:ignore="MissingConstraints"
-            android:layout_marginLeft="8dp" />
+            tools:ignore="MissingConstraints" />
 
         <ImageButton
             android:id="@+id/ButtonPlay"
@@ -136,8 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@android:drawable/ic_menu_add"
             app:layout_constraintBottom_toTopOf="@+id/ButtonAddPOD"
             app:layout_constraintEnd_toEndOf="@+id/ButtonAddPOD"
             app:layout_constraintHorizontal_bias="0.875"
@@ -150,11 +148,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="32dp"
-            android:src="@android:drawable/ic_input_add"
+            android:layout_marginLeft="32dp"
+            android:src="@android:drawable/ic_menu_add"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="32dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Chronometer
             android:id="@+id/chrono"
