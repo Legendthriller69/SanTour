@@ -49,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.navigation_about:
-                        fragment = new Pod_Fragment(); // A CHANGER
+                        fragment = new About_Fragment();
                         break;
                     case R.id.navigation_tracks:
-                        fragment = new Record_Fragment(); // A CHANGER
+                        fragment = new Record_Fragment();
                         break;
                     case R.id.navigation_settings:
-                        fragment = new Record_Fragment();
+                        fragment = new Settings_Fragment();
                         break;
                 }
 
