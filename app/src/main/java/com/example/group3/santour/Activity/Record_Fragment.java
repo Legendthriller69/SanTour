@@ -19,8 +19,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.group3.santour.DTO.Position;
-import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -65,8 +63,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record, container, false);
 
+
         //instantiate map view
-        mapView = (MapView) view.findViewById(R.id.Map);
+        mapView = (CustomMapView) view.findViewById(R.id.Map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 

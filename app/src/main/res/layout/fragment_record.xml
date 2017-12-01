@@ -84,7 +84,7 @@
             tools:ignore="MissingConstraints,UnknownId"
             android:layout_marginLeft="16dp" />
 
-        <com.google.android.gms.maps.MapView
+        <com.example.group3.santour.Activity.CustomMapView
             android:id="@+id/Map"
             android:layout_width="match_parent"
             android:layout_height="170dp"
