@@ -1,5 +1,6 @@
 package com.example.group3.santour.Activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -58,9 +59,6 @@ public class Pod_Details_Fragment extends Fragment {
         btnSave = (Button) view.findViewById(R.id.btn_savePodDetails);
         mListView = (ListView) view.findViewById(R.id.listView);
 
-        //add listener to buttons
-        btnSave.setOnClickListener(new SavePOD());
-
         //get current POD from Bundle
         bundle = getArguments();
         pod = (POD) bundle.getSerializable("POD");
@@ -77,6 +75,8 @@ public class Pod_Details_Fragment extends Fragment {
                 adapterCategory = new CategoriePod_Adapter(getContext(), podCategoryList, categories);
                 mListView.setAdapter(adapterCategory);
 
+                //add listener to buttons
+                btnSave.setOnClickListener(new SavePOD());
 
             }
 
@@ -95,19 +95,13 @@ public class Pod_Details_Fragment extends Fragment {
         public void onClick(View view) {
 
             Log.e("adapter count", adapterCategory.getCount() + "");
-            PODCategory podCategory;
-            for(int i = 0 ; i<adapterCategory.getCount() ; i++){
-                podCategory = adapterCategory.getItem(i);
-                podCategoryList.add(podCategory);
-            }
+            Log.e("SIZE", "" + podCategoryList.toString());
 
             track = MainActivity.getTrack();
             pod.setPodCategories(podCategoryList);
             track.getPods().add(pod);
             MainActivity.setTrack(track);
             fragmentManager = getActivity().getSupportFragmentManager();
-            Log.e("COUNT pod details frag", fragmentManager.getBackStackEntryCount() + "");
-            fragmentManager.popBackStack();
             fragmentManager.popBackStack();
         }
     }
