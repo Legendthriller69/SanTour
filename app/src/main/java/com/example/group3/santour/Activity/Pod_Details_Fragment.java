@@ -96,6 +96,7 @@ public class Pod_Details_Fragment extends Fragment {
             track = MainActivity.getTrack();
             pod.setPodCategories(podCategoryList);
             track.getPods().add(pod);
+
             MainActivity.setTrack(track);
 
             fragmentManager = getActivity().getSupportFragmentManager();

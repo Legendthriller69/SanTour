@@ -35,6 +35,11 @@ public class TrackDB {
         });
     }
 
+    public static void createTrack(Track track) {
+        final DatabaseReference id = TRACK_REFERENCE.push();
+        id.setValue(track);
+    }
+
     public static void getTrackById(final String id, final DataListener dataListener) {
         Query query = TRACK_REFERENCE.child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {

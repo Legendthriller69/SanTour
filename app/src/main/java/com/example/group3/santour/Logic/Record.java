@@ -8,10 +8,13 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group3.santour.Activity.MainActivity;
 import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
+import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Firebase.TrackDB;
 import com.example.group3.santour.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -24,6 +27,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,12 +49,8 @@ public class Record implements Serializable {
     private String text;
 
     //all linked to tracks
-    private String name;
-    private String description;
+    private Track track;
     private double distance;
-    private int duration;
-    private List<POI> pois;
-    private List<POD> pods;
     private List<Position> positions;
     private String idUser;
     private String idType;
@@ -68,8 +68,6 @@ public class Record implements Serializable {
         this.activity = activity;
         this.mMap = mMap;
         positions = new ArrayList<>();
-        pois = new ArrayList<>();
-        pods = new ArrayList<>();
         isRecording = false;
         distance = 0;
         distances = new float[1];
@@ -198,14 +196,30 @@ public class Record implements Serializable {
             mFusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
-    public void stopLocationUpdates() {
+    private void stopLocationUpdates() {
         //stop the location update
         if (locationCallback != null)
             mFusedLocationClient.removeLocationUpdates(locationCallback);
+    }
 
+    public void createTrack(String name, String description, int duration, String idType, String idUser){
+        //stop the location updates
+        stopLocationUpdates();
 
-        //create a new track with all informations
+        //create the track
+        track = MainActivity.getTrack();
+        Log.e("ALEKS", track.getPods().size() + "");
+        Log.e("ALEKS", track.getPois().size() + "");
 
+        track.setName(name);
+        track.setDuration(duration);
+        track.setDistance(distance);
+        track.setPositions(positions);
+        track.setIdType(idType);
+        track.setIdUser(idUser);
+        track.setDescription(description);
+        TrackDB.createTrack(track);
+        MainActivity.setTrack(null);
     }
 
     public boolean isRecording() {
@@ -234,9 +248,5 @@ public class Record implements Serializable {
 
     public String getDistanceText() {
         return text;
-    }
-
-    public List<Position> getPositions() {
-        return positions;
     }
 }

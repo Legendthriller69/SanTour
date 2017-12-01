@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
+import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
@@ -42,19 +45,21 @@ public class Poi_Fragment extends Fragment {
     private Button btn_poiSave;
 
     //Record object for current location
-    private Record record ;
+    private Record record;
 
     //Track's object
-    private Position position ;
-    private Camera camera ;
+    private Track track;
+    private Position position;
+    private Camera camera;
     private POI poi;
 
+    //Fragment
+    private FragmentManager fragmentManager;
 
     public Poi_Fragment() {
         poi = new POI();
         poi.setPicture("");
     }
-
 
 
     /*
@@ -72,7 +77,7 @@ public class Poi_Fragment extends Fragment {
         btn_poiSave = (Button) view.findViewById(R.id.btn_save);
         edtxt_poiName = (EditText) view.findViewById(R.id.input_NamePoi);
         //Need to change the ID in layount
-        edtxt_poiDescription = (EditText) view.findViewById(R.id.constraintLayout);
+        edtxt_poiDescription = (EditText) view.findViewById(R.id.input_descriptinPoi);
 
 
         //instantiate record
@@ -98,7 +103,7 @@ public class Poi_Fragment extends Fragment {
         btn_poiSave.setOnClickListener(new savePOI());
 
 
-        return view ;
+        return view;
 
     }
 
@@ -107,14 +112,27 @@ public class Poi_Fragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            if(formValidation()) {
+            if (formValidation()) {
+                //get the current track
+                track = MainActivity.getTrack();
 
-                //Set POI Object
-                /**
-                 poi.setName();
-                 poi.setDescription();
-                 poi.setPosition(position);
-                 poi.setPicture();*/
+                //set the poi values
+                poi.setName(edtxt_poiName.getText().toString());
+                poi.setDescription(edtxt_poiDescription.getText().toString());
+                poi.setPosition(position);
+
+                //add to the pois list
+                track.getPois().add(poi);
+
+                MainActivity.setTrack(track);
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+                if (fragmentManager.getBackStackEntryCount() > 0) {
+                    FragmentManager.BackStackEntry first = fragmentManager
+                            .getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1);
+                    fragmentManager.popBackStack(first.getId(),
+                            FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
 
             }
         }
@@ -152,9 +170,11 @@ public class Poi_Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(data != null) {
-            if(camera.getChoice() == "camera"){
+        if (data != null) {
+
+            if (camera.getChoice() == "camera") {
                 //get the bitmap from the intent
+
                 Bundle extras = data.getExtras();
                 Bitmap bitmap = (Bitmap) extras.get("data");
 
@@ -164,8 +184,10 @@ public class Poi_Fragment extends Fragment {
 
                 //then encode the picture and add to the string
                 poi.setPicture(camera.encodeBitmap(bitmap));
-            }else{
+            } else {
                 camera.addToImageViewGallery(requestCode, resultCode, getActivity(), img_pictureView, data);
+                //then encode the picture and add to the string
+                poi.setPicture(camera.encodeImageWithGallery());
             }
 
         }

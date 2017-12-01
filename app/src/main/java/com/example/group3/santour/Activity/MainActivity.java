@@ -82,8 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Log.e("BACKSTACK ENTRY COUNT", fragmentManager.getBackStackEntryCount() + "");
         if(fragmentManager.getBackStackEntryCount()>0){
             fragmentManager.popBackStack();
+        } else {
+            finish();
         }
     }
 

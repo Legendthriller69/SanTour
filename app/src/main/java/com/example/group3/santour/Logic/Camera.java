@@ -35,6 +35,8 @@ public class Camera {
 
     //Gallery
     private final int RESULT_LOAD_IMG = 1;
+    private final int REQUEST_TAKE_PHOTO = 1;
+
     private String imgDecodableString;
 
     //Choice made by the user - Camera or Gallery
@@ -79,7 +81,6 @@ public class Camera {
         return image;
     }
 
-    static final int REQUEST_TAKE_PHOTO = 1;
 
     public void dispatchTakePictureIntent(Fragment fragment) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -150,6 +151,10 @@ public class Camera {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+    }
+
+    public String encodeImageWithGallery(){
+        return imgDecodableString;
     }
 
     /**

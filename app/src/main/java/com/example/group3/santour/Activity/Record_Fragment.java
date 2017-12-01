@@ -11,6 +11,7 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,7 +42,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private TextView txtDistance;
     private EditText txtTrackName;
     private Chronometer chrono;
-    private String trackName;
 
     //Record object
     private Record record;
@@ -52,13 +52,10 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private Long timeWhenPause;
     private LocationManager locationManager;
 
-    private ScrollView scrollView;
-
     //fragments
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
-    private Bundle savedInstanceState;
 
 
     public Record_Fragment() {
@@ -67,14 +64,14 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     //Create an action bar button
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.list_menu, menu);
     }
 
     //Handle button activities
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.list_pod:
                 fragment = new ListPODs();
                 break;
@@ -96,13 +93,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_record, container, false);
 
-            setHasOptionsMenu(true);
+        //options menu
+        setHasOptionsMenu(true);
 
-
-            //instantiate map view
-            mapView = (MapView) view.findViewById(R.id.Map);
-            mapView.onCreate(savedInstanceState);
-            mapView.getMapAsync(this);
         //instantiate map view
         mapView = (MapView) view.findViewById(R.id.Map);
         mapView.onCreate(savedInstanceState);
@@ -188,10 +181,10 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         @Override
         public void onClick(View view) {
-
-            Log.e("START CLICK", "START CLICK");
             //create a new track in the main activity now that he has started the track
-            MainActivity.setTrack(new Track());
+            if(MainActivity.getTrack() == null){
+                MainActivity.setTrack(new Track());
+            }
 
             //call the method to start recording
             record.startRecording();
@@ -241,7 +234,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            record.stopLocationUpdates();
+                            record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", "idStringAFAIRE");
+                            //come back to the welcome page after
+                            getActivity().finish();
                         }
 
                     })
@@ -259,7 +254,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         }
 
         if (record != null) {
-            Log.e("TIMEWHENPAUSE", timeWhenPause + "");
             txtDistance.setText(record.getDistanceText());
             btnStart.callOnClick();
         }
