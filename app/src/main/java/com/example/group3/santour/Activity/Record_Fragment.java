@@ -10,13 +10,12 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +46,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private Long timeWhenPause;
     private LocationManager locationManager;
+
+    private ScrollView scrollView;
 
     //fragments
     private Fragment fragment;
