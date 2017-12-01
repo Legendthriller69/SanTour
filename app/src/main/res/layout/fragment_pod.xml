@@ -5,119 +5,98 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.example.group3.santour.Activity.Poi_Fragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="350dp"
+            android:layout_height="173dp"
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="343dp"
-                android:layout_height="161dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="148dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/input_NamePod"
+            app:layout_constraintTop_toBottomOf="@+id/input_NamePod" />
 
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="148dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="28dp"
-                android:src="@mipmap/ic_launcher"
-                app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
-                app:layout_constraintHorizontal_bias="0.495"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/input_NamePod"
-                app:layout_constraintTop_toBottomOf="@+id/input_NamePod" />
+        <TextView
+            android:id="@+id/label_valuesGps"
+            android:layout_width="350dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/input_NamePod"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            android:layout_marginRight="8dp" />
 
-            <TextView
-                android:id="@+id/label_Descrition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/labeldescritpion"
-                app:layout_constraintStart_toStartOf="@+id/label_valuesGps"
-                app:layout_constraintTop_toBottomOf="@+id/label_valuesGps" />
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="124dp"
+            android:layout_height="56dp"
 
-            <TextView
-                android:id="@+id/label_valuesGps"
-                android:layout_width="350dp"
-                android:layout_height="15dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/labelvaluesgps"
-                app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/input_NamePod"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+            android:text="next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-            <Button
-                android:id="@+id/btn_next"
-                android:layout_width="124dp"
-                android:layout_height="56dp"
-                android:layout_marginBottom="8dp"
 
-                android:layout_marginTop="8dp"
-                android:text="next"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/input_descriptionPod"
-                app:layout_constraintHorizontal_bias="0.49"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/input_descriptionPod"
-                app:layout_constraintTop_toBottomOf="@+id/input_descriptionPod"
-                app:layout_constraintVertical_bias="0.239" />
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="29dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="8dp"
+            android:src="@android:drawable/ic_input_add"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            <android.support.constraint.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="20dp" />
+        <EditText
+            android:id="@+id/input_NamePod"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:ems="10"
+            android:textSize="12sp"
+            android:hint="@string/Input_Pod_Name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="29dp"
-                android:layout_height="34dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:src="@android:drawable/ic_input_add"
-                app:layout_constraintEnd_toEndOf="@+id/imageView"
-                app:layout_constraintHorizontal_bias="0.509"
-                app:layout_constraintStart_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <EditText
+            android:id="@+id/input_descriptionPod"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text=""
+            android:ems="10"
+            android:hint="@string/input_description_pod"
+            android:inputType="textMultiLine"
+            android:lines="2"
+            app:layout_constraintBottom_toTopOf="@+id/btn_next"
+            app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
+            app:layout_constraintStart_toStartOf="@+id/input_NamePod"
+            app:layout_constraintTop_toBottomOf="@+id/label_valuesGps"
+            android:layout_marginLeft="8dp" />
 
-    <EditText
-        android:id="@+id/input_NamePod"
-        android:layout_width="333dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/Input_Pod_Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/input_descriptionPod"
-        android:layout_width="333dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/input_description_pod"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/label_Descrition"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/label_Descrition"
-        app:layout_constraintTop_toBottomOf="@+id/label_Descrition" />
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

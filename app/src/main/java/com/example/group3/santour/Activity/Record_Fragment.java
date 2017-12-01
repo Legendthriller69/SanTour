@@ -11,6 +11,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
@@ -20,6 +23,7 @@ import android.widget.TextView;
 
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
+import com.example.group3.santour.DTO.Track;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -148,7 +152,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             transaction.replace(R.id.main_container, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
-            Log.e("COUNT record fragment", fragmentManager.getBackStackEntryCount() + "");
+           //
         }
     }
 

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.group3.santour.DTO.POD;
@@ -46,6 +47,9 @@ public class Pod_Fragment extends Fragment {
     private POD pod;
     private Position position;
     private Camera camera;
+
+    //ScrollView
+    private ScrollView scrollView;
 
     //fragments
     private Fragment fragment;
@@ -92,7 +96,7 @@ public class Pod_Fragment extends Fragment {
         });
 
         //on click for buttons
-        btnNext.setOnClickListener(new NextPOD());
+      //  btnNext.setOnClickListener(new NextPOD());
         btnTakePicture.setOnClickListener(new TakePicture());
 
         return view;
