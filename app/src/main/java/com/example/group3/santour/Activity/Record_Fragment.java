@@ -7,17 +7,15 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,6 +44,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private Long timeWhenPause;
 
+    private ScrollView scrollView;
+
     private Fragment fragment;
     private FragmentManager fragmentManager;
 
@@ -59,10 +59,12 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record, container, false);
 
+
         //instantiate map view
         mapView = (MapView) view.findViewById(R.id.Map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
 
         //instantiate all the elements
         btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);

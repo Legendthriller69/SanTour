@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/ScrollViewMap">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,9 +40,11 @@
                 android:layout_alignLeft="@+id/ButtonPause"
                 android:layout_alignStart="@+id/ButtonPause"
                 android:layout_below="@+id/ButtonPause"
+                android:layout_marginBottom="16dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:src="@android:drawable/ic_menu_save"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/ButtonPause"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/ButtonPause"
@@ -87,15 +90,19 @@
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/Map"
-                android:layout_width="592dp"
-                android:layout_height="250dp"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
                 android:layout_alignEnd="@+id/TitlePOI"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/TitlePOI"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <ImageButton
                 android:id="@+id/ButtonPause"
@@ -105,7 +112,7 @@
                 android:layout_alignStart="@+id/ButtonPlay"
                 android:layout_below="@+id/ButtonPlay"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:src="@android:drawable/ic_media_pause"
                 app:layout_constraintEnd_toEndOf="@+id/ButtonPlay"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -121,16 +128,14 @@
                 android:layout_alignBottom="@+id/TitlePOI"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="48dp"
+                android:layout_marginEnd="60dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@string/common_google_play_services_enable_button"
                 android:src="@android:drawable/ic_media_play"
-                app:layout_constraintBottom_toBottomOf="@+id/NameTrack"
-                app:layout_constraintStart_toEndOf="@+id/NameTrack"
-                app:layout_constraintTop_toTopOf="@+id/NameTrack"
-                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Map"
                 tools:ignore="MissingConstraints"
-                android:layout_marginLeft="48dp" />
+                android:layout_marginRight="60dp" />
 
             <ImageButton
                 android:id="@+id/ButtonAddPOI"
@@ -205,7 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/distance"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/NameTrack"
