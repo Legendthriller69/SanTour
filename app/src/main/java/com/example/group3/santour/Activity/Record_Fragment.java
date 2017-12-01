@@ -11,8 +11,10 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
@@ -27,8 +29,6 @@ import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-
-import org.w3c.dom.Text;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
@@ -63,6 +63,30 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         timeWhenPause = Long.valueOf(0);
     }
 
+    //Create an action bar button
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        inflater.inflate(R.menu.list_menu, menu);
+    }
+
+    //Handle button activities
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()){
+            case R.id.list_pod:
+                fragment = new ListPODs();
+                break;
+            case R.id.list_poi:
+                fragment = new ListPOIs();
+                break;
+        }
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_container, fragment).commit();
+        transaction.addToBackStack(null);
+
+        return true;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +94,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             super.onCreate(savedInstanceState); // Always call the superclass first
             this.savedInstanceState = savedInstanceState;
             View view = inflater.inflate(R.layout.fragment_record, container, false);
+
+            setHasOptionsMenu(true);
+
 
             //instantiate map view
             mapView = (MapView) view.findViewById(R.id.Map);
