@@ -165,7 +165,7 @@ public class Pod_Fragment extends Fragment {
         if (bitmap != null) {
             txtName.setText(pod.getName());
             txtDescription.setText(pod.getDescription());
-            camera.addToImageView(requestCode, resultCode, bitmap, getActivity(), pictureView);
+            camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
         }
     }
 
