@@ -57,12 +57,36 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         timeWhenPause = Long.valueOf(0);
     }
 
+    //Create an action bar button
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        inflater.inflate(R.menu.list_menu, menu);
+    }
+
+    //Handle button activities
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()){
+            case R.id.list_pod:
+                fragment = new ListPODs();
+                break;
+            case R.id.list_poi:
+                fragment = new ListPOIs();
+                break;
+        }
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_container, fragment).commit();
+        transaction.addToBackStack(null);
+
+        return true;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record, container, false);
-
+        setHasOptionsMenu(true);
 
         //instantiate map view
         mapView = (CustomMapView) view.findViewById(R.id.Map);
@@ -70,6 +94,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mapView.getMapAsync(this);
 
         locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        fragmentManager = getActivity().getSupportFragmentManager();
 
         //instantiate all the elements
         btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
@@ -117,6 +142,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private class AddPOD implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
             fragment = new Pod_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
@@ -193,6 +219,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                     .show();
         }
     }
+
 
     @Override
     public void onResume() {

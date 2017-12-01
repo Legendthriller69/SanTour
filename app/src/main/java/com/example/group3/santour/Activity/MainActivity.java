@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.main_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-        Log.e("COUNT MAIN ACTIVITY", fragmentManager.getBackStackEntryCount() + "");
+
 
     }
 
@@ -87,6 +87,35 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             return true;
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.navigation_about:
+                        fragment = new About_Fragment();
+                        break;
+                    case R.id.navigation_tracks:
+                        fragment = new Record_Fragment();
+                        break;
+                    case R.id.navigation_settings:
+                        fragment = new Settings_Fragment();
+                        break;
+                }
+
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_container, fragment).commit();
+                transaction.addToBackStack(null);
+
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(fragmentManager.getBackStackEntryCount()>0){
+            fragmentManager.popBackStack();
         }
     }
 }
