@@ -16,7 +16,7 @@ import com.example.group3.santour.R;
 
 import java.util.List;
 
-public class Pod_Details_Frgament extends Fragment {
+public class Pod_Details_Fragment extends Fragment {
 
 
     //elements
@@ -31,7 +31,7 @@ public class Pod_Details_Frgament extends Fragment {
     private Bundle bundle;
     private FragmentManager fragmentManager;
 
-    public Pod_Details_Frgament() {
+    public Pod_Details_Fragment() {
         // Required empty public constructor
     }
 
@@ -60,16 +60,12 @@ public class Pod_Details_Frgament extends Fragment {
         @Override
         public void onClick(View view) {
             track = MainActivity.getTrack();
-            List<POD> pods = track.getPods();
-            pods.add(pod);
-            track.setPods(pods);
+            track.getPods().add(pod);
             MainActivity.setTrack(track);
             fragmentManager = getActivity().getSupportFragmentManager();
             Log.e("COUNT pod details frag", fragmentManager.getBackStackEntryCount() + "");
             fragmentManager.popBackStack();
             fragmentManager.popBackStack();
-
-
         }
     }
 

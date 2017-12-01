@@ -110,7 +110,7 @@ public class Pod_Fragment extends Fragment {
             bundle.putSerializable("POD", pod);
 
             //create the fragment and add the bundle to the arguments
-            fragment = new Pod_Details_Frgament();
+            fragment = new Pod_Details_Fragment();
             fragment.setArguments(bundle);
 
             //switch to the new fragment with transaction
