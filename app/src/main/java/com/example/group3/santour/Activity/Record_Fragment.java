@@ -19,9 +19,7 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
@@ -131,15 +129,14 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             transaction.replace(R.id.main_container, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
-            Log.e("COUNT record fragment", fragmentManager.getBackStackEntryCount() + "");
         }
     }
 
     private class AddPOI implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            fragment = new Poi_Fragment();
-            fragmentManager = getActivity().getSupportFragmentManager();
+            fragment = new Poi_Fragment();            fragmentManager = getActivity().getSupportFragmentManager();
+
             transaction = fragmentManager.beginTransaction();
             transaction.addToBackStack(null);
             transaction.replace(R.id.main_container, fragment).commit();
