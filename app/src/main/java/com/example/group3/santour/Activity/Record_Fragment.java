@@ -45,6 +45,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     //Record object
     private Record record;
 
+    //hello
     //Maps objects
     private MapView mapView;
     private GoogleMap mMap;
