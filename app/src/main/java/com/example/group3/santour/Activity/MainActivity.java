@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new Pod_Fragment(); // A CHANGER
                         break;
                     case R.id.navigation_tracks:
-                        fragment = new Poi_Fragment(); // A CHANGER
+                        fragment = new Record_Fragment(); // A CHANGER
                         break;
                     case R.id.navigation_settings:
                         fragment = new Record_Fragment();

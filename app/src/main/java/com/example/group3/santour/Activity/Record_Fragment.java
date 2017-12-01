@@ -19,14 +19,9 @@ import android.widget.Toast;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
-
-    //Hello
-
-
     //elements
     private ImageButton btnStart;
     private ImageButton btnPause;
@@ -40,7 +35,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private Record record;
 
     //Google map object
-    private MapView mapView;
+    private CustomMapView mapView;
     private GoogleMap mMap;
     private Long timeWhenPause;
 
@@ -61,7 +56,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
 
         //instantiate map view
-        mapView = (MapView) view.findViewById(R.id.Map);
+        mapView = (CustomMapView) view.findViewById(R.id.Map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 

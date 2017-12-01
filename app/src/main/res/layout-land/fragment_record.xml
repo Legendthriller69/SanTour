@@ -88,7 +88,7 @@
                 app:layout_constraintTop_toTopOf="@+id/ButtonAddPOI"
                 tools:ignore="MissingConstraints,UnknownId" />
 
-            <com.google.android.gms.maps.MapView
+            <com.example.group3.santour.Activity.CustomMapView
                 android:id="@+id/Map"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
@@ -163,7 +163,7 @@
                 android:layout_marginLeft="8dp" />
 
             <Chronometer
-                android:id="@+id/chronometer2"
+                android:id="@+id/chrono"
                 android:layout_width="37dp"
                 android:layout_height="16dp"
                 android:layout_marginEnd="8dp"
@@ -175,7 +175,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/NbKM"
+                android:id="@+id/txtDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
