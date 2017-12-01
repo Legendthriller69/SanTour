@@ -1,7 +1,9 @@
 package com.example.group3.santour.Logic;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.util.Log;
 import android.widget.Chronometer;
 import android.widget.TextView;
@@ -21,8 +23,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +35,7 @@ import java.util.List;
  * Created by aleks on 22.11.2017.
  */
 
-public class Record {
+public class Record implements Serializable {
     private FusedLocationProviderClient mFusedLocationClient;
     private Activity activity;
     private LocationRequest mLocationRequest;
@@ -162,10 +166,16 @@ public class Record {
                         lastPosition = positions.get(positions.size() - 1);
                         if (!isSamePosition(lastPosition, location)) {
                             positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
+
                             Location.distanceBetween(lastPosition.getLatitude(), lastPosition.getLongitude(), location.getLatitude(), location.getLongitude(), distances);
                             distance += distances[0];
                             String text = String.valueOf(Math.floor(distance * 100) / 100);
                             txtDistance.setText(text);
+
+                            LatLng latLngLastPosition = new LatLng(lastPosition.getLatitude(), lastPosition.getLongitude());
+                            LatLng latLngLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                            mMap.addPolyline(new PolylineOptions().add(latLngLastPosition, latLngLocation).width(4f).color(Color.RED)
+                                    .geodesic(true));
                             Log.e("DISTANCE", distance + "");
                         }
                     }
@@ -206,11 +216,17 @@ public class Record {
         double newLat = Math.floor(location.getLatitude() * 100000) / 100000;
         double lastLong = Math.floor(lastPosition.getLongitude() * 100000) / 100000;
         double lastLat = Math.floor(lastPosition.getLatitude() * 100000) / 100000;
+
+        Location lastLocation = new Location("Last location");
+        lastLocation.setLongitude(lastLong);
+        lastLocation.setLatitude(lastLat);
+
         Log.e("LAST LATITUDE", lastLong + "");
         Log.e("LAST LONGITUDE", lastLat + "");
         Log.e("NEW LATITUDE", newLong + "");
         Log.e("NEW LONGITUDE", newLat + "");
-        if (newLong == lastLong && newLat == lastLat)
+
+        if ((newLong == lastLong && newLat == lastLat) || location.distanceTo(lastLocation) < 2)
             return true;
         return false;
     }

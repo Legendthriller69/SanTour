@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,9 @@ public class Pod_Fragment extends Fragment {
     private POD pod;
     private Position position;
     private Camera camera;
+
+    //ScrollView
+    private ScrollView scrollView;
 
     //fragments
     private Fragment fragment;

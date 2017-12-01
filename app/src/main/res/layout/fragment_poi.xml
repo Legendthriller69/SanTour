@@ -14,99 +14,80 @@
 
         <EditText
             android:id="@+id/input_NamePoi"
-            android:layout_width="185dp"
-            android:layout_height="37dp"
-
-            android:layout_marginStart="15dp"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:text=""
+            android:hint="@string/Input_Poi_Name"
             android:inputType="textPersonName"
-            android:text="@string/Input_Poi_Name"
             android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.604"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="15dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="127dp"
-            android:layout_height="121dp"
-
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="24dp"
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="8dp"
             android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="@+id/input_NamePoi"
+            app:layout_constraintHorizontal_bias="0.294"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/input_NamePoi"
-            app:layout_constraintTop_toTopOf="@+id/input_NamePoi"
-            android:layout_marginLeft="24dp" />
-
-        <TextView
-            android:id="@+id/label_Gps"
-            android:layout_width="wrap_content"
-            android:layout_height="27dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/inputGps"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/input_NamePoi"
             app:layout_constraintTop_toBottomOf="@+id/input_NamePoi" />
-
-        <TextView
-            android:id="@+id/label_Descrition"
-            android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/labeldescritpion"
-            app:layout_constraintEnd_toEndOf="@+id/label_valuesGps"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/label_Gps"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
-            android:layout_marginRight="8dp" />
 
         <TextView
             android:id="@+id/label_valuesGps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/labelvaluesgps"
-            app:layout_constraintStart_toEndOf="@+id/label_Gps"
-            app:layout_constraintTop_toBottomOf="@+id/input_NamePoi" />
+            app:layout_constraintEnd_toEndOf="@+id/input_NamePoi"
+            app:layout_constraintHorizontal_bias="0.088"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/input_NamePoi"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            android:layout_marginRight="8dp" />
 
         <EditText
-            android:id="@+id/constraintLayout"
-            android:layout_width="338dp"
-            android:layout_height="82dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:id="@+id/input_descriptinPoi"
+            android:text=""
+            android:layout_width="333dp"
+            android:layout_height="69dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:hint="@string/input_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_Descrition"
-            android:layout_marginLeft="16dp" />
+            android:lines="2"
+            app:layout_constraintBottom_toTopOf="@+id/btn_save"
+            app:layout_constraintEnd_toEndOf="@+id/input_NamePoi"
+            app:layout_constraintStart_toStartOf="@+id/input_NamePoi"
+            app:layout_constraintTop_toBottomOf="@+id/label_valuesGps"
+            android:layout_marginRight="8dp" />
 
         <Button
             android:id="@+id/btn_save"
             android:layout_width="124dp"
             android:layout_height="49dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginRight="144dp"
+            android:layout_marginStart="108dp"
             android:text="@string/btn_save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-            app:layout_constraintHorizontal_bias="0.535"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="0.352" />
+            app:layout_constraintStart_toStartOf="@+id/input_descriptinPoi"
+            android:layout_marginLeft="108dp" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -114,6 +95,7 @@
             android:layout_height="34dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:src="@android:drawable/ic_input_add"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.509"
