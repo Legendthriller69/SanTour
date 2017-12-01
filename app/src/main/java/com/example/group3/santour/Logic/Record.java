@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,7 @@ import java.util.List;
  * Created by aleks on 22.11.2017.
  */
 
-public class Record {
+public class Record implements Serializable {
     private FusedLocationProviderClient mFusedLocationClient;
     private Activity activity;
     private LocationRequest mLocationRequest;

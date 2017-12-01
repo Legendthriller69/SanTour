@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
+import org.w3c.dom.Text;
+
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     //elements
@@ -36,6 +39,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private ImageButton btnAddPoi;
     private ImageButton btnAddPod;
     private TextView txtDistance;
+    private EditText txtTrackName;
     private Chronometer chrono;
 
     //Record object
@@ -53,7 +57,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
-
+    private Bundle savedInstanceState;
 
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
@@ -63,47 +67,49 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_record, container, false);
+            super.onCreate(savedInstanceState); // Always call the superclass first
+            this.savedInstanceState = savedInstanceState;
+            View view = inflater.inflate(R.layout.fragment_record, container, false);
 
-        //instantiate map view
-        mapView = (MapView) view.findViewById(R.id.Map);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
+            //instantiate map view
+            mapView = (MapView) view.findViewById(R.id.Map);
+            mapView.onCreate(savedInstanceState);
+            mapView.getMapAsync(this);
 
-        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+            locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
-        //instantiate all the elements
-        btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
-        btnPause = (ImageButton) view.findViewById(R.id.ButtonPause);
-        btnStop = (ImageButton) view.findViewById(R.id.ButtonSave);
-        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
-        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
-        txtDistance = (TextView) view.findViewById(R.id.txtDistance);
-        chrono = (Chronometer) view.findViewById(R.id.chrono);
+            //instantiate all the elements
+            btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
+            btnPause = (ImageButton) view.findViewById(R.id.ButtonPause);
+            btnStop = (ImageButton) view.findViewById(R.id.ButtonSave);
+            btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
+            btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
+            txtDistance = (TextView) view.findViewById(R.id.txtDistance);
+            txtTrackName = (EditText) view.findViewById(R.id.txtTrackName);
+            chrono = (Chronometer) view.findViewById(R.id.chrono);
 
-        //disable btnPause and btnStop and addpod addpoi
-        btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        btnPause.setEnabled(false);
-        btnPause.setBackgroundColor(Color.TRANSPARENT);
-        btnStop.setEnabled(false);
-        btnStop.setBackgroundColor(Color.TRANSPARENT);
-        btnAddPoi.setEnabled(false);
-        btnAddPoi.setBackgroundColor(Color.TRANSPARENT);
-        btnAddPod.setEnabled(false);
-        btnAddPod.setBackgroundColor(Color.TRANSPARENT);
+            //disable btnPause and btnStop and addpod addpoi
+            btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnPause.setEnabled(false);
+            btnPause.setBackgroundColor(Color.TRANSPARENT);
+            btnStop.setEnabled(false);
+            btnStop.setBackgroundColor(Color.TRANSPARENT);
+            btnAddPoi.setEnabled(false);
+            btnAddPoi.setBackgroundColor(Color.TRANSPARENT);
+            btnAddPod.setEnabled(false);
+            btnAddPod.setBackgroundColor(Color.TRANSPARENT);
 
-        //navigation button to pod
-        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
-        btnAddPod.setOnClickListener(new AddPOD());
+            //navigation button to pod
+            btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
+            btnAddPod.setOnClickListener(new AddPOD());
 
-        //navigation button to poi
-        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
-        btnAddPoi.setOnClickListener(new AddPOI());
+            //navigation button to poi
+            btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
+            btnAddPoi.setOnClickListener(new AddPOI());
 
-        // Inflate the layout for this fragment
-        return view;
+            // Inflate the layout for this fragment
+            return view;
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -115,7 +121,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         btnPause.setOnClickListener(new PauseRecording());
         btnStop.setOnClickListener(new StopRecording());
 
-        //create the record object
         record = new Record(getActivity(), mMap, txtDistance);
         record.moveCameraToUserPosition();
     }
@@ -135,8 +140,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private class AddPOI implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            fragment = new Poi_Fragment();            fragmentManager = getActivity().getSupportFragmentManager();
-
+            fragment = new Poi_Fragment();
+            fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
             transaction.addToBackStack(null);
             transaction.replace(R.id.main_container, fragment).commit();
@@ -253,7 +258,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             getActivity().finish();
         }
     }
-
 
     @Override
     public void onLowMemory() {
