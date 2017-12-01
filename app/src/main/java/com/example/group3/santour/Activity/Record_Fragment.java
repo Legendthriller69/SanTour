@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
@@ -79,6 +78,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_record, container, false);
         setHasOptionsMenu(true);
 
+
         //instantiate map view
         mapView = (CustomMapView) view.findViewById(R.id.Map);
         mapView.onCreate(savedInstanceState);
@@ -132,7 +132,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private class AddPOD implements  View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
             fragment = new Pod_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -144,7 +143,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private class AddPOI implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Btn add POI pushed", Toast.LENGTH_SHORT).show();
             fragment = new Poi_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
