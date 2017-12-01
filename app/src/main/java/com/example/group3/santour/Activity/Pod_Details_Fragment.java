@@ -97,9 +97,14 @@ public class Pod_Details_Fragment extends Fragment {
             pod.setPodCategories(podCategoryList);
             track.getPods().add(pod);
             MainActivity.setTrack(track);
+
             fragmentManager = getActivity().getSupportFragmentManager();
-            fragmentManager.popBackStack();
-            fragmentManager.popBackStack();
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                FragmentManager.BackStackEntry first = fragmentManager
+                        .getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 2);
+                fragmentManager.popBackStack(first.getId(),
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
         }
     }
 

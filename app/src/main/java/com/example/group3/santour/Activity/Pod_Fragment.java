@@ -167,9 +167,10 @@ public class Pod_Fragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (bitmap != null) {
+            camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
+        } else {
             txtName.setText(pod.getName());
             txtDescription.setText(pod.getDescription());
-            camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
         }
     }
 

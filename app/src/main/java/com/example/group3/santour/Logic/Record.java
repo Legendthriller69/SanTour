@@ -3,7 +3,6 @@ package com.example.group3.santour.Logic;
 import android.app.Activity;
 import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationManager;
 import android.util.Log;
 import android.widget.Chronometer;
 import android.widget.TextView;
@@ -43,6 +42,7 @@ public class Record implements Serializable {
     private GoogleMap mMap;
     private boolean isRecording;
     private TextView txtDistance;
+    private String text;
 
     //all linked to tracks
     private String name;
@@ -74,6 +74,7 @@ public class Record implements Serializable {
         distance = 0;
         distances = new float[1];
         this.txtDistance = txtDistance;
+        text = "0.0";
     }
 
     public Record(Activity activity) {
@@ -169,7 +170,7 @@ public class Record implements Serializable {
 
                             Location.distanceBetween(lastPosition.getLatitude(), lastPosition.getLongitude(), location.getLatitude(), location.getLongitude(), distances);
                             distance += distances[0];
-                            String text = String.valueOf(Math.floor(distance * 100) / 100);
+                            text = String.valueOf(Math.floor(distance * 100) / 100);
                             txtDistance.setText(text);
 
                             LatLng latLngLastPosition = new LatLng(lastPosition.getLatitude(), lastPosition.getLongitude());
@@ -229,6 +230,10 @@ public class Record implements Serializable {
         if ((newLong == lastLong && newLat == lastLat) || location.distanceTo(lastLocation) < 2)
             return true;
         return false;
+    }
+
+    public String getDistanceText() {
+        return text;
     }
 
     public List<Position> getPositions() {

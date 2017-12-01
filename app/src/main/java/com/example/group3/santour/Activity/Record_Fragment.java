@@ -41,6 +41,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private TextView txtDistance;
     private EditText txtTrackName;
     private Chronometer chrono;
+    private String trackName;
 
     //Record object
     private Record record;
@@ -59,6 +60,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private FragmentTransaction transaction;
     private Bundle savedInstanceState;
 
+
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
     }
@@ -67,67 +69,69 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState); // Always call the superclass first
-            this.savedInstanceState = savedInstanceState;
-            View view = inflater.inflate(R.layout.fragment_record, container, false);
+        super.onCreate(savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_record, container, false);
 
-            //instantiate map view
-            mapView = (MapView) view.findViewById(R.id.Map);
-            mapView.onCreate(savedInstanceState);
-            mapView.getMapAsync(this);
+        //instantiate map view
+        mapView = (MapView) view.findViewById(R.id.Map);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
-            locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
-            //instantiate all the elements
-            btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
-            btnPause = (ImageButton) view.findViewById(R.id.ButtonPause);
-            btnStop = (ImageButton) view.findViewById(R.id.ButtonSave);
-            btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
-            btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
-            txtDistance = (TextView) view.findViewById(R.id.txtDistance);
-            txtTrackName = (EditText) view.findViewById(R.id.txtTrackName);
-            chrono = (Chronometer) view.findViewById(R.id.chrono);
+        //instantiate all the elements
+        btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
+        btnPause = (ImageButton) view.findViewById(R.id.ButtonPause);
+        btnStop = (ImageButton) view.findViewById(R.id.ButtonSave);
+        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
+        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
+        txtDistance = (TextView) view.findViewById(R.id.txtDistance);
+        txtTrackName = (EditText) view.findViewById(R.id.txtTrackName);
+        chrono = (Chronometer) view.findViewById(R.id.chrono);
 
-            //disable btnPause and btnStop and addpod addpoi
-            btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-            btnPause.setEnabled(false);
-            btnPause.setBackgroundColor(Color.TRANSPARENT);
-            btnStop.setEnabled(false);
-            btnStop.setBackgroundColor(Color.TRANSPARENT);
-            btnAddPoi.setEnabled(false);
-            btnAddPoi.setBackgroundColor(Color.TRANSPARENT);
-            btnAddPod.setEnabled(false);
-            btnAddPod.setBackgroundColor(Color.TRANSPARENT);
+        //disable btnPause and btnStop and addpod addpoi
+        btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        btnPause.setEnabled(false);
+        btnPause.setBackgroundColor(Color.TRANSPARENT);
+        btnStop.setEnabled(false);
+        btnStop.setBackgroundColor(Color.TRANSPARENT);
+        btnAddPoi.setEnabled(false);
+        btnAddPoi.setBackgroundColor(Color.TRANSPARENT);
+        btnAddPod.setEnabled(false);
+        btnAddPod.setBackgroundColor(Color.TRANSPARENT);
 
-            //navigation button to pod
-            btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
-            btnAddPod.setOnClickListener(new AddPOD());
+        //onclick for start pause stop
+        btnStart.setOnClickListener(new StartRecording());
+        btnPause.setOnClickListener(new PauseRecording());
+        btnStop.setOnClickListener(new StopRecording());
 
-            //navigation button to poi
-            btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
-            btnAddPoi.setOnClickListener(new AddPOI());
+        //navigation button to pod
+        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
+        btnAddPod.setOnClickListener(new AddPOD());
 
-            // Inflate the layout for this fragment
-            return view;
+        //navigation button to poi
+        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
+        btnAddPoi.setOnClickListener(new AddPOI());
+
+        // Inflate the layout for this fragment
+        return view;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMinZoomPreference(15.0f);
 
-        //add buttons listeners
-        btnStart.setOnClickListener(new StartRecording());
-        btnPause.setOnClickListener(new PauseRecording());
-        btnStop.setOnClickListener(new StopRecording());
+        if (record == null) {
+            record = new Record(getActivity(), mMap, txtDistance);
+        }
 
-        record = new Record(getActivity(), mMap, txtDistance);
         record.moveCameraToUserPosition();
     }
 
     private class AddPOD implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            btnPause.callOnClick();
             fragment = new Pod_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
@@ -140,6 +144,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private class AddPOI implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            btnPause.callOnClick();
             fragment = new Poi_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
@@ -152,6 +157,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         @Override
         public void onClick(View view) {
+
+            Log.e("START CLICK", "START CLICK");
             //create a new track in the main activity now that he has started the track
             MainActivity.setTrack(new Track());
 
@@ -218,6 +225,12 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mapView.onResume();
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             createGpsDisabledAlert();
+        }
+
+        if (record != null) {
+            Log.e("TIMEWHENPAUSE", timeWhenPause + "");
+            txtDistance.setText(record.getDistanceText());
+            btnStart.callOnClick();
         }
     }
 
