@@ -136,13 +136,15 @@ public class Pod_Fragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //get the bitmap from the intent
-        Bundle extras = data.getExtras();
-        Bitmap bitmap = (Bitmap) extras.get("data");
+        if (data != null) {
+            Bundle extras = data.getExtras();
+            Bitmap bitmap = (Bitmap) extras.get("data");
 
-        //first add the image to the camera
-        camera.addToImageView(requestCode, resultCode, bitmap, getActivity(), pictureView);
+            //first add the image to the camera
+            camera.addToImageView(requestCode, resultCode, bitmap, getActivity(), pictureView);
 
-        //then encode the picture and add to the string
-        pod.setPicture(camera.encodeBitmap(bitmap));
+            //then encode the picture and add to the string
+            pod.setPicture(camera.encodeBitmap(bitmap));
+        }
     }
 }
