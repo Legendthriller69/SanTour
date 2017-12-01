@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.example.group3.santour.DTO.Category;
 import com.example.group3.santour.DTO.Role;
+import com.example.group3.santour.DTO.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -12,6 +13,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aleks on 21.11.2017.
@@ -31,6 +35,31 @@ public class CategoryDB {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 getCategoryById(id.getKey(), dataListener);
+            }
+        });
+    }
+
+    public static void createCategory(Category category) {
+        final DatabaseReference id = CATEGORY_REFERENCE.push();
+        id.setValue(category);
+    }
+
+    public static void getAllCategories(final DataListener dataListener) {
+        CATEGORY_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Category> categories = new ArrayList<>();
+                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
+                    Category category = categorySnapshot.getValue(Category.class);
+                    category.setId(dataSnapshot.getKey());
+                    categories.add(category);
+                }
+                dataListener.onSuccess(categories);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                dataListener.onFailed(databaseError);
             }
         });
     }

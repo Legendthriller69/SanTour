@@ -27,7 +27,7 @@ public class ResetDB {
 
     private final static DatabaseReference DB_REFERENCE = FirebaseDatabase.getInstance().getReference();
 
-    public static void resetDB(){
+    public static void resetDB() {
         //remove everything from DB
         DB_REFERENCE.removeValue();
 
@@ -42,6 +42,8 @@ public class ResetDB {
                     public void onSuccess(Object object) {
                         final User user = (User) object;
                         //create a category
+                        CategoryDB.createCategory(new Category("Slope"));
+                        CategoryDB.createCategory(new Category("Rocks"));
                         CategoryDB.createCategory(new Category("Verticality"), new DataListener() {
                             @Override
                             public void onSuccess(Object object) {
@@ -53,7 +55,7 @@ public class ResetDB {
                                         final Type type = (Type) object;
                                         //now create a new track
                                         //create one poisition
-                                        final Position position = new Position(1.450, 1.560, 1285.47, new Date().toString()) ;
+                                        final Position position = new Position(1.450, 1.560, 1285.47, new Date().toString());
                                         //create a list of position for the track
                                         final List<Position> positions = new ArrayList<>();
                                         positions.add(position);
