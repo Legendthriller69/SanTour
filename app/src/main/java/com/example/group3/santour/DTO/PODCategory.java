@@ -2,12 +2,14 @@ package com.example.group3.santour.DTO;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
 /**
  * Created by aleks on 21.11.2017.
  */
 
 @IgnoreExtraProperties
-public class PODCategory {
+public class PODCategory implements Serializable {
 
     private String idCategory;
     private int value;
@@ -39,5 +41,13 @@ public class PODCategory {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "PODCategory{" +
+                "idCategory='" + idCategory + '\'' +
+                ", value=" + value +
+                '}';
     }
 }

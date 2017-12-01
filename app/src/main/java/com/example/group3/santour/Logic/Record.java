@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
+import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -59,9 +60,9 @@ public class Record {
     private float[] distances;
 
     public Record(Activity activity, GoogleMap mMap, TextView txtDistance) {
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
         this.activity = activity;
         this.mMap = mMap;
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
         positions = new ArrayList<>();
         pois = new ArrayList<>();
         pods = new ArrayList<>();
@@ -71,11 +72,55 @@ public class Record {
         this.txtDistance = txtDistance;
     }
 
+    public Record(Activity activity) {
+        this.activity = activity;
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+    }
+
     public void startRecording() {
         setUserCurrentPosition();
         createLocationRequest();
         startLocationUpdates();
         isRecording = true;
+    }
+
+    public void moveCameraToUserPosition() {
+        try {
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            mMap.clear();
+                            LatLng currentLocation;
+                            if (location != null) {
+                                // Logic to handle location object
+                                currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                                mMap.addMarker(new MarkerOptions().position(currentLocation).title("You are here"));
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+                            } else
+                                Toast.makeText(activity, activity.getString(R.string.check_location_activity), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        } catch (SecurityException e) {
+        }
+    }
+
+    public void getUserLatLng(final DataListener dataListener) {
+        try {
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                // Logic to handle location object
+                                dataListener.onSuccess(location);
+                            }
+                        }
+                    });
+        } catch (SecurityException e) {
+        }
     }
 
     public void setUserCurrentPosition() {
@@ -93,12 +138,8 @@ public class Record {
                                 mMap.addMarker(new MarkerOptions().position(currentLocation).title("You are here"));
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
                                 positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
-                            } else{
+                            } else
                                 Toast.makeText(activity, activity.getString(R.string.check_location_activity), Toast.LENGTH_LONG).show();
-                                currentLocation = new LatLng(7.5333, 46.3);
-                                mMap.addMarker(new MarkerOptions().position(currentLocation).title("Sierre"));
-                                mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
-                            }
                         }
                     });
         } catch (SecurityException e) {
@@ -116,15 +157,17 @@ public class Record {
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
-                for (Location location : locationResult.getLocations()) {
-                    lastPosition = positions.get(positions.size() - 1);
-                    if (location.getLongitude() != positions.get(positions.size() - 1).getLongitude() || location.getLatitude() != positions.get(positions.size() - 1).getLatitude() || location.getAltitude() != positions.get(positions.size() - 1).getAltitude()) {
-                        positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
-                        Location.distanceBetween(lastPosition.getLatitude(), lastPosition.getLongitude(), location.getLatitude(), location.getLongitude(), distances);
-                        distance += distances[0];
-                        String text = String.valueOf(Math.floor(distance * 100) / 100);
-                        txtDistance.setText(text);
-                        Log.e("DISTANCE", distance + "");
+                if (positions.size() != 0) {
+                    for (Location location : locationResult.getLocations()) {
+                        lastPosition = positions.get(positions.size() - 1);
+                        if (!isSamePosition(lastPosition, location)) {
+                            positions.add(new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString()));
+                            Location.distanceBetween(lastPosition.getLatitude(), lastPosition.getLongitude(), location.getLatitude(), location.getLongitude(), distances);
+                            distance += distances[0];
+                            String text = String.valueOf(Math.floor(distance * 100) / 100);
+                            txtDistance.setText(text);
+                            Log.e("DISTANCE", distance + "");
+                        }
                     }
                 }
             }
@@ -144,11 +187,6 @@ public class Record {
             mFusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
-    public void restartLocationUpdates() {
-        if (locationCallback != null)
-            startLocationUpdates();
-    }
-
     public void stopLocationUpdates() {
         //stop the location update
         if (locationCallback != null)
@@ -161,6 +199,20 @@ public class Record {
 
     public boolean isRecording() {
         return isRecording;
+    }
+
+    private boolean isSamePosition(Position lastPosition, Location location) {
+        double newLong = Math.floor(location.getLongitude() * 100000) / 100000;
+        double newLat = Math.floor(location.getLatitude() * 100000) / 100000;
+        double lastLong = Math.floor(lastPosition.getLongitude() * 100000) / 100000;
+        double lastLat = Math.floor(lastPosition.getLatitude() * 100000) / 100000;
+        Log.e("LAST LATITUDE", lastLong + "");
+        Log.e("LAST LONGITUDE", lastLat + "");
+        Log.e("NEW LATITUDE", newLong + "");
+        Log.e("NEW LONGITUDE", newLat + "");
+        if (newLong == lastLong && newLat == lastLat)
+            return true;
+        return false;
     }
 
     public List<Position> getPositions() {

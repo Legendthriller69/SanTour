@@ -1,7 +1,10 @@
 package com.example.group3.santour.Activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
@@ -16,6 +19,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group3.santour.DTO.Position;
+import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Record;
 import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,9 +28,6 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
-
-    //Hello
-
 
     //elements
     private ImageButton btnStart;
@@ -39,15 +41,19 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     //Record object
     private Record record;
 
-    //Google map object
+    //Maps objects
     private MapView mapView;
     private GoogleMap mMap;
     private Long timeWhenPause;
+    private LocationManager locationManager;
 
     private ScrollView scrollView;
 
+    //fragments
     private Fragment fragment;
     private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
+
 
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
@@ -59,12 +65,12 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record, container, false);
 
-
         //instantiate map view
         mapView = (MapView) view.findViewById(R.id.Map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
         //instantiate all the elements
         btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
@@ -75,17 +81,18 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         txtDistance = (TextView) view.findViewById(R.id.txtDistance);
         chrono = (Chronometer) view.findViewById(R.id.chrono);
 
-        //disable btnPause and btnStop
+        //disable btnPause and btnStop and addpod addpoi
         btnPause.setEnabled(false);
         btnStop.setEnabled(false);
-
+        btnAddPoi.setEnabled(false);
+        btnAddPod.setEnabled(false);
 
         //navigation button to pod
-        btnAddPod=(ImageButton) view.findViewById(R.id.ButtonAddPOD);
+        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
         btnAddPod.setOnClickListener(new AddPOD());
 
         //navigation button to poi
-        btnAddPoi=(ImageButton) view.findViewById(R.id.ButtonAddPOI);
+        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
         btnAddPoi.setOnClickListener(new AddPOI());
 
         // Inflate the layout for this fragment
@@ -105,29 +112,28 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         //create the record object
         record = new Record(getActivity(), mMap, txtDistance);
-        record.setUserCurrentPosition();
-
+        record.moveCameraToUserPosition();
     }
 
-    private class AddPOD implements  View.OnClickListener {
+    private class AddPOD implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Btn add POd pushed", Toast.LENGTH_SHORT).show();
             fragment = new Pod_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.main_container, fragment);
             transaction.addToBackStack(null);
-            transaction.replace(R.id.main_container, fragment).commit();
+            transaction.commit();
+            Log.e("COUNT record fragment", fragmentManager.getBackStackEntryCount() + "");
         }
     }
 
     private class AddPOI implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Toast.makeText(getContext(), "Btn add POI pushed", Toast.LENGTH_SHORT).show();
             fragment = new Poi_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction = fragmentManager.beginTransaction();
             transaction.addToBackStack(null);
             transaction.replace(R.id.main_container, fragment).commit();
         }
@@ -137,10 +143,20 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         @Override
         public void onClick(View view) {
+            //create a new track in the main activity now that he has started the track
+            MainActivity.setTrack(new Track());
+
+            //call the method to start recording
             record.startRecording();
+
+            //enable or disable buttons needed
             btnStart.setEnabled(false);
             btnPause.setEnabled(true);
             btnStop.setEnabled(true);
+            btnAddPod.setEnabled(true);
+            btnAddPoi.setEnabled(true);
+
+            //start the chronometer
             chrono.setBase(SystemClock.elapsedRealtime() + timeWhenPause);
             chrono.start();
         }
@@ -179,11 +195,13 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
         mapView.onResume();
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            createGpsDisabledAlert();
+        }
     }
 
     @Override
@@ -231,4 +249,30 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mapView.onLowMemory();
     }
 
+    private void createGpsDisabledAlert() {
+        AlertDialog.Builder localBuilder = new AlertDialog.Builder(getActivity());
+        localBuilder
+                .setMessage("Le GPS est inactif, voulez-vous l'activer ?")
+                .setCancelable(false)
+                .setPositiveButton("Activer GPS ",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                                Record_Fragment.this.showGpsOptions();
+                            }
+                        }
+                );
+        localBuilder.setNegativeButton("Ne pas l'activer ",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        paramDialogInterface.cancel();
+                        getActivity().finish();
+                    }
+                }
+        );
+        localBuilder.create().show();
+    }
+
+    private void showGpsOptions() {
+        startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+    }
 }

@@ -1,10 +1,12 @@
 package com.example.group3.santour.DTO;
 
+import java.io.Serializable;
+
 /**
  * Created by aleks on 21.11.2017.
  */
 
-public abstract class Point {
+public abstract class Point implements Serializable{
 
     private String id;
     private String name;
@@ -69,5 +71,16 @@ public abstract class Point {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", picture='" + picture + '\'' +
+                ", description='" + description + '\'' +
+                ", position=" + position +
+                '}';
     }
 }
