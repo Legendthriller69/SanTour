@@ -25,6 +25,7 @@ public class Permissions {
         //List of all the permissions needed by the app
         permissions = new String[]{
                 Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
         };
 
         if (!hasPermissions(activity, permissions)) {
