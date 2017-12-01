@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.group3.santour.Activity.Record_Fragment">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,7 +15,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/txtTrackName"
+                android:id="@+id/NameTrack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -24,6 +25,7 @@
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:text="@string/trackName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Map"
@@ -86,7 +88,7 @@
                 app:layout_constraintVertical_bias="1.0"
                 tools:ignore="MissingConstraints,UnknownId" />
 
-            <com.google.android.gms.maps.MapView
+            <com.example.group3.santour.Activity.CustomMapView
                 android:id="@+id/Map"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
@@ -108,6 +110,7 @@
                 android:layout_alignStart="@+id/ButtonPlay"
                 android:layout_below="@+id/ButtonPlay"
                 android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:src="@android:drawable/ic_media_pause"
                 app:layout_constraintEnd_toEndOf="@+id/ButtonPlay"
@@ -129,7 +132,7 @@
                 android:contentDescription="@string/common_google_play_services_enable_button"
                 android:src="@android:drawable/ic_media_play"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTrackName"
+                app:layout_constraintTop_toBottomOf="@+id/NameTrack"
                 tools:ignore="MissingConstraints" />
 
             <ImageButton
@@ -138,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:src="@android:drawable/ic_input_add"
                 app:layout_constraintBottom_toTopOf="@+id/ButtonAddPOD"
                 app:layout_constraintEnd_toEndOf="@+id/ButtonAddPOD"
@@ -151,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp"
                 android:src="@android:drawable/ic_input_add"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -188,7 +193,7 @@
                 android:text="@string/TitleTime"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTrackName"
+                app:layout_constraintTop_toBottomOf="@+id/NameTrack"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -201,12 +206,11 @@
                 android:text="@string/distance"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/TitleSize"
-                app:layout_constraintTop_toBottomOf="@+id/txtTrackName"
+                app:layout_constraintTop_toBottomOf="@+id/NameTrack"
                 tools:ignore="MissingConstraints" />
 
 
         </android.support.constraint.ConstraintLayout>
-
     </ScrollView>
 
 </FrameLayout>
