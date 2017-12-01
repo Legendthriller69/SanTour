@@ -93,15 +93,12 @@ public class Pod_Details_Fragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-
-            Log.e("adapter count", adapterCategory.getCount() + "");
-            Log.e("SIZE", "" + podCategoryList.toString());
-
             track = MainActivity.getTrack();
             pod.setPodCategories(podCategoryList);
             track.getPods().add(pod);
             MainActivity.setTrack(track);
             fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager.popBackStack();
             fragmentManager.popBackStack();
         }
     }
