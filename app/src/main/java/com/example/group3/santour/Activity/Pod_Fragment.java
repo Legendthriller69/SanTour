@@ -49,19 +49,20 @@ public class Pod_Fragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_pod, container, false);
         btn_podNext=(Button) view.findViewById(R.id.btn_next);
-        Log.i("info", "dans onCreateView");
-        btn_podNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Toast.makeText(getContext(), "Btn pushed", Toast.LENGTH_SHORT).show();
-                fragment = new Pod_Details_Frgament();
-                fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.main_container, fragment).commit();
-                transaction.addToBackStack(null);
-            }
-        });
+
+//        btn_podNext.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Toast.makeText(getContext(), "Btn pushed", Toast.LENGTH_SHORT).show();
+//                fragment = new Pod_Details_Frgament();
+//                fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction transaction = fragmentManager.beginTransaction();
+//                transaction.replace(R.id.main_container, fragment).commit();
+//                transaction.addToBackStack(null);
+//            }
+//        });
 
         return view;
     }

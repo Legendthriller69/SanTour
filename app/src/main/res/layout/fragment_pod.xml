@@ -11,13 +11,13 @@ tools:context="com.example.group3.santour.Activity.Poi_Fragment">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="279dp"
-        android:layout_height="151dp"
+        android:layout_width="343dp"
+        android:layout_height="161dp"
 
         android:layout_marginEnd="8dp"
         android:layout_marginRight="148dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
         app:layout_constraintHorizontal_bias="0.495"
@@ -93,8 +93,8 @@ tools:context="com.example.group3.santour.Activity.Poi_Fragment">
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/Input_Pod_Name"
         android:inputType="textPersonName"
-        android:text="@string/Input_Pod_Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -102,11 +102,11 @@ tools:context="com.example.group3.santour.Activity.Poi_Fragment">
     <EditText
         android:id="@+id/input_descriptionPod"
         android:layout_width="326dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/input_description_pod"
         android:inputType="textPersonName"
-        android:text="@string/input_description_pod"
         app:layout_constraintEnd_toEndOf="@+id/label_Descrition"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintRight_toRightOf="parent"

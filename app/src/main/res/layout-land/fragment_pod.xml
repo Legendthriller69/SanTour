@@ -26,8 +26,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:hint="@string/Input_Poi_Name"
             android:inputType="textPersonName"
-            android:text="@string/Input_Poi_Name"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +35,7 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="130dp"
+            android:layout_width="246dp"
             android:layout_height="121dp"
 
             android:layout_marginRight="92dp"
@@ -114,6 +114,7 @@
             android:layout_height="46dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
+            android:hint="@string/input_description_pod"
             android:inputType="textMultiLine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
