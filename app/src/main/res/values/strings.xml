@@ -29,5 +29,8 @@
     <string name="addNamePOD">Please add a name for the POD</string>
     <string name="addDescriptionPOD">Please add a description for the POD</string>
     <string name="addPicturePOD">Please add a picture for the POD</string>
+    <string name="addNamePOI">Please add a name for the POI</string>
+    <string name="addDescriptionPOI">Please add a description for the POI</string>
+    <string name="addPicturePOI">Please add a picture for the POI</string>
 
 </resources>

@@ -3,6 +3,7 @@ package com.example.group3.santour.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
@@ -50,6 +52,7 @@ public class Poi_Fragment extends Fragment {
 
     public Poi_Fragment() {
         poi = new POI();
+        poi.setPicture("");
     }
 
 
@@ -67,10 +70,9 @@ public class Poi_Fragment extends Fragment {
         img_pictureView = (ImageView) view.findViewById(R.id.imageView);
         label_valuesGps = (TextView) view.findViewById(R.id.label_valuesGps);
         btn_poiSave = (Button) view.findViewById(R.id.btn_save);
-
-        //ID missing
-        //edtxt_poiName = (EditText) view.findViewById(R.id.) ;
-        //edtxt_poiDescription = (EditText) view.findViewById(R.id.)
+        edtxt_poiName = (EditText) view.findViewById(R.id.input_NamePoi);
+        //Need to change the ID in layount
+        edtxt_poiDescription = (EditText) view.findViewById(R.id.constraintLayout);
 
 
         //instantiate record
@@ -105,13 +107,16 @@ public class Poi_Fragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            //Set POI Object
-            /**
-            poi.setName();
-            poi.setDescription();
-            poi.setPosition(position);
-            poi.setPicture();*/
+            if(formValidation()) {
 
+                //Set POI Object
+                /**
+                 poi.setName();
+                 poi.setDescription();
+                 poi.setPosition(position);
+                 poi.setPicture();*/
+
+            }
         }
     }
 
@@ -150,19 +155,35 @@ public class Poi_Fragment extends Fragment {
         if(data != null) {
             if(camera.getChoice() == "camera"){
                 //get the bitmap from the intent
-                //Bundle extras = data.getExtras();
-                //Bitmap bitmap = (Bitmap) extras.get("data");
+                Bundle extras = data.getExtras();
+                Bitmap bitmap = (Bitmap) extras.get("data");
 
                 //first add the image to the camera
-                //camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), img_pictureView);
-                camera.dispatchTakePictureIntent(this);
+                camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), img_pictureView);
+                //camera.dispatchTakePictureIntent(Poi_Fragment.this);
 
                 //then encode the picture and add to the string
-                //poi.setPicture(camera.encodeBitmap(bitmap));
+                poi.setPicture(camera.encodeBitmap(bitmap));
             }else{
                 camera.addToImageViewGallery(requestCode, resultCode, getActivity(), img_pictureView, data);
             }
 
         }
+    }
+
+    //Change the id's
+    private boolean formValidation() {
+        if (edtxt_poiName.getText().toString().equals("")) {
+            Toast.makeText(getContext(), R.string.addNamePOI, Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (edtxt_poiDescription.getText().toString().equals("")) {
+            Toast.makeText(getContext(), R.string.addDescriptionPOI, Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (poi.getPicture().equals("")) {
+            Toast.makeText(getContext(), R.string.addPicturePOI, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }
