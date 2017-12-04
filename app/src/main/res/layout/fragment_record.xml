@@ -12,7 +12,9 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <EditText
                 android:id="@+id/txtTrackName"
@@ -146,7 +148,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/ButtonAddPOD"
                 app:layout_constraintHorizontal_bias="0.875"
                 app:layout_constraintStart_toStartOf="@+id/ButtonAddPOD"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:layout_marginLeft="8dp" />
 
             <ImageButton
                 android:id="@+id/ButtonAddPOD"

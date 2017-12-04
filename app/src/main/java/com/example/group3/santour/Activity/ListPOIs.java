@@ -10,8 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.group3.santour.R;
-
 
 public class ListPOIs extends Fragment {
 

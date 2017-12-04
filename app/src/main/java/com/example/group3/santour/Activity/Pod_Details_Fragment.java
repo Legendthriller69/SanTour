@@ -1,10 +1,8 @@
 package com.example.group3.santour.Activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import com.example.group3.santour.DTO.PODCategory;
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.CategoryDB;
 import com.example.group3.santour.Firebase.DataListener;
-import com.example.group3.santour.R;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;

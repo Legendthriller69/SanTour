@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Record;
-import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;

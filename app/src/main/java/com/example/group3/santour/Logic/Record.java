@@ -3,17 +3,16 @@ package com.example.group3.santour.Logic;
 import android.app.Activity;
 import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationManager;
 import android.util.Log;
 import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group3.santour.Activity.R;
 import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Firebase.DataListener;
-import com.example.group3.santour.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;

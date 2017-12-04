@@ -36,5 +36,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="liste_pois">Liste POIs</string>
     <string name="liste_pods">Liste PODs</string>
+    <string name="santour">SanTour</string>
+    <string name="create_track">Create track</string>
+    <string name="about_page">About page</string>
+    <string name="settings">Settings</string>
 
 </resources>

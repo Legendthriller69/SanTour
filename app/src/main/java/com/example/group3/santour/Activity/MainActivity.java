@@ -7,13 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Permissions;
-import com.example.group3.santour.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private BottomNavigationView navigation;
+
+    final private int RECORDFRAGMENT = 1;
+    final private int ABOUTFRAGMENT = 2;
+    final private int SETTINGSFRAGMENT = 3;
 
     //Track that will be used everywhere
     private static Track track;
@@ -46,12 +48,28 @@ public class MainActivity extends AppCompatActivity {
         setTitle(this.getString(R.string.start_recording));
 
         //everything linked to the fragments
-        fragment = new Record_Fragment();
+
         fragmentManager = getSupportFragmentManager();
+
+        int intentFragment = getIntent().getExtras().getInt("frgToLoad");
+
+        switch(intentFragment){
+            case RECORDFRAGMENT:
+                fragment = new Record_Fragment();
+                break;
+            case ABOUTFRAGMENT:
+                fragment = new About_Fragment();
+                break;
+            case SETTINGSFRAGMENT:
+                fragment = new Settings_Fragment();
+                break;
+        }
+
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
 
 
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
