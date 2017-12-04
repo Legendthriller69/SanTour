@@ -143,7 +143,6 @@ public class Poi_Fragment extends Fragment {
         @Override
         public void onClick(View view) {
             camera = new Camera();
-            //camera.launchCamera(Poi_Fragment.this);
             new AlertDialog.Builder(getActivity())
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Choice")
@@ -164,17 +163,14 @@ public class Poi_Fragment extends Fragment {
                         }
                     })
                     .show();
-
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
-
             if (camera.getChoice() == "camera") {
                 //get the bitmap from the intent
-
                 Bundle extras = data.getExtras();
                 Bitmap bitmap = (Bitmap) extras.get("data");
 
@@ -189,7 +185,6 @@ public class Poi_Fragment extends Fragment {
                 //then encode the picture and add to the string
                 poi.setPicture(camera.encodeImageWithGallery());
             }
-
         }
     }
 

@@ -1,5 +1,7 @@
 package com.example.group3.santour.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Location;
@@ -61,6 +63,7 @@ public class Pod_Fragment extends Fragment {
     private int requestCode;
     private int resultCode;
     private Bitmap bitmap;
+    private Intent data;
 
 
     public Pod_Fragment() {
@@ -112,7 +115,6 @@ public class Pod_Fragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Log.e("FORM VALIDATION", formValidation() + "");
             if (formValidation()) {
                 //set the pod values
                 pod.setName(txtName.getText().toString());
@@ -142,36 +144,63 @@ public class Pod_Fragment extends Fragment {
         @Override
         public void onClick(View view) {
             camera = new Camera();
-            camera.launchCamera(Pod_Fragment.this);
+            new AlertDialog.Builder(getActivity())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Choice")
+                    .setMessage("Camera or import from gallery")
+                    .setPositiveButton("Camera", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            camera.setChoice("camera");
+                            camera.launchCamera(Pod_Fragment.this);
+                        }
+                    })
+                    .setNegativeButton("Gallery", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            camera.setChoice("gallery");
+                            camera.launchImportImage(Pod_Fragment.this);
+                        }
+                    })
+                    .show();
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //get the bitmap from the intent
         if (data != null) {
-            this.requestCode = requestCode;
-            this.resultCode = resultCode;
-            Bundle extras = data.getExtras();
-            bitmap = (Bitmap) extras.get("data");
+            this.data = data;
+            if (camera.getChoice() == "camera") {
+                //get the bitmap from the intent
+                Bundle extras = data.getExtras();
+                bitmap = (Bitmap) extras.get("data");
 
-            //first add the image to the camera
-            camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
+                //first add the image to the camera
+                camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
 
-            //then encode the picture and add to the string
-            pod.setPicture(camera.encodeBitmap(bitmap));
+                //then encode the picture and add to the string
+                pod.setPicture(camera.encodeBitmap(bitmap));
+            } else {
+                camera.addToImageViewGallery(requestCode, resultCode, getActivity(), pictureView, data);
+                //then encode the picture and add to the string
+                pod.setPicture(camera.encodeImageWithGallery());
+            }
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (bitmap != null) {
-            txtDescription.setText(pod.getDescription());
-            camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
-        } else {
-
-        }
+//        Log.e("BITMAP", (bitmap != null) + "");
+//        if (bitmap != null) {
+//            if (camera.getChoice() == "camera") {
+//                Log.e("CHOICE", camera.getChoice());
+//                camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
+//            } else {
+//                Log.e("CHOICE", camera.getChoice());
+//                camera.addToImageViewGallery(requestCode, resultCode, getActivity(), pictureView, data);
+//            }
+//        }
     }
 
     private boolean formValidation() {

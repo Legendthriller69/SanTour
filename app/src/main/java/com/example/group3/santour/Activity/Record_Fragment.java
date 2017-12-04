@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Record;
@@ -73,16 +74,28 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         switch (item.getItemId()) {
             case R.id.list_pod:
-                fragment = new ListPODs();
-                break;
+                if (MainActivity.getTrack() != null && MainActivity.getTrack().getPods().size() > 0) {
+                    fragment = new ListPODs();
+                    transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.main_container, fragment).commit();
+                    transaction.addToBackStack(null);
+                    break;
+                } else {
+                    Toast.makeText(getContext(), R.string.CreatePODFirst, Toast.LENGTH_SHORT).show();
+                    break;
+                }
             case R.id.list_poi:
-                fragment = new ListPOIs();
-                break;
+                if (MainActivity.getTrack() != null && MainActivity.getTrack().getPois().size() > 0) {
+                    fragment = new ListPOIs();
+                    transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.main_container, fragment).commit();
+                    transaction.addToBackStack(null);
+                    break;
+                } else {
+                    Toast.makeText(getContext(), R.string.CreatePOIFirst, Toast.LENGTH_SHORT).show();
+                    break;
+                }
         }
-
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_container, fragment).commit();
-        transaction.addToBackStack(null);
 
         return true;
     }
@@ -182,7 +195,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         @Override
         public void onClick(View view) {
             //create a new track in the main activity now that he has started the track
-            if(MainActivity.getTrack() == null){
+            if (MainActivity.getTrack() == null) {
                 MainActivity.setTrack(new Track());
             }
 
