@@ -9,6 +9,5 @@
         <item name="android:colorBackground">@android:color/background_light</item>
         <item name="android:statusBarColor">?android:attr/colorForeground</item>
         <item name="android:navigationBarColor">@color/custom_Color_Black</item>
-        <item name="android:windowBackground">@mipmap/ic_logo</item>
     </style>
 </resources>
