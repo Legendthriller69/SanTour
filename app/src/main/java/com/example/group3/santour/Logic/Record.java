@@ -10,13 +10,10 @@ import android.widget.Toast;
 
 import com.example.group3.santour.Activity.MainActivity;
 import com.example.group3.santour.Activity.R;
-import com.example.group3.santour.DTO.POD;
-import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.Firebase.TrackDB;
-import com.example.group3.santour.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -28,7 +25,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -203,7 +199,7 @@ public class Record implements Serializable {
             mFusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
-    public void createTrack(String name, String description, int duration, String idType, String idUser){
+    public void createTrack(String name, String description, int duration, String idType, String idUser) {
         //stop the location updates
         stopLocationUpdates();
 

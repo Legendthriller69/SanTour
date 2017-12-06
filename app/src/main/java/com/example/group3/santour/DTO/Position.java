@@ -2,8 +2,6 @@ package com.example.group3.santour.DTO;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.Date;
-
 /**
  * Created by aleks on 21.11.2017.
  */

@@ -1,8 +1,5 @@
 package com.example.group3.santour.DTO;
 
-import android.webkit.JavascriptInterface;
-
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**

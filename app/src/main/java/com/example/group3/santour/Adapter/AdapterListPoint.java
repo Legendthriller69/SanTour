@@ -4,27 +4,18 @@ package com.example.group3.santour.Adapter;
  * Created by aleks-lazic on 06.12.2017
  */
 
-import com.example.group3.santour.DTO.PODCategory;
-import com.example.group3.santour.DTO.Point;
-import com.example.group3.santour.Firebase.CategoryDB;
-import com.example.group3.santour.R;
-import com.example.group3.santour.DTO.Category;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ArrayAdapter;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.group3.santour.Activity.R;
 
-import java.util.HashMap;
+
+import com.example.group3.santour.DTO.Point;
+
 import java.util.List;
-import java.util.Map;
 
 public class AdapterListPoint extends ArrayAdapter<Point> {
 
