@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppDarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@android:color/black</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">@android:color/holo_red_light</item>
+        <item name="android:colorBackground">@android:color/background_light</item>
+        <item name="android:statusBarColor">?android:attr/colorForeground</item>
+        <item name="android:navigationBarColor">@color/custom_Color_Black</item>
+    </style>
+</resources>

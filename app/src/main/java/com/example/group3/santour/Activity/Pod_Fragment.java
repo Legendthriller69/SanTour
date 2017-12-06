@@ -26,7 +26,6 @@ import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
-import com.example.group3.santour.R;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.Date;

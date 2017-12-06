@@ -27,7 +27,6 @@ import android.widget.Toast;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Record;
-import com.example.group3.santour.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -47,6 +46,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     //Record object
     private Record record;
 
+    //hello
     //Maps objects
     private MapView mapView;
     private GoogleMap mMap;

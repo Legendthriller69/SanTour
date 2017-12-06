@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group3.santour.Activity.MainActivity;
+import com.example.group3.santour.Activity.R;
 import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
