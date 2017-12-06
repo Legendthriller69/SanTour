@@ -2,12 +2,14 @@ package com.example.group3.santour.DTO;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
 /**
  * Created by DarkFace on 17 nov. 2017.
  */
 
 @IgnoreExtraProperties
-public class Type {
+public class Type implements Serializable{
 
     private String id;
     private String name;

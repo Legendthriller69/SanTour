@@ -9,22 +9,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.example.group3.santour.Activity.R;
-
-
-import com.example.group3.santour.DTO.Point;
+import com.example.group3.santour.DTO.POD;
 
 import java.util.List;
 
-public class AdapterListPoint extends ArrayAdapter<Point> {
+public class AdapterListPoint extends ArrayAdapter<POD> {
 
-    private List<Point> pointList;
+    private List<POD> podList;
+    private TextView txtName;
 
 
-    public AdapterListPoint(Context context, List<Point> pointList) {
-        super(context, 0, pointList);
-        this.pointList = pointList;
+    public AdapterListPoint(Context context, List<POD> podList) {
+        super(context, 0, podList);
+        this.podList = podList;
     }
 
     @Override
@@ -32,15 +32,15 @@ public class AdapterListPoint extends ArrayAdapter<Point> {
         if (convertView == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            convertView = vi.inflate(R.layout.row_categoriepod, null);
+            convertView = vi.inflate(R.layout.row_pod_list, null);
         }
 
-//        PODCategory podCategory = podCategories.get(position);
-//        Category category = categories.get(position);
-//
-//        if (podCategory != null) {
-//
-//        }
+        POD pod = podList.get(position);
+
+        if (pod != null) {
+            txtName = (TextView) convertView.findViewById(R.id.namePodRow);
+            txtName.setText(pod.getName());
+        }
 
         return convertView;
     }

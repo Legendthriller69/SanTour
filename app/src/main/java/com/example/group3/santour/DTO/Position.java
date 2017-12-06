@@ -2,12 +2,14 @@ package com.example.group3.santour.DTO;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
 /**
  * Created by aleks on 21.11.2017.
  */
 
 @IgnoreExtraProperties
-public class Position {
+public class Position implements Serializable{
 
     private String id;
     private double longitude;

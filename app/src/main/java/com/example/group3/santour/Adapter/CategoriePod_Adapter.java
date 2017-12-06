@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.group3.santour.Activity.R;
 import com.example.group3.santour.DTO.Category;
@@ -24,18 +25,31 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
     private TextView txtView;
     private SeekBar seekBar;
     private List<Category> categories;
+    private boolean update;
+    private Context context;
+    private LayoutInflater vi;
 
     public CategoriePod_Adapter(Context context, List<PODCategory> podCategories, List<Category> categories) {
         super(context, 0, podCategories);
+        this.context = context;
         this.podCategories = podCategories;
         this.categories = categories;
         createPODCategories();
     }
 
+    public CategoriePod_Adapter(Context context, List<PODCategory> podCategories, List<Category> categories, boolean update) {
+        super(context, 0, podCategories);
+        this.podCategories = podCategories;
+        this.categories = categories;
+        this.update = update;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         if (convertView == null) {
-            LayoutInflater vi;
+            convertView = vi.inflate(R.layout.row_categoriepod, null);
+        } else {
             vi = LayoutInflater.from(getContext());
             convertView = vi.inflate(R.layout.row_categoriepod, null);
         }
@@ -50,6 +64,9 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
             txtView.setText(category.getName());
             seekBar.setProgress(0);
             seekBar.setMax(10);
+            if (update) {
+                seekBar.setProgress(podCategory.getValue());
+            }
             seekBar.setOnSeekBarChangeListener(new SeekChange(position));
         }
 
@@ -65,7 +82,7 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
     private class SeekChange implements SeekBar.OnSeekBarChangeListener {
         private int position;
 
-        public SeekChange(int position){
+        public SeekChange(int position) {
             this.position = position;
         }
 
