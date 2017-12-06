@@ -48,8 +48,6 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = vi.inflate(R.layout.row_categoriepod, null);
-        } else {
             vi = LayoutInflater.from(getContext());
             convertView = vi.inflate(R.layout.row_categoriepod, null);
         }

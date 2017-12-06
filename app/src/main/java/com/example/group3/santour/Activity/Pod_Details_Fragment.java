@@ -23,7 +23,6 @@ import java.util.List;
 
 public class Pod_Details_Fragment extends Fragment {
 
-
     //elements
     private Button btnSave;
     private ListView mListView;
