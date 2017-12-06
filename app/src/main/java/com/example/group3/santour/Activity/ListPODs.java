@@ -24,14 +24,14 @@ public class ListPODs extends Fragment {
 
     //Create an action bar button
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.back_record_menu, menu);
     }
 
     //Handle button activities
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.back_record:
                 fragmentManager.popBackStack();
                 break;
@@ -48,9 +48,6 @@ public class ListPODs extends Fragment {
         setHasOptionsMenu(true);
 
         fragmentManager = getActivity().getSupportFragmentManager();
-
-
-
 
 
         return view;
