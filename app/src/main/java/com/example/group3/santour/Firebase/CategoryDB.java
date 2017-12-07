@@ -3,8 +3,6 @@ package com.example.group3.santour.Firebase;
 import android.support.annotation.NonNull;
 
 import com.example.group3.santour.DTO.Category;
-import com.example.group3.santour.DTO.Role;
-import com.example.group3.santour.DTO.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;

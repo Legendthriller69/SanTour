@@ -2,7 +2,6 @@ package com.example.group3.santour.Firebase;
 
 import android.support.annotation.NonNull;
 
-import com.example.group3.santour.DTO.Role;
 import com.example.group3.santour.DTO.Track;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +32,11 @@ public class TrackDB {
                 getTrackById(id.getKey(), dataListener);
             }
         });
+    }
+
+    public static void createTrack(Track track) {
+        final DatabaseReference id = TRACK_REFERENCE.push();
+        id.setValue(track);
     }
 
     public static void getTrackById(final String id, final DataListener dataListener) {

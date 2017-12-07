@@ -8,11 +8,12 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group3.santour.Activity.MainActivity;
 import com.example.group3.santour.Activity.R;
-import com.example.group3.santour.DTO.POD;
-import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
+import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Firebase.TrackDB;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -42,14 +43,11 @@ public class Record implements Serializable {
     private GoogleMap mMap;
     private boolean isRecording;
     private TextView txtDistance;
+    private String text;
 
     //all linked to tracks
-    private String name;
-    private String description;
+    private Track track;
     private double distance;
-    private int duration;
-    private List<POI> pois;
-    private List<POD> pods;
     private List<Position> positions;
     private String idUser;
     private String idType;
@@ -67,12 +65,11 @@ public class Record implements Serializable {
         this.activity = activity;
         this.mMap = mMap;
         positions = new ArrayList<>();
-        pois = new ArrayList<>();
-        pods = new ArrayList<>();
         isRecording = false;
         distance = 0;
         distances = new float[1];
         this.txtDistance = txtDistance;
+        text = "0.0";
     }
 
     public Record(Activity activity) {
@@ -168,7 +165,7 @@ public class Record implements Serializable {
 
                             Location.distanceBetween(lastPosition.getLatitude(), lastPosition.getLongitude(), location.getLatitude(), location.getLongitude(), distances);
                             distance += distances[0];
-                            String text = String.valueOf(Math.floor(distance * 100) / 100);
+                            text = String.valueOf(Math.floor(distance * 100) / 100);
                             txtDistance.setText(text);
 
                             LatLng latLngLastPosition = new LatLng(lastPosition.getLatitude(), lastPosition.getLongitude());
@@ -196,14 +193,30 @@ public class Record implements Serializable {
             mFusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
-    public void stopLocationUpdates() {
+    private void stopLocationUpdates() {
         //stop the location update
         if (locationCallback != null)
             mFusedLocationClient.removeLocationUpdates(locationCallback);
+    }
 
+    public void createTrack(String name, String description, int duration, String idType, String idUser) {
+        //stop the location updates
+        stopLocationUpdates();
 
-        //create a new track with all informations
+        //create the track
+        track = MainActivity.getTrack();
+        Log.e("ALEKS", track.getPods().size() + "");
+        Log.e("ALEKS", track.getPois().size() + "");
 
+        track.setName(name);
+        track.setDuration(duration);
+        track.setDistance(distance);
+        track.setPositions(positions);
+        track.setIdType(idType);
+        track.setIdUser(idUser);
+        track.setDescription(description);
+        TrackDB.createTrack(track);
+        MainActivity.setTrack(null);
     }
 
     public boolean isRecording() {
@@ -230,7 +243,7 @@ public class Record implements Serializable {
         return false;
     }
 
-    public List<Position> getPositions() {
-        return positions;
+    public String getDistanceText() {
+        return text;
     }
 }

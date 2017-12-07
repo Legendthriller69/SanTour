@@ -2,6 +2,7 @@ package com.example.group3.santour.DTO;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  */
 
 @IgnoreExtraProperties
-public class Track {
+public class Track implements Serializable{
 
     private String id;
     private String name;
