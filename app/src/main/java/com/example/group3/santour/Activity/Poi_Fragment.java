@@ -143,9 +143,9 @@ public class Poi_Fragment extends Fragment {
             camera = new Camera();
             new AlertDialog.Builder(getActivity())
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Choice")
-                    .setMessage("Camera or import from gallery")
-                    .setPositiveButton("Camera", new DialogInterface.OnClickListener() {
+                    .setTitle(R.string.choice_picture_title)
+                    .setMessage(R.string.choice_picture_message)
+                    .setPositiveButton(R.string.choice_picture_camera, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             camera.setChoice("camera");
@@ -153,7 +153,7 @@ public class Poi_Fragment extends Fragment {
                         }
 
                     })
-                    .setNegativeButton("Gallery", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.choice_picture_gallery, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             camera.setChoice("gallery");
@@ -177,7 +177,7 @@ public class Poi_Fragment extends Fragment {
                 //camera.dispatchTakePictureIntent(Poi_Fragment.this);
 
                 //then encode the picture and add to the string
-                poi.setPicture(camera.encodeBitmap(bitmap));
+                //poi.setPicture(camera.encodeBitmap(bitmap));
             } else {
                 camera.addToImageViewGallery(requestCode, resultCode, getActivity(), img_pictureView, data);
                 //then encode the picture and add to the string
