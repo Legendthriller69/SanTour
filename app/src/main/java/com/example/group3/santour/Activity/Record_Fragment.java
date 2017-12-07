@@ -116,7 +116,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             chrono = (Chronometer) view.findViewById(R.id.chrono);
 
             //disable btnPause and btnStop and addpod addpoi
-            btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnStart.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             btnPause.setEnabled(false);
             btnPause.setBackgroundColor(Color.TRANSPARENT);
             btnStop.setEnabled(false);

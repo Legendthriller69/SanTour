@@ -8,6 +8,9 @@
         <item name="colorAccent">@android:color/holo_red_light</item>
         <item name="android:colorBackground">@android:color/background_light</item>
         <item name="android:statusBarColor">?android:attr/colorForeground</item>
-        <item name="android:navigationBarColor">@color/custom_Color_Black</item>
+        <item name="android:navigationBarColor">@color/cast_expanded_controller_background_color</item>
+        <item name="android:textColorPrimaryInverse">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/primary_text_light_nodisable</item>
+
     </style>
 </resources>
