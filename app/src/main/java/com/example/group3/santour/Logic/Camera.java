@@ -38,6 +38,9 @@ public class Camera {
     private final int REQUEST_TAKE_PHOTO = 1;
 
     private String imgDecodableString;
+    private String mCurrentPhotoPath;
+    private Bitmap bitmap;
+
 
     //Choice made by the user - Camera or Gallery
     private String choice ;
@@ -63,7 +66,6 @@ public class Camera {
         }
     }
 
-    String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -141,8 +143,8 @@ public class Camera {
             imgDecodableString = cursor.getString(columnIndex);
             cursor.close();
             // Set the Image in ImageView after decoding the String
-            imgView.setImageBitmap(BitmapFactory
-                    .decodeFile(imgDecodableString));
+            bitmap = BitmapFactory.decodeFile(imgDecodableString);
+            imgView.setImageBitmap(bitmap);
         }
 
     }
@@ -154,7 +156,7 @@ public class Camera {
     }
 
     public String encodeImageWithGallery(){
-        return imgDecodableString;
+        return encodeBitmap(bitmap);
     }
 
     /**

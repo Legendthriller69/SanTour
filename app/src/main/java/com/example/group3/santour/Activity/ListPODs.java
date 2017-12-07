@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.group3.santour.Adapter.AdapterListPoint;
+import com.example.group3.santour.Adapter.AdapterPODList;
 import com.example.group3.santour.DTO.POD;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class ListPODs extends Fragment {
     private Bundle bundle;
 
     //adapter
-    private AdapterListPoint adapterListPoint;
+    private AdapterPODList adapterPODList;
     private ListView mListView;
     private List<POD> pods;
 
@@ -67,8 +67,8 @@ public class ListPODs extends Fragment {
 
         //create the adapter
         pods = MainActivity.getTrack().getPods();
-        adapterListPoint = new AdapterListPoint(getContext(), pods);
-        mListView.setAdapter(adapterListPoint);
+        adapterPODList = new AdapterPODList(getContext(), pods);
+        mListView.setAdapter(adapterPODList);
         mListView.setOnItemClickListener(new ItemClickPOD());
 
         return view;
@@ -92,7 +92,6 @@ public class ListPODs extends Fragment {
             transaction = fragmentManager.beginTransaction();
             transaction.addToBackStack(null);
             transaction.replace(R.id.main_container, fragment).commit();
-
         }
     }
 }

@@ -16,13 +16,13 @@ import com.example.group3.santour.DTO.POD;
 
 import java.util.List;
 
-public class AdapterListPoint extends ArrayAdapter<POD> {
+public class AdapterPODList extends ArrayAdapter<POD> {
 
     private List<POD> podList;
     private TextView txtName;
 
 
-    public AdapterListPoint(Context context, List<POD> podList) {
+    public AdapterPODList(Context context, List<POD> podList) {
         super(context, 0, podList);
         this.podList = podList;
     }

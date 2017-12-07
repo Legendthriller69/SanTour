@@ -100,6 +100,8 @@ public class Pod_Details_Fragment extends Fragment {
         public void onClick(View view) {
             track = MainActivity.getTrack();
             pod.setPodCategories(podCategoryList);
+
+            //update or add the poi
             if (index != -1) {
                 track.getPods().set(index, pod);
             } else {

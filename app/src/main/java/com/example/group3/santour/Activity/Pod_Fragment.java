@@ -48,9 +48,6 @@ public class Pod_Fragment extends Fragment {
     private Position position;
     private Camera camera;
 
-    //ScrollView
-    private ScrollView scrollView;
-
     //fragments
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -94,13 +91,12 @@ public class Pod_Fragment extends Fragment {
             pod = (POD) bundle.getSerializable("POD");
             index = Integer.parseInt(bundle.getString("index"));
 
-            //create the camera
+            //create the camera class
             camera = new Camera();
 
             //init the gui
             initGUI(pod);
         } else {
-            Toast.makeText(getActivity(), "SANS BUNDLE", Toast.LENGTH_SHORT).show();
             //instantiate record
             record = new Record(getActivity());
 
