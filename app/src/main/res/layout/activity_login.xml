@@ -4,33 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.group3.santour.Activity.LoginActivity">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="264dp"
-        android:layout_height="183dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@mipmap/ic_logo"
-        android:layout_marginLeft="8dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="265dp"
-        android:layout_height="52dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/login"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context="com.example.group3.santour.Activity.LoginActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <EditText
         android:id="@+id/editText2"
@@ -38,13 +14,15 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/name"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        android:hint="@string/name"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editText3"
@@ -54,7 +32,8 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/password"
+        android:hint="@string/password"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/editText2"
         app:layout_constraintStart_toStartOf="@+id/editText2"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
@@ -71,5 +50,18 @@
         app:layout_constraintEnd_toEndOf="@+id/editText3"
         app:layout_constraintStart_toStartOf="@+id/editText3"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="243dp"
+        android:layout_height="213dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
