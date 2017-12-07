@@ -73,6 +73,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     public boolean onOptionsItemSelected(MenuItem item){
 
         switch (item.getItemId()){
+            case R.id.home:
+                // retourne sur la welcome page !
             case R.id.list_pod:
                 fragment = new ListPODs();
                 break;
