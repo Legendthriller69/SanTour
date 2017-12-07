@@ -43,7 +43,7 @@ public class Camera {
 
 
     //Choice made by the user - Camera or Gallery
-    private String choice ;
+    private String choice;
 
     //Getter and Setter for the choice
     public String getChoice() {
@@ -65,7 +65,6 @@ public class Camera {
             fragment.startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -110,7 +109,7 @@ public class Camera {
     }
 
     //Launching Import Gallery
-    public void launchImportImage(Fragment fragment){
+    public void launchImportImage(Fragment fragment) {
         // Create intent to Open Image applications like Gallery, Google Photos
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         // Start the Intent
@@ -126,14 +125,14 @@ public class Camera {
         }
     }
 
-    public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data){
+    public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data) {
 
         // When an Image is picked
         if (requestCode == RESULT_LOAD_IMG && resultCode == activity.RESULT_OK) {
             // Get the Image from data
 
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
             // Get the cursor
             Cursor cursor = activity.getContentResolver().query(selectedImage,
@@ -157,12 +156,13 @@ public class Camera {
         return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
     }
 
-    public String encodeImageWithGallery(){
+    public String encodeImageWithGallery() {
         return encodeBitmap(bitmap);
     }
 
     /**
      * Decode the b64 String directly when encoded to test - NOT FROM DB
+     *
      * @param encodedImage
      * @param imgView
      */
