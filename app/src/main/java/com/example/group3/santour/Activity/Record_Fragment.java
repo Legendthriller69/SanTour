@@ -148,6 +148,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
         btnAddPoi.setOnClickListener(new AddPOI());
 
+        //trackname text
+        txtTrackName.setText("");
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -238,21 +241,24 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         @Override
         public void onClick(View view) {
-            new AlertDialog.Builder(getActivity())
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(R.string.save_track_confirmation_title)
-                    .setMessage(R.string.save_track_confirmation_text)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", "idStringAFAIRE");
-                            //come back to the welcome page after
-                            getActivity().finish();
-                        }
+            if (formValidation()) {
+                new AlertDialog.Builder(getActivity())
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle(R.string.save_track_confirmation_title)
+                        .setMessage(R.string.save_track_confirmation_text)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", "idStringAFAIRE");
+                                //come back to the welcome page after
+                                getActivity().finish();
+                            }
 
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+
         }
     }
 
@@ -339,5 +345,13 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     private void showGpsOptions() {
         startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+    }
+
+    private boolean formValidation() {
+        if (txtTrackName.getText().toString().equals("")) {
+            Toast.makeText(getContext(), "Please give a name to the track first", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }
