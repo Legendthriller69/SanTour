@@ -20,8 +20,8 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Record;
@@ -51,13 +51,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private Long timeWhenPause;
     private LocationManager locationManager;
 
-    private ScrollView scrollView;
-
     //fragments
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
-    private Bundle savedInstanceState;
+
 
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
@@ -65,25 +63,37 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     //Create an action bar button
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.list_menu, menu);
     }
 
     //Handle button activities
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.list_pod:
-                fragment = new ListPODs();
-                break;
+                if (MainActivity.getTrack() != null && MainActivity.getTrack().getPods().size() > 0) {
+                    fragment = new ListPODs();
+                    transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.main_container, fragment).commit();
+                    transaction.addToBackStack(null);
+                    break;
+                } else {
+                    Toast.makeText(getContext(), R.string.CreatePODFirst, Toast.LENGTH_SHORT).show();
+                    break;
+                }
             case R.id.list_poi:
-                fragment = new ListPOIs();
-                break;
+                if (MainActivity.getTrack() != null && MainActivity.getTrack().getPois().size() > 0) {
+                    fragment = new ListPOIs();
+                    transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.main_container, fragment).commit();
+                    transaction.addToBackStack(null);
+                    break;
+                } else {
+                    Toast.makeText(getContext(), R.string.CreatePOIFirst, Toast.LENGTH_SHORT).show();
+                    break;
+                }
         }
-
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_container, fragment).commit();
-        transaction.addToBackStack(null);
 
         return true;
     }
@@ -91,70 +101,72 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState); // Always call the superclass first
-            this.savedInstanceState = savedInstanceState;
-            View view = inflater.inflate(R.layout.fragment_record, container, false);
+        super.onCreate(savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_record, container, false);
 
-            setHasOptionsMenu(true);
+        //options menu
+        setHasOptionsMenu(true);
 
+        //instantiate map view
+        mapView = (MapView) view.findViewById(R.id.Map);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
-            //instantiate map view
-            mapView = (MapView) view.findViewById(R.id.Map);
-            mapView.onCreate(savedInstanceState);
-            mapView.getMapAsync(this);
+        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
-            locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        //instantiate all the elements
+        btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
+        btnPause = (ImageButton) view.findViewById(R.id.ButtonPause);
+        btnStop = (ImageButton) view.findViewById(R.id.ButtonSave);
+        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
+        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
+        txtDistance = (TextView) view.findViewById(R.id.txtDistance);
+        txtTrackName = (EditText) view.findViewById(R.id.txtTrackName);
+        chrono = (Chronometer) view.findViewById(R.id.chrono);
 
-            //instantiate all the elements
-            btnStart = (ImageButton) view.findViewById(R.id.ButtonPlay);
-            btnPause = (ImageButton) view.findViewById(R.id.ButtonPause);
-            btnStop = (ImageButton) view.findViewById(R.id.ButtonSave);
-            btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
-            btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
-            txtDistance = (TextView) view.findViewById(R.id.txtDistance);
-            txtTrackName = (EditText) view.findViewById(R.id.txtTrackName);
-            chrono = (Chronometer) view.findViewById(R.id.chrono);
+        //disable btnPause and btnStop and addpod addpoi
+        btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        btnPause.setEnabled(false);
+        btnPause.setBackgroundColor(Color.TRANSPARENT);
+        btnStop.setEnabled(false);
+        btnStop.setBackgroundColor(Color.TRANSPARENT);
+        btnAddPoi.setEnabled(false);
+        btnAddPoi.setBackgroundColor(Color.TRANSPARENT);
+        btnAddPod.setEnabled(false);
+        btnAddPod.setBackgroundColor(Color.TRANSPARENT);
 
-            //disable btnPause and btnStop and addpod addpoi
-            btnStart.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            btnPause.setEnabled(false);
-            btnPause.setBackgroundColor(Color.TRANSPARENT);
-            btnStop.setEnabled(false);
-            btnStop.setBackgroundColor(Color.TRANSPARENT);
-            btnAddPoi.setEnabled(false);
-            btnAddPoi.setBackgroundColor(Color.TRANSPARENT);
-            btnAddPod.setEnabled(false);
-            btnAddPod.setBackgroundColor(Color.TRANSPARENT);
+        //onclick for start pause stop
+        btnStart.setOnClickListener(new StartRecording());
+        btnPause.setOnClickListener(new PauseRecording());
+        btnStop.setOnClickListener(new StopRecording());
 
-            //navigation button to pod
-            btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
-            btnAddPod.setOnClickListener(new AddPOD());
+        //navigation button to pod
+        btnAddPod = (ImageButton) view.findViewById(R.id.ButtonAddPOD);
+        btnAddPod.setOnClickListener(new AddPOD());
 
-            //navigation button to poi
-            btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
-            btnAddPoi.setOnClickListener(new AddPOI());
+        //navigation button to poi
+        btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
+        btnAddPoi.setOnClickListener(new AddPOI());
 
-            // Inflate the layout for this fragment
-            return view;
+        // Inflate the layout for this fragment
+        return view;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMinZoomPreference(15.0f);
 
-        //add buttons listeners
-        btnStart.setOnClickListener(new StartRecording());
-        btnPause.setOnClickListener(new PauseRecording());
-        btnStop.setOnClickListener(new StopRecording());
+        if (record == null) {
+            record = new Record(getActivity(), mMap, txtDistance);
+        }
 
-        record = new Record(getActivity(), mMap, txtDistance);
         record.moveCameraToUserPosition();
     }
 
     private class AddPOD implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            btnPause.callOnClick();
             fragment = new Pod_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
@@ -167,6 +179,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private class AddPOI implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            btnPause.callOnClick();
             fragment = new Poi_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
@@ -180,7 +193,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         @Override
         public void onClick(View view) {
             //create a new track in the main activity now that he has started the track
-            MainActivity.setTrack(new Track());
+            if (MainActivity.getTrack() == null) {
+                MainActivity.setTrack(new Track());
+            }
 
             //call the method to start recording
             record.startRecording();
@@ -230,7 +245,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            record.stopLocationUpdates();
+                            record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", "idStringAFAIRE");
+                            //come back to the welcome page after
+                            getActivity().finish();
                         }
 
                     })
@@ -245,6 +262,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mapView.onResume();
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             createGpsDisabledAlert();
+        }
+
+        if (record != null) {
+            txtDistance.setText(record.getDistanceText());
+            btnStart.callOnClick();
         }
     }
 
