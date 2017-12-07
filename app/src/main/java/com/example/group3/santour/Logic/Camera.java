@@ -92,15 +92,17 @@ public class Camera {
             File photoFile = null;
             try {
                 photoFile = createImageFile();
+                Log.e("YOLO-TEST", "dispatchTakePictureIntent: ROUTE : " + photoFile);
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                Log.i("YOLO-TEST", "dispatchTakePictureIntent: ERROR");
+                Log.e("YOLO-TEST", "dispatchTakePictureIntent: ERROR : CREATE IMAGE");
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(fragment.getContext(),
                         "com.example.android.fileprovider",
                         photoFile);
+                Log.e("YOLO-TEST", "dispatchTakePictureIntent: PHOTOFILE NOT NULL");
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 fragment.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }

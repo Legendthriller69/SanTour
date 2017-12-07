@@ -163,16 +163,16 @@ public class Pod_Fragment extends Fragment {
                 camera = new Camera();
             new AlertDialog.Builder(getActivity())
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Choice")
-                    .setMessage("Camera or import from gallery")
-                    .setPositiveButton("Camera", new DialogInterface.OnClickListener() {
+                    .setTitle(R.string.choice_picture_title)
+                    .setMessage(R.string.choice_picture_message)
+                    .setPositiveButton(R.string.choice_picture_camera, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             camera.setChoice("camera");
                             camera.launchCamera(Pod_Fragment.this);
                         }
                     })
-                    .setNegativeButton("Gallery", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.choice_picture_gallery, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             camera.setChoice("gallery");

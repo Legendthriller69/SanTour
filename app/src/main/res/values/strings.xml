@@ -44,4 +44,9 @@
     <string name="about_page">About page</string>
     <string name="settings">Settings</string>
 
+    <string name="choice_picture_title">How do you want to import an image</string>
+    <string name="choice_picture_message">Camera or import from gallery</string>
+    <string name="choice_picture_camera">Camera</string>
+    <string name="choice_picture_gallery">Gallery</string>
+
 </resources>
