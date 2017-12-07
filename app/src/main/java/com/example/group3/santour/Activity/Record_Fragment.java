@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,7 +71,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     //Handle button activities
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
+            case R.id.home:
+                // retourne sur la welcome page !
             case R.id.list_pod:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPods().size() > 0) {
                     fragment = new ListPODs();
