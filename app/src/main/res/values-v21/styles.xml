@@ -14,16 +14,4 @@
 
     </style>
 
-    <style name="AppTheme." parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@android:color/black</item>
-        <item name="colorPrimaryDark">@android:color/black</item>
-        <item name="colorAccent">@android:</item>
-        <item name="android:colorBackground">@android:color/background_light</item>
-        <item name="android:statusBarColor">?android:attr/colorForeground</item>
-        <item name="android:navigationBarColor">@color/cast_expanded_controller_background_color</item>
-        <item name="android:textColorPrimaryInverse">@android:color/black</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-
-    </style>
 </resources>
