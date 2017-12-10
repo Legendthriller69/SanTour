@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.group3.santour.Activity.R;
+
 
 public class Settings_Fragment extends Fragment {
 

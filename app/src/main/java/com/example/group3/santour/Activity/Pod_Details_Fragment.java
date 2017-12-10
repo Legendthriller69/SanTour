@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.group3.santour.Activity.MainActivity;
+import com.example.group3.santour.Activity.R;
 import com.example.group3.santour.Adapter.CategoriePod_Adapter;
 import com.example.group3.santour.DTO.Category;
 import com.example.group3.santour.DTO.POD;
@@ -86,7 +88,7 @@ public class Pod_Details_Fragment extends Fragment {
             }
 
             @Override
-            public void onFailed(DatabaseError dbError) {
+            public void onFailed(Object dbError) {
 
             }
         });
@@ -112,10 +114,8 @@ public class Pod_Details_Fragment extends Fragment {
 
             fragmentManager = getActivity().getSupportFragmentManager();
             if (fragmentManager.getBackStackEntryCount() > 0) {
-                FragmentManager.BackStackEntry first = fragmentManager
-                        .getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 2);
-                fragmentManager.popBackStack(first.getId(),
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fragmentManager.popBackStack();
+                fragmentManager.popBackStack();
             }
         }
     }

@@ -9,5 +9,5 @@ import com.google.firebase.database.DatabaseError;
 public interface DataListener {
 
     void onSuccess(Object object);
-    void onFailed(DatabaseError dbError);
+    void onFailed(Object object);
 }

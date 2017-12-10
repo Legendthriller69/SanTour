@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.group3.santour.Firebase.Authentication;
+import com.google.android.gms.auth.api.Auth;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -20,7 +24,6 @@ public class WelcomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
-
 
         btnRecord = (Button) findViewById(R.id.btnCreateTrack);
         btnAbout = (Button) findViewById(R.id.btnAbout);
@@ -40,7 +43,6 @@ public class WelcomePage extends AppCompatActivity {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", RECORDFRAGMENT);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -51,7 +53,6 @@ public class WelcomePage extends AppCompatActivity {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", ABOUTFRAGMENT);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -62,7 +63,6 @@ public class WelcomePage extends AppCompatActivity {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", SETTINGSFRAGMENT);
             startActivity(intent);
-            finish();
         }
     }
 }

@@ -52,9 +52,6 @@ public class Record implements Serializable {
     private String idUser;
     private String idType;
 
-    //Chrono
-    private Chronometer chrono;
-
     //Last position
     private Position lastPosition;
 
@@ -91,13 +88,12 @@ public class Record implements Serializable {
                         @Override
                         public void onSuccess(Location location) {
                             // Got last known location. In some rare situations this can be null.
-                            mMap.clear();
                             LatLng currentLocation;
                             if (location != null) {
                                 // Logic to handle location object
                                 currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-                                mMap.addMarker(new MarkerOptions().position(currentLocation).title("You are here"));
-                                mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+                                mMap.addMarker(new MarkerOptions().position(currentLocation).title(activity.getString(R.string.youAreHere)));
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 13.0f));
                             } else
                                 Toast.makeText(activity, activity.getString(R.string.check_location_activity), Toast.LENGTH_LONG).show();
                         }
@@ -197,6 +193,8 @@ public class Record implements Serializable {
         //stop the location update
         if (locationCallback != null)
             mFusedLocationClient.removeLocationUpdates(locationCallback);
+
+        isRecording = false;
     }
 
     public void createTrack(String name, String description, int duration, String idType, String idUser) {

@@ -23,22 +23,28 @@
         android:supportsRtl="true"
         android:theme="@style/test2">
 
-        <!-- Changed main launcher -->
+        <!-- Activity -->
         <activity
-            android:name=".WelcomePage"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/test2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/test2" />
 
+        <activity
+            android:name=".WelcomePage"
+            android:screenOrientation="portrait"
+            android:theme="@style/test2" />
+        
+        <!--Provider-->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.android.fileprovider"
@@ -54,8 +60,6 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBAqnvAEzghVR8S9m-oRz1AXFfWg6-PnoE" />
 
-        <activity android:name=".Activity.WelcomePage" />
-        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

@@ -1,9 +1,9 @@
 package com.example.group3.santour.Activity;
 
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.group3.santour.Adapter.AdapterPODList;
 import com.example.group3.santour.Adapter.AdapterPOIList;
-import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.POI;
 
 import java.util.List;
@@ -35,7 +33,6 @@ public class ListPOIs extends Fragment {
     private List<POI> pois;
 
     public ListPOIs() {
-        // Required empty public constructor
     }
 
     //Create an action bar button
@@ -58,6 +55,8 @@ public class ListPOIs extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_pois, container, false);
+
+        fragmentManager = getActivity().getSupportFragmentManager();
 
         //options menu
         setHasOptionsMenu(true);
@@ -87,7 +86,6 @@ public class ListPOIs extends Fragment {
             fragment.setArguments(bundle);
 
             //switch to the new fragment
-            fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
             transaction.addToBackStack(null);
             transaction.replace(R.id.main_container, fragment).commit();

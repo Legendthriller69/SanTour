@@ -23,16 +23,17 @@ public class UserDB {
 
     private final static DatabaseReference USER_REFERENCE = FirebaseDatabase.getInstance().getReference("users");
 
-    private UserDB(){
+    private UserDB() {
 
     }
 
-    public static void createUser(User user){
+    public static void createUser(User user) {
         DatabaseReference id = USER_REFERENCE.push();
-        id.setValue(user);;
+        id.setValue(user);
+        ;
     }
 
-    public static void createUser(User user, final DataListener dataListener){
+    public static void createUser(User user, final DataListener dataListener) {
         final DatabaseReference id = USER_REFERENCE.push();
         id.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -45,16 +46,17 @@ public class UserDB {
     /**
      * get all users from firebase
      * dataListener is used as callback because of async
+     *
      * @param dataListener
      */
-    public static void getAllUsers(final DataListener dataListener){
+    public static void getAllUsers(final DataListener dataListener) {
         USER_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<User> users = new ArrayList<User>();
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     User user = userSnapshot.getValue(User.class);
-                    user.setId(dataSnapshot.getKey());
+                    user.setId(userSnapshot.getKey());
                     users.add(user);
                 }
                 dataListener.onSuccess(users);
@@ -69,10 +71,11 @@ public class UserDB {
 
     /**
      * get user by id
+     *
      * @param id
      * @param dataListener
      */
-    public static void getUserById(String id, final DataListener dataListener){
+    public static void getUserById(String id, final DataListener dataListener) {
         Query query = USER_REFERENCE.child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -80,6 +83,27 @@ public class UserDB {
                 User user = dataSnapshot.getValue(User.class);
                 user.setId(dataSnapshot.getKey());
                 dataListener.onSuccess(user);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                dataListener.onFailed(databaseError);
+            }
+        });
+    }
+
+    public static void getUserByMail(final String mail, final DataListener dataListener) {
+        USER_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    User user = userSnapshot.getValue(User.class);
+                    user.setId(userSnapshot.getKey());
+                    if (user.getMail().equals(mail)) {
+                        dataListener.onSuccess(user);
+                        return;
+                    }
+                }
             }
 
             @Override

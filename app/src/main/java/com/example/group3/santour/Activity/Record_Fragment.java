@@ -93,6 +93,13 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                     Toast.makeText(getContext(), R.string.CreatePOIFirst, Toast.LENGTH_SHORT).show();
                     break;
                 }
+            case R.id.home:
+                if (record != null && !record.isRecording()) {
+                    getActivity().finish();
+                } else {
+                    Toast.makeText(getActivity(), R.string.saveTrackFirst, Toast.LENGTH_SHORT).show();
+                }
+
         }
 
         return true;
@@ -250,7 +257,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", "idStringAFAIRE");
-                                //come back to the welcome page after
+                                Toast.makeText(getActivity(), R.string.trackSaved, Toast.LENGTH_SHORT).show();
                                 getActivity().finish();
                             }
 
@@ -349,7 +356,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     private boolean formValidation() {
         if (txtTrackName.getText().toString().equals("")) {
-            Toast.makeText(getContext(), "Please give a name to the track first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.NameTrackFirst, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

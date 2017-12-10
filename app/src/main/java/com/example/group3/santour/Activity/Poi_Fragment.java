@@ -105,7 +105,7 @@ public class Poi_Fragment extends Fragment {
                 }
 
                 @Override
-                public void onFailed(DatabaseError dbError) {
+                public void onFailed(Object dbError) {
                 }
             });
 

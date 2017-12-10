@@ -6,8 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Permissions;
@@ -41,12 +39,11 @@ public class MainActivity extends AppCompatActivity {
         setTitle(this.getString(R.string.start_recording));
 
         //everything linked to the fragments
-
         fragmentManager = getSupportFragmentManager();
 
         int intentFragment = getIntent().getExtras().getInt("frgToLoad");
 
-        switch(intentFragment){
+        switch (intentFragment) {
             case RECORDFRAGMENT:
                 fragment = new Record_Fragment();
                 break;
@@ -57,22 +54,22 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new Settings_Fragment();
                 break;
         }
-
         transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-
+        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
+        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
+        transaction.replace(R.id.main_container, fragment).commit();
+        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
     }
 
     @Override
     public void onBackPressed() {
-        Log.e("BACKSTACK ENTRY COUNT", fragmentManager.getBackStackEntryCount() + "");
-        if(fragmentManager.getBackStackEntryCount()>0){
-            fragmentManager.popBackStack();
-        } else {
-            finish();
-        }
+        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStack();
+            }
+            else {
+                finish();
+            }
     }
 
     public static Track getTrack() {

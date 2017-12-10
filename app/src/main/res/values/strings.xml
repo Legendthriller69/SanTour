@@ -66,5 +66,13 @@
     <string name="choice_picture_message">Camera or import from gallery</string>
     <string name="choice_picture_camera">Camera</string>
     <string name="choice_picture_gallery">Gallery</string>
+    <string name="NameTrackFirst">Please give a name to the track first</string>
+    <string name="saveTrackFirst">Please save your track first !</string>
+    <string name="trackSaved">The track has been successfully saved !</string>
+    <string name="youAreHere">You are here</string>
+    <string name="mail">Mail</string>
+    <string name="enterValidMail">Please enter a valid address mail</string>
+    <string name="enterPassword">Please enter a password</string>
+    <string name="userNotFound">User not found</string>
 
 </resources>
