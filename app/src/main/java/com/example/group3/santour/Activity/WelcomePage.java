@@ -3,12 +3,10 @@ package com.example.group3.santour.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import com.example.group3.santour.Firebase.Authentication;
-import com.google.android.gms.auth.api.Auth;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -20,10 +18,20 @@ public class WelcomePage extends AppCompatActivity {
     final private int ABOUTFRAGMENT = 2;
     final private int SETTINGSFRAGMENT = 3;
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater =getMenuInflater();
+        inflater.inflate(R.menu.logout, menu);
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
+        setTitle(getString(R.string.Home));
+
 
         btnRecord = (Button) findViewById(R.id.btnCreateTrack);
         btnAbout = (Button) findViewById(R.id.btnAbout);

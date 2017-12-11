@@ -57,6 +57,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private FragmentTransaction transaction;
 
 
+
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
     }
@@ -96,9 +97,14 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             case R.id.home:
                 if (record != null && !record.isRecording()) {
                     getActivity().finish();
+                    break;
                 } else {
                     Toast.makeText(getActivity(), R.string.saveTrackFirst, Toast.LENGTH_SHORT).show();
+                    break;
                 }
+            case R.id.logout:
+                // log out
+
 
         }
 
