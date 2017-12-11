@@ -193,13 +193,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             fragment = new Poi_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.main_container, fragment).commit();
+            transaction.replace(R.id.main_container, fragment).addToBackStack(null).commit();
         }
     }
 
     private class StartRecording implements View.OnClickListener {
-
         @Override
         public void onClick(View view) {
             //create a new track in the main activity now that he has started the track
@@ -330,16 +328,16 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private void createGpsDisabledAlert() {
         AlertDialog.Builder localBuilder = new AlertDialog.Builder(getActivity());
         localBuilder
-                .setMessage("Le GPS est inactif, voulez-vous l'activer ?")
+                .setMessage(R.string.gpsDisabled)
                 .setCancelable(false)
-                .setPositiveButton("Activer GPS ",
+                .setPositiveButton(R.string.activateGPS,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                                 Record_Fragment.this.showGpsOptions();
                             }
                         }
                 );
-        localBuilder.setNegativeButton("Ne pas l'activer ",
+        localBuilder.setNegativeButton(R.string.notActivateGPS,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                         paramDialogInterface.cancel();

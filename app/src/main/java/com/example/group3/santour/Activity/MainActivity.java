@@ -55,16 +55,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         transaction = fragmentManager.beginTransaction();
-        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
-        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
-        transaction.replace(R.id.main_container, fragment).commit();
-        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
+        transaction.replace(R.id.main_container, fragment).addToBackStack(null).commit();
     }
 
     @Override
     public void onBackPressed() {
-        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
-            if (fragmentManager.getBackStackEntryCount() > 0) {
+            if (fragmentManager.getBackStackEntryCount() > 1) {
                 fragmentManager.popBackStack();
             }
             else {

@@ -32,12 +32,10 @@ public class WelcomePage extends AppCompatActivity {
         btnRecord.setOnClickListener(new RecordTrackListener());
         btnAbout.setOnClickListener(new AboutPageListener());
         btnSettings.setOnClickListener(new SettingsPageListener());
-
     }
 
 
     private class RecordTrackListener implements View.OnClickListener {
-
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
@@ -47,7 +45,6 @@ public class WelcomePage extends AppCompatActivity {
     }
 
     private class AboutPageListener implements View.OnClickListener {
-
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
@@ -57,7 +54,6 @@ public class WelcomePage extends AppCompatActivity {
     }
 
     private class SettingsPageListener implements View.OnClickListener {
-
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);

@@ -74,5 +74,8 @@
     <string name="enterValidMail">Please enter a valid address mail</string>
     <string name="enterPassword">Please enter a password</string>
     <string name="userNotFound">User not found</string>
+    <string name="gpsDisabled">Le GPS est inactif, voulez-vous l\'activer ?</string>
+    <string name="activateGPS">Activer GPS</string>
+    <string name="notActivateGPS">Ne pas l\'activer</string>
 
 </resources>

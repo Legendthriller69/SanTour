@@ -1,8 +1,6 @@
 package com.example.group3.santour.Firebase;
 
 import android.support.annotation.NonNull;
-import android.widget.Toast;
-
 import com.example.group3.santour.DTO.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,10 +31,8 @@ public class Authentication {
                             currentUser = (User) object;
                             dataListener.onSuccess(true);
                         }
-
                         @Override
                         public void onFailed(Object object) {
-
                         }
                     });
                 } else {
