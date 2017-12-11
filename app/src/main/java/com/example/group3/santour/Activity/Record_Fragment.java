@@ -138,7 +138,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         chrono = (Chronometer) view.findViewById(R.id.chrono);
 
         //disable btnPause and btnStop and addpod addpoi
-        btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        btnStart.setBackgroundColor(getResources().getColor(R.color.red_main));
         btnPause.setEnabled(false);
         btnPause.setBackgroundColor(Color.TRANSPARENT);
         btnStop.setEnabled(false);
@@ -220,13 +220,13 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             btnStart.setEnabled(false);
             btnStart.setBackgroundColor(Color.TRANSPARENT);
             btnPause.setEnabled(true);
-            btnPause.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnPause.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnStop.setEnabled(true);
-            btnStop.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnStop.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnAddPod.setEnabled(true);
-            btnAddPod.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnAddPod.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnAddPoi.setEnabled(true);
-            btnAddPoi.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnAddPoi.setBackgroundColor(getResources().getColor(R.color.red_main));
 
             //start the chronometer
             chrono.setBase(SystemClock.elapsedRealtime() + timeWhenPause);
@@ -240,7 +240,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         public void onClick(View view) {
             record.pauseLocationUpdates();
             btnStart.setEnabled(true);
-            btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnStart.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnPause.setEnabled(false);
             btnPause.setBackgroundColor(Color.TRANSPARENT);
             btnStop.setEnabled(false);
