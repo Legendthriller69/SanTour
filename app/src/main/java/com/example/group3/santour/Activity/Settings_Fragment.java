@@ -29,9 +29,6 @@ public class Settings_Fragment extends Fragment {
             case R.id.home:
                 getActivity().finish();
                 break;
-            case R.id.logout:
-                // log out
-                break;
 
         }
 

@@ -102,8 +102,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                     Toast.makeText(getActivity(), R.string.saveTrackFirst, Toast.LENGTH_SHORT).show();
                     break;
                 }
-            case R.id.logout:
-                // log out
 
 
         }
