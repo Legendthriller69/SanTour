@@ -1,8 +1,8 @@
 package com.example.group3.santour.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.example.group3.santour.Firebase.Authentication;
 import com.example.group3.santour.Firebase.DataListener;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        setTitle(getString(R.string.Login));
         //initialize elements
         txtMail = (EditText) findViewById(R.id.txtMail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);

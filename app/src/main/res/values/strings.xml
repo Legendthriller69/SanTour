@@ -41,9 +41,7 @@
     <string name="CreatePOIFirst">Please create a POI first</string>
     <string name="santour">SanTour</string>
     <string name="create_track">Create track</string>
-    <string name="about_page">About page</string>
     <string name="settings">Settings</string>
-    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -74,6 +72,10 @@
     <string name="enterValidMail">Please enter a valid address mail</string>
     <string name="enterPassword">Please enter a password</string>
     <string name="userNotFound">User not found</string>
+    <string name="Home">Home</string>
+    <string name="Login">Log In</string>
+    <string name="Recording">Record tracks</string>
+    <string name="about">About</string>
     <string name="gpsDisabled">Le GPS est inactif, voulez-vous l\'activer ?</string>
     <string name="activateGPS">Activer GPS</string>
     <string name="notActivateGPS">Ne pas l\'activer</string>

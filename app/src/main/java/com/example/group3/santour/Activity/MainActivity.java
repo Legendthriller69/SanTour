@@ -46,12 +46,15 @@ public class MainActivity extends AppCompatActivity {
         switch (intentFragment) {
             case RECORDFRAGMENT:
                 fragment = new Record_Fragment();
+                setTitle(getString(R.string.Recording));
                 break;
             case ABOUTFRAGMENT:
                 fragment = new About_Fragment();
+                setTitle(getString(R.string.about));
                 break;
             case SETTINGSFRAGMENT:
                 fragment = new Settings_Fragment();
+                setTitle(getString(R.string.settings));
                 break;
         }
         transaction = fragmentManager.beginTransaction();
