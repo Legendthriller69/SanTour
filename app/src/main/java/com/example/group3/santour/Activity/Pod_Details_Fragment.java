@@ -84,7 +84,6 @@ public class Pod_Details_Fragment extends Fragment {
 
                 //add listener to buttons
                 btnSave.setOnClickListener(new SavePOD());
-
             }
 
             @Override
@@ -113,10 +112,8 @@ public class Pod_Details_Fragment extends Fragment {
             MainActivity.setTrack(track);
 
             fragmentManager = getActivity().getSupportFragmentManager();
-            if (fragmentManager.getBackStackEntryCount() > 0) {
-                fragmentManager.popBackStack();
-                fragmentManager.popBackStack();
-            }
+            fragmentManager.popBackStack();
+            fragmentManager.popBackStack();
         }
     }
 
