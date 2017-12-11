@@ -24,6 +24,7 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
     private List<PODCategory> podCategories;
     private TextView txtView;
     private SeekBar seekBar;
+    private TextView txtViewValue;
     private List<Category> categories;
     private boolean update;
     private Context context;
@@ -57,15 +58,18 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
 
         if (podCategory != null) {
             txtView = (TextView) convertView.findViewById(R.id.nameCategoryRow);
+            txtViewValue = (TextView) convertView.findViewById(R.id.ValueDetails);
             seekBar = (SeekBar) convertView.findViewById(R.id.seekBar);
 
             txtView.setText(category.getName());
+            txtViewValue.setText(String.valueOf(0));
             seekBar.setProgress(0);
             seekBar.setMax(10);
             if (update) {
                 seekBar.setProgress(podCategory.getValue());
+                txtViewValue.setText(String.valueOf(seekBar.getProgress()));
             }
-            seekBar.setOnSeekBarChangeListener(new SeekChange(position));
+            seekBar.setOnSeekBarChangeListener(new SeekChange(position, txtViewValue));
         }
 
         return convertView;
@@ -79,14 +83,17 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
 
     private class SeekChange implements SeekBar.OnSeekBarChangeListener {
         private int position;
+        private TextView txtViewValue;
 
-        public SeekChange(int position) {
+        public SeekChange(int position, TextView txtViewValue) {
             this.position = position;
+            this.txtViewValue = txtViewValue;
         }
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             podCategories.get(position).setValue(i);
+            txtViewValue.setText(String.valueOf(i));
         }
 
         @Override

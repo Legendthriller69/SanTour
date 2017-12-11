@@ -33,7 +33,7 @@ public class WelcomePage extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.logout:
-                // logout
+
                 break;
         }
 
