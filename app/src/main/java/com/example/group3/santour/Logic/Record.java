@@ -121,7 +121,6 @@ public class Record implements Serializable {
                         @Override
                         public void onSuccess(Location location) {
                             // Got last known location. In some rare situations this can be null.
-                            mMap.clear();
                             LatLng currentLocation;
                             if (location != null) {
                                 // Logic to handle location object
@@ -246,5 +245,26 @@ public class Record implements Serializable {
 
     public static String getDistanceText() {
         return text;
+    }
+
+    public static List<Position> getPositions(){
+        return positions;
+    }
+
+    public static void updateMap() {
+        if (MainActivity.getTrack() != null) {
+            if (positions.size() >= 1) {
+                Position currentPosition = positions.get(0);
+                for (int i = 1; i < positions.size(); i++) {
+                    Log.e("add polyline", "add polyline");
+                    LatLng currentLatLng = new LatLng(currentPosition.getLatitude(), currentPosition.getLongitude());
+                    LatLng nextLatLng = new LatLng(positions.get(i).getLatitude(), positions.get(i).getLongitude());
+                    mMap.addPolyline(new PolylineOptions().add(currentLatLng, nextLatLng).width(4f).color(Color.RED)
+                            .geodesic(true));
+                    currentPosition = positions.get(i);
+                    mMap.addMarker(new MarkerOptions().position(nextLatLng).title("fuck " + i));
+                }
+            }
+        }
     }
 }

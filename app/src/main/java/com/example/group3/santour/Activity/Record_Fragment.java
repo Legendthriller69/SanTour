@@ -24,12 +24,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.Authentication;
 import com.example.group3.santour.Logic.Record;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
@@ -72,7 +76,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             case R.id.list_pod:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPods().size() > 0) {
                     fragment = new ListPODs();
-                    fragmentManager = getActivity().getSupportFragmentManager() ;
+                    fragmentManager = getActivity().getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
                     transaction.replace(R.id.main_container, fragment).commit();
                     transaction.addToBackStack(null);
@@ -84,7 +88,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             case R.id.list_poi:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPois().size() > 0) {
                     fragment = new ListPOIs();
-                    fragmentManager = getActivity().getSupportFragmentManager() ;
+                    fragmentManager = getActivity().getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
                     transaction.replace(R.id.main_container, fragment).commit();
                     transaction.addToBackStack(null);
@@ -277,8 +281,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             createGpsDisabledAlert();
         }
 
-        if(outOfView)
+        if (outOfView)
             if (Record.isRecording()) {
+                Record.updateMap();
                 txtDistance.setText(Record.getDistanceText());
                 btnStart.callOnClick();
                 outOfView = false;
