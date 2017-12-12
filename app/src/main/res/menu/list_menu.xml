@@ -5,10 +5,9 @@
 
     <item
         android:id="@+id/home"
-
+        android:icon="@drawable/home"
         app:showAsAction="always"
         android:title="" />
-    <!-- android:icon="@drawable/home"-->
 
     <item
         android:id="@+id/list_poi"
