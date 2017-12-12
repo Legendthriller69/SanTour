@@ -1,5 +1,6 @@
 package com.example.group3.santour.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,10 +20,15 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtPassword;
     private Button btnSignIn;
 
+    // progress bar
+    private ProgressDialog progressing;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
 
         setTitle(getString(R.string.Login));
         //initialize elements
@@ -51,9 +57,16 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (formValidation()) {
+                progressing=new ProgressDialog(LoginActivity.this);
+                progressing.setMessage(getString(R.string.waiting)); // Setting Message
+                progressing.setTitle(getString(R.string.loading)); // Setting Title
+                progressing.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressing.show(); // Display Progress Dialog
+                progressing.setCancelable(false);
                 Authentication.signIn(txtMail.getText().toString(), txtPassword.getText().toString(), new DataListener() {
                     @Override
                     public void onSuccess(Object object) {
+                        progressing.dismiss(); // dismiss progress bar
                         Intent intent = new Intent(LoginActivity.this, WelcomePage.class);
                         startActivity(intent);
                     }

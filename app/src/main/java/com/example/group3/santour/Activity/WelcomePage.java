@@ -17,10 +17,12 @@ public class WelcomePage extends AppCompatActivity {
     private Button btnRecord;
     private Button btnAbout;
     private Button btnSettings;
+    private Button btnAllTracks;
 
     final private int RECORDFRAGMENT = 1;
     final private int ABOUTFRAGMENT = 2;
     final private int SETTINGSFRAGMENT = 3;
+    final private int ALLTRACKSFRAGMENT = 4;
 
 
     @Override
@@ -50,10 +52,12 @@ public class WelcomePage extends AppCompatActivity {
         btnRecord = (Button) findViewById(R.id.btnCreateTrack);
         btnAbout = (Button) findViewById(R.id.btnAbout);
         btnSettings = (Button) findViewById(R.id.btnSettings);
+        btnAllTracks = (Button) findViewById(R.id.btnAllTracks);
 
         btnRecord.setOnClickListener(new RecordTrackListener());
         btnAbout.setOnClickListener(new AboutPageListener());
         btnSettings.setOnClickListener(new SettingsPageListener());
+        btnAllTracks.setOnClickListener(new MyTracksListener());
     }
 
 
@@ -80,6 +84,15 @@ public class WelcomePage extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", SETTINGSFRAGMENT);
+            startActivity(intent);
+        }
+    }
+
+    private class MyTracksListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(WelcomePage.this, MainActivity.class);
+            intent.putExtra("frgToLoad", ALLTRACKSFRAGMENT);
             startActivity(intent);
         }
     }

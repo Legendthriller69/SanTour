@@ -43,7 +43,7 @@
             android:name=".WelcomePage"
             android:screenOrientation="portrait"
             android:theme="@style/test2" />
-        
+
         <!--Provider-->
         <provider
             android:name="android.support.v4.content.FileProvider"
