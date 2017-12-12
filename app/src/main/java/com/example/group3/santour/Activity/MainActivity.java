@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Permissions;
@@ -19,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     final private int RECORDFRAGMENT = 1;
     final private int ABOUTFRAGMENT = 2;
     final private int SETTINGSFRAGMENT = 3;
+    final private int ALLTRACKSFRAGMENT = 4;
 
     //Track that will be used everywhere
     private static Track track;
@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
             case SETTINGSFRAGMENT:
                 fragment = new Settings_Fragment();
                 setTitle(getString(R.string.settings));
+                break;
+            case ALLTRACKSFRAGMENT:
+                // faire fragment pour list tracks
                 break;
         }
         transaction = fragmentManager.beginTransaction();

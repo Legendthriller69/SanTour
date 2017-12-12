@@ -5,114 +5,117 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fragment.Poi_Fragment">
 
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="350dp"
-            android:layout_height="173dp"
-
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="148dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@mipmap/ic_launcher"
-            app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/input_NamePod"
-            app:layout_constraintTop_toBottomOf="@+id/input_NamePod" />
-
-        <TextView
-            android:id="@+id/label_valuesGps"
-            android:layout_width="150dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/input_NamePod"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
-        <TextView
-            android:id="@+id/label_valuesGpsLattitude"
-            android:layout_width="150dp"
-            android:layout_height="39dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/label_valuesGps"
-            app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/label_valuesGps"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
-            app:layout_constraintVertical_bias="1.0"
-            android:layout_marginLeft="10dp" />
-
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="124dp"
-            android:layout_height="56dp"
-
-            android:text="next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="29dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="8dp"
-            android:src="@android:drawable/ic_input_add"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-        <EditText
-            android:id="@+id/input_NamePod"
-            android:layout_width="340dp"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="@string/Input_Pod_Name"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
-        <EditText
-            android:id="@+id/input_descriptionPod"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="@string/input_description_pod"
-            android:inputType="textMultiLine"
-            android:lines="2"
-            android:text=""
-            app:layout_constraintBottom_toTopOf="@+id/btn_next"
-            app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
-            app:layout_constraintStart_toStartOf="@+id/input_NamePod"
-            app:layout_constraintTop_toBottomOf="@+id/label_valuesGps" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="350dp"
+                    android:layout_height="173dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="148dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/input_NamePod"
+                    app:layout_constraintTop_toBottomOf="@+id/input_NamePod" />
 
-    </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/label_valuesGps"
+                    android:layout_width="150dp"
+                    android:layout_height="39dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/input_NamePod"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+                <TextView
+                    android:id="@+id/label_valuesGpsLattitude"
+                    android:layout_width="150dp"
+                    android:layout_height="39dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_valuesGps"
+                    app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/label_valuesGps"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="124dp"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/red_main"
+                    android:text="next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="29dp"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@android:drawable/ic_input_add"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView"
+                    app:layout_constraintHorizontal_bias="0.501"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                <EditText
+                    android:id="@+id/input_NamePod"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:hint="@string/Input_Pod_Name"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/grey_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/input_descriptionPod"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="@string/input_description_pod"
+                    android:inputType="textMultiLine"
+                    android:lines="2"
+                    android:text=""
+                    android:textColor="@color/grey_dark"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_next"
+                    app:layout_constraintEnd_toEndOf="@+id/input_NamePod"
+                    app:layout_constraintStart_toStartOf="@+id/input_NamePod"
+                    app:layout_constraintTop_toBottomOf="@+id/label_valuesGps" />
+
+        </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
