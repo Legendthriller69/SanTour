@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
