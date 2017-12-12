@@ -43,7 +43,6 @@
                 android:hint="@string/Input_Poi_Name"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.514"
                 app:layout_constraintRight_toRightOf="parent"
@@ -91,6 +90,7 @@
 
             <Button
                 android:id="@+id/btn_save"
+                android:background="@color/red_main"
                 android:layout_width="124dp"
                 android:layout_height="49dp"
                 android:layout_marginBottom="8dp"
