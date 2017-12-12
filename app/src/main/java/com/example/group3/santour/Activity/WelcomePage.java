@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.group3.santour.Firebase.Authentication;
+import com.google.android.gms.auth.api.Auth;
+
 public class WelcomePage extends AppCompatActivity {
 
     private Button btnRecord;
@@ -29,14 +32,11 @@ public class WelcomePage extends AppCompatActivity {
 
     //Handle button activities
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
-
             case R.id.logout:
-
+                Authentication.logout(this);
                 break;
         }
-
         return true;
     }
 
