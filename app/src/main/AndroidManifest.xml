@@ -27,7 +27,7 @@
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/test2">
+            android:theme="@style/AppDarkTheme4">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -59,7 +59,6 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBAqnvAEzghVR8S9m-oRz1AXFfWg6-PnoE" />
-
 
     </application>
 

@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.group3.santour.DTO.User;
 import com.example.group3.santour.Firebase.Authentication;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Firebase.UserDB;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
 
         setTitle(getString(R.string.Login));
         //initialize elements
