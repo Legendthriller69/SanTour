@@ -93,7 +93,7 @@ public class ResetDB {
                                             }
 
                                             @Override
-                                            public void onFailed(DatabaseError dbError) {
+                                            public void onFailed(Object dbError) {
 
                                             }
                                         });
@@ -101,28 +101,28 @@ public class ResetDB {
                                     }
 
                                     @Override
-                                    public void onFailed(DatabaseError dbError) {
+                                    public void onFailed(Object dbError) {
 
                                     }
                                 });
                             }
 
                             @Override
-                            public void onFailed(DatabaseError dbError) {
+                            public void onFailed(Object dbError) {
 
                             }
                         });
                     }
 
                     @Override
-                    public void onFailed(DatabaseError dbError) {
+                    public void onFailed(Object dbError) {
 
                     }
                 });
             }
 
             @Override
-            public void onFailed(DatabaseError dbError) {
+            public void onFailed(Object dbError) {
 
             }
 

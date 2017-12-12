@@ -3,6 +3,9 @@ package com.example.group3.santour.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,10 +19,32 @@ public class WelcomePage extends AppCompatActivity {
     final private int ABOUTFRAGMENT = 2;
     final private int SETTINGSFRAGMENT = 3;
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater =getMenuInflater();
+        inflater.inflate(R.menu.logout, menu);
+        return true;
+    }
+
+    //Handle button activities
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.logout:
+                // logout
+                break;
+        }
+
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
+        setTitle(getString(R.string.Home));
 
 
         btnRecord = (Button) findViewById(R.id.btnCreateTrack);
@@ -40,7 +65,6 @@ public class WelcomePage extends AppCompatActivity {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", RECORDFRAGMENT);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -51,7 +75,6 @@ public class WelcomePage extends AppCompatActivity {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", ABOUTFRAGMENT);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -62,7 +85,6 @@ public class WelcomePage extends AppCompatActivity {
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", SETTINGSFRAGMENT);
             startActivity(intent);
-            finish();
         }
     }
 }

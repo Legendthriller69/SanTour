@@ -17,35 +17,34 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/launcher"
         android:supportsRtl="true"
         android:theme="@style/test2">
 
-        <!-- Changed main launcher -->
+        <!-- Activity -->
         <activity
-            android:name=".WelcomePage"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/test3">
+            android:theme="@style/test2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/test2" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".WelcomePage"
             android:screenOrientation="portrait"
-            android:theme="@style/test3">
+            android:theme="@style/test2" />
 
-            </activity>
-
+        <!--Provider-->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.android.fileprovider"

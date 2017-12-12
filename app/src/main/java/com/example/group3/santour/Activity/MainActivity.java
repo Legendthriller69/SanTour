@@ -1,8 +1,6 @@
 package com.example.group3.santour.Activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -43,34 +41,38 @@ public class MainActivity extends AppCompatActivity {
         setTitle(this.getString(R.string.start_recording));
 
         //everything linked to the fragments
-
         fragmentManager = getSupportFragmentManager();
 
         int intentFragment = getIntent().getExtras().getInt("frgToLoad");
 
-        switch(intentFragment){
+        switch (intentFragment) {
             case RECORDFRAGMENT:
                 fragment = new Record_Fragment();
+                setTitle(getString(R.string.Recording));
                 break;
             case ABOUTFRAGMENT:
                 fragment = new About_Fragment();
+                setTitle(getString(R.string.about));
                 break;
             case SETTINGSFRAGMENT:
                 fragment = new Settings_Fragment();
+                setTitle(getString(R.string.settings));
                 break;
         }
-
         transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-
+        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
+        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
+        transaction.replace(R.id.main_container, fragment).commit();
+        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
     }
 
     @Override
     public void onBackPressed() {
+        Log.e("BACKSTACK ENTRY COUNT", fragmentManager.getBackStackEntryCount() + "");
         if(fragmentManager.getBackStackEntryCount()>0){
             fragmentManager.popBackStack();
+        } else {
+            finish();
         }
     }
 

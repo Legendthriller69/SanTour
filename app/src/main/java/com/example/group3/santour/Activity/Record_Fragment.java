@@ -58,6 +58,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private FragmentTransaction transaction;
 
 
+
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
     }
@@ -71,9 +72,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     //Handle button activities
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.home:
-                // retourne sur la welcome page !
+        switch (item.getItemId()) {
             case R.id.list_pod:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPods().size() > 0) {
                     fragment = new ListPODs();
@@ -96,6 +95,16 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                     Toast.makeText(getContext(), R.string.CreatePOIFirst, Toast.LENGTH_SHORT).show();
                     break;
                 }
+            case R.id.home:
+                if (record != null && !record.isRecording()) {
+                    getActivity().finish();
+                    break;
+                } else {
+                    Toast.makeText(getActivity(), R.string.saveTrackFirst, Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
+
         }
 
         return true;
@@ -128,7 +137,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         chrono = (Chronometer) view.findViewById(R.id.chrono);
 
         //disable btnPause and btnStop and addpod addpoi
-        btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        btnStart.setBackgroundColor(getResources().getColor(R.color.red_main));
         btnPause.setEnabled(false);
         btnPause.setBackgroundColor(Color.TRANSPARENT);
         btnStop.setEnabled(false);
@@ -150,6 +159,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         //navigation button to poi
         btnAddPoi = (ImageButton) view.findViewById(R.id.ButtonAddPOI);
         btnAddPoi.setOnClickListener(new AddPOI());
+
+        //trackname text
+        txtTrackName.setText("");
 
         // Inflate the layout for this fragment
         return view;
@@ -207,13 +219,13 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             btnStart.setEnabled(false);
             btnStart.setBackgroundColor(Color.TRANSPARENT);
             btnPause.setEnabled(true);
-            btnPause.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnPause.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnStop.setEnabled(true);
-            btnStop.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnStop.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnAddPod.setEnabled(true);
-            btnAddPod.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnAddPod.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnAddPoi.setEnabled(true);
-            btnAddPoi.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnAddPoi.setBackgroundColor(getResources().getColor(R.color.red_main));
 
             //start the chronometer
             chrono.setBase(SystemClock.elapsedRealtime() + timeWhenPause);
@@ -227,7 +239,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         public void onClick(View view) {
             record.pauseLocationUpdates();
             btnStart.setEnabled(true);
-            btnStart.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btnStart.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnPause.setEnabled(false);
             btnPause.setBackgroundColor(Color.TRANSPARENT);
             btnStop.setEnabled(false);
@@ -241,21 +253,24 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         @Override
         public void onClick(View view) {
-            new AlertDialog.Builder(getActivity())
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(R.string.save_track_confirmation_title)
-                    .setMessage(R.string.save_track_confirmation_text)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", "idStringAFAIRE");
-                            //come back to the welcome page after
-                            getActivity().finish();
-                        }
+            if (formValidation()) {
+                new AlertDialog.Builder(getActivity())
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle(R.string.save_track_confirmation_title)
+                        .setMessage(R.string.save_track_confirmation_text)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", "idStringAFAIRE");
+                                Toast.makeText(getActivity(), R.string.trackSaved, Toast.LENGTH_SHORT).show();
+                                getActivity().finish();
+                            }
 
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+
         }
     }
 
@@ -342,5 +357,13 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     private void showGpsOptions() {
         startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+    }
+
+    private boolean formValidation() {
+        if (txtTrackName.getText().toString().equals("")) {
+            Toast.makeText(getContext(), R.string.NameTrackFirst, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

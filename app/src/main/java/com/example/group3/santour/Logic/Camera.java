@@ -38,9 +38,12 @@ public class Camera {
     private final int REQUEST_TAKE_PHOTO = 1;
 
     private String imgDecodableString;
+    private String mCurrentPhotoPath;
+    private Bitmap bitmap;
+
 
     //Choice made by the user - Camera or Gallery
-    private String choice ;
+    private String choice;
 
     //Getter and Setter for the choice
     public String getChoice() {
@@ -62,8 +65,6 @@ public class Camera {
             fragment.startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-
-    String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -90,15 +91,17 @@ public class Camera {
             File photoFile = null;
             try {
                 photoFile = createImageFile();
+                Log.e("YOLO-TEST", "dispatchTakePictureIntent: ROUTE : " + photoFile);
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                Log.i("YOLO-TEST", "dispatchTakePictureIntent: ERROR");
+                Log.e("YOLO-TEST", "dispatchTakePictureIntent: ERROR : CREATE IMAGE");
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(fragment.getContext(),
                         "com.example.android.fileprovider",
                         photoFile);
+                Log.e("YOLO-TEST", "dispatchTakePictureIntent: PHOTOFILE NOT NULL");
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 fragment.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
@@ -106,7 +109,7 @@ public class Camera {
     }
 
     //Launching Import Gallery
-    public void launchImportImage(Fragment fragment){
+    public void launchImportImage(Fragment fragment) {
         // Create intent to Open Image applications like Gallery, Google Photos
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         // Start the Intent
@@ -122,14 +125,14 @@ public class Camera {
         }
     }
 
-    public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data){
+    public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data) {
 
         // When an Image is picked
         if (requestCode == RESULT_LOAD_IMG && resultCode == activity.RESULT_OK) {
             // Get the Image from data
 
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
             // Get the cursor
             Cursor cursor = activity.getContentResolver().query(selectedImage,
@@ -141,8 +144,8 @@ public class Camera {
             imgDecodableString = cursor.getString(columnIndex);
             cursor.close();
             // Set the Image in ImageView after decoding the String
-            imgView.setImageBitmap(BitmapFactory
-                    .decodeFile(imgDecodableString));
+            bitmap = BitmapFactory.decodeFile(imgDecodableString);
+            imgView.setImageBitmap(bitmap);
         }
 
     }
@@ -153,12 +156,13 @@ public class Camera {
         return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
     }
 
-    public String encodeImageWithGallery(){
-        return imgDecodableString;
+    public String encodeImageWithGallery() {
+        return encodeBitmap(bitmap);
     }
 
     /**
      * Decode the b64 String directly when encoded to test - NOT FROM DB
+     *
      * @param encodedImage
      * @param imgView
      */

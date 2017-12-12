@@ -2,22 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <item
         android:id="@+id/home"
         android:icon="@drawable/home"
         app:showAsAction="always"
         android:title="" />
-
-
-    <item
-        android:id="@+id/list_poi"
-        android:checkable="false"
-        android:title="@string/liste_pois"/>
-
-    <item
-        android:id="@+id/list_pod"
-        android:title="@string/liste_pods"/>
-
-
 </menu>
