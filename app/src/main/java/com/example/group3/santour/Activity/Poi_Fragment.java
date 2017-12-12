@@ -25,6 +25,9 @@ import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.Date;
@@ -39,9 +42,6 @@ public class Poi_Fragment extends Fragment {
     private ImageView img_pictureView;
     private EditText edtxt_poiDescription;
     private Button btn_poiSave;
-
-    //Record object for current location
-    private Record record;
 
     //Track's object
     private Track track;
@@ -91,11 +91,8 @@ public class Poi_Fragment extends Fragment {
             //init gui
             initGUI(poi);
         } else {
-            //instantiate record
-            record = new Record(getActivity());
-
             //get user current position for the POD
-            record.getUserLatLng(new DataListener() {
+            Record.getUserLatLng(new DataListener() {
                 @Override
                 public void onSuccess(Object object) {
                     Location location = (Location) object;
@@ -145,6 +142,9 @@ public class Poi_Fragment extends Fragment {
                 }
 
                 MainActivity.setTrack(track);
+
+                //add the marker to the map
+                Record.addMarker(poi.getPosition().getLatitude(), poi.getPosition().getLongitude(), poi.getName());
 
                 fragmentManager = getActivity().getSupportFragmentManager();
                 if (fragmentManager.getBackStackEntryCount() > 0) {

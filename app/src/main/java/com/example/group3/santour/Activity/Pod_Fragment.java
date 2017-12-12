@@ -39,9 +39,6 @@ public class Pod_Fragment extends Fragment {
     private Button btnNext;
     private TextView txtLatLng;
 
-    //Record object for current location
-    private Record record;
-
     //Track's objects
     private POD pod;
     private Position position;
@@ -96,11 +93,8 @@ public class Pod_Fragment extends Fragment {
             //init the gui
             initGUI(pod);
         } else {
-            //instantiate record
-            record = new Record(getActivity());
-
             //get user current position for the POD
-            record.getUserLatLng(new DataListener() {
+            Record.getUserLatLng(new DataListener() {
                 @Override
                 public void onSuccess(Object object) {
                     Location location = (Location) object;

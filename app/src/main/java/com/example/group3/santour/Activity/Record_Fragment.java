@@ -11,6 +11,7 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.group3.santour.DTO.Track;
+import com.example.group3.santour.Firebase.Authentication;
 import com.example.group3.santour.Logic.Record;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -41,10 +43,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private EditText txtTrackName;
     private Chronometer chrono;
 
-    //Record object
-    private Record record;
-
-    //hello
     //Maps objects
     private MapView mapView;
     private GoogleMap mMap;
@@ -55,11 +53,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
-
-
+    private boolean outOfView;
 
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
+        outOfView = false;
     }
 
     //Create an action bar button
@@ -70,7 +68,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
     //Handle button activities
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.list_pod:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPods().size() > 0) {
@@ -95,17 +92,14 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                     break;
                 }
             case R.id.home:
-                if (record != null && !record.isRecording()) {
+                if (!Record.isRecording()) {
                     getActivity().finish();
                     break;
                 } else {
                     Toast.makeText(getActivity(), R.string.saveTrackFirst, Toast.LENGTH_SHORT).show();
                     break;
                 }
-
-
         }
-
         return true;
     }
 
@@ -115,6 +109,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_record, container, false);
 
+        Log.e("FDP", "FDP");
         //options menu
         setHasOptionsMenu(true);
 
@@ -123,6 +118,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+        //location manager
         locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
         //instantiate all the elements
@@ -134,6 +130,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         txtDistance = (TextView) view.findViewById(R.id.txtDistance);
         txtTrackName = (EditText) view.findViewById(R.id.txtTrackName);
         chrono = (Chronometer) view.findViewById(R.id.chrono);
+
+        Record.getInstance(getActivity(), txtDistance);
 
         //disable btnPause and btnStop and addpod addpoi
         btnStart.setBackgroundColor(getResources().getColor(R.color.red_main));
@@ -169,18 +167,15 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        if (record == null) {
-            record = new Record(getActivity(), mMap, txtDistance);
-        }
-
-        record.moveCameraToUserPosition();
+        Record.setMap(mMap);
+        Record.moveCameraToUserPosition();
     }
 
     private class AddPOD implements View.OnClickListener {
         @Override
         public void onClick(View view) {
             btnPause.callOnClick();
+            outOfView = true;
             fragment = new Pod_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
@@ -194,6 +189,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         @Override
         public void onClick(View view) {
             btnPause.callOnClick();
+            outOfView = true;
             fragment = new Poi_Fragment();
             fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
@@ -210,7 +206,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             }
 
             //call the method to start recording
-            record.startRecording();
+            Record.startRecording();
 
             //enable or disable buttons needed
             btnStart.setEnabled(false);
@@ -234,7 +230,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         @Override
         public void onClick(View view) {
-            record.pauseLocationUpdates();
+            Record.pauseLocationUpdates();
             btnStart.setEnabled(true);
             btnStart.setBackgroundColor(getResources().getColor(R.color.red_main));
             btnPause.setEnabled(false);
@@ -258,7 +254,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", "idStringAFAIRE");
+                                Record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", Authentication.getCurrentUser().getId());
                                 Toast.makeText(getActivity(), R.string.trackSaved, Toast.LENGTH_SHORT).show();
                                 getActivity().finish();
                             }
@@ -279,10 +275,12 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             createGpsDisabledAlert();
         }
 
-        if (record != null) {
-            txtDistance.setText(record.getDistanceText());
-            btnStart.callOnClick();
-        }
+        if(outOfView)
+            if (Record.isRecording()) {
+                txtDistance.setText(Record.getDistanceText());
+                btnStart.callOnClick();
+                outOfView = false;
+            }
     }
 
     @Override
@@ -304,7 +302,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void onBackPressed() {
-        if (record != null && record.isRecording()) {
+        if (Record.isRecording()) {
             new AlertDialog.Builder(getActivity())
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle(R.string.application_close)
