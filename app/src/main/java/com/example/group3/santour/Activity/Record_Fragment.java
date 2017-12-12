@@ -175,6 +175,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
         Record.setMap(mMap);
         Record.moveCameraToUserPosition();
+        Record.updateMap();
     }
 
     private class AddPOD implements View.OnClickListener {
@@ -283,7 +284,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
         if (outOfView)
             if (Record.isRecording()) {
-                Record.updateMap();
                 txtDistance.setText(Record.getDistanceText());
                 btnStart.callOnClick();
                 outOfView = false;
