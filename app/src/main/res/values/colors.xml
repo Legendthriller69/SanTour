@@ -6,4 +6,5 @@
     <color name="custom_Color_Black">#0e0e0f</color>
     <color name="red_main">#fb484c</color>
     <color name="grey_main">#c7cdc4</color>
+    <color name="grey_dark">#7B7B7B</color>
 </resources>

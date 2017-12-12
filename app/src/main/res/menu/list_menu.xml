@@ -12,7 +12,6 @@
 
     <item
         android:id="@+id/list_poi"
-        android:checkable="false"
         android:title="@string/liste_pois"/>
 
     <item
