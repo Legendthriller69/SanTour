@@ -76,5 +76,9 @@
     <string name="Login">Log In</string>
     <string name="Recording">Record tracks</string>
     <string name="about">About</string>
+    <string name="gpsDisabled">Le GPS est inactif, voulez-vous l\'activer ?</string>
+    <string name="activateGPS">Activer GPS</string>
+    <string name="notActivateGPS">Ne pas l\'activer</string>
+    <string name="AllTracks">My tracks</string>
 
 </resources>

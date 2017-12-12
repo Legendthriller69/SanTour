@@ -10,6 +10,7 @@
 
     <EditText
         android:id="@+id/txtMail"
+        android:textColor="@color/grey_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -26,6 +27,7 @@
 
     <EditText
         android:id="@+id/txtPassword"
+        android:textColor="@color/grey_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"

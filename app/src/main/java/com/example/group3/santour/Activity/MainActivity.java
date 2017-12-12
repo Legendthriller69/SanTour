@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     final private int RECORDFRAGMENT = 1;
     final private int ABOUTFRAGMENT = 2;
     final private int SETTINGSFRAGMENT = 3;
+    final private int ALLTRACKSFRAGMENT = 4;
 
     //Track that will be used everywhere
     private static Track track;
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new Settings_Fragment();
                 setTitle(getString(R.string.settings));
                 break;
+            case ALLTRACKSFRAGMENT:
+                // faire fragment pour list tracks
+                break;
         }
         transaction = fragmentManager.beginTransaction();
         Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
@@ -68,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Log.e("BACKSTACK ENTRY COUNT", fragmentManager.getBackStackEntryCount() + "");
-        if(fragmentManager.getBackStackEntryCount()>0){
-            fragmentManager.popBackStack();
-        } else {
-            finish();
-        }
+            if (fragmentManager.getBackStackEntryCount() > 1) {
+                fragmentManager.popBackStack();
+            }
+            else {
+                finish();
+            }
     }
 
     public static Track getTrack() {
