@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +27,6 @@ import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
-import com.google.firebase.database.DatabaseError;
 
 import java.util.Date;
 
@@ -99,7 +100,7 @@ public class Poi_Fragment extends Fragment {
                 @Override
                 public void onSuccess(Object object) {
                     Location location = (Location) object;
-                    String latLng = "Longitude : " + location.getLatitude() + ", Latitude : " + location.getLongitude();
+                    String latLng = "Longitude : " + location.getLongitude() + ", Latitude : " + location.getLatitude();
                     label_valuesGps.setText(latLng);
                     position = new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString());
                 }
@@ -171,7 +172,8 @@ public class Poi_Fragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             camera.setChoice("camera");
-                            camera.launchCamera(Poi_Fragment.this);
+                            //camera.launchCamera(Poi_Fragment.this);
+                            camera.takePictureIntent(Poi_Fragment.this);
                         }
 
                     })
@@ -188,25 +190,25 @@ public class Poi_Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data != null) {
-            if (camera.getChoice() == "camera") {
-                //get the bitmap from the intent
-                Bundle extras = data.getExtras();
-                Bitmap bitmap = (Bitmap) extras.get("data");
+        Log.e("TEST-TEST", "Data : " + data) ;
+        if (camera.getChoice() == "camera") {
 
-                //first add the image to the camera
-                camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), img_pictureView);
-                //camera.dispatchTakePictureIntent(Poi_Fragment.this);
+            Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
+            Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture()) ;
 
-                //then encode the picture and add to the string
-                poi.setPicture(camera.encodeBitmap(bitmap));
-            } else {
-                camera.addToImageViewGallery(requestCode, resultCode, getActivity(), img_pictureView, data);
-                //then encode the picture and add to the string
-                poi.setPicture(camera.encodeImageWithGallery());
-            }
+
+            img_pictureView.setImageBitmap(picture);
+            //then encode the picture and add to the string
+            poi.setPicture(camera.encodeBitmap(picture));
+
+        } else {
+            camera.addToImageViewGallery(requestCode, resultCode, getActivity(), img_pictureView, data);
+            //then encode the picture and add to the string
+            poi.setPicture(camera.encodeImageWithGallery());
         }
     }
+
+
 
     //Change the id's
     private boolean formValidation() {

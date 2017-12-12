@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +26,6 @@ import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
-import com.google.firebase.database.DatabaseError;
 
 import java.util.Date;
 
@@ -168,7 +169,7 @@ public class Pod_Fragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             camera.setChoice("camera");
-                            camera.launchCamera(Pod_Fragment.this);
+                            camera.takePictureIntent(Pod_Fragment.this);
                         }
                     })
                     .setNegativeButton(R.string.choice_picture_gallery, new DialogInterface.OnClickListener() {
@@ -184,23 +185,21 @@ public class Pod_Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data != null) {
-            this.data = data;
-            if (camera.getChoice() == "camera") {
-                //get the bitmap from the intent
-                Bundle extras = data.getExtras();
-                bitmap = (Bitmap) extras.get("data");
+        Log.e("TEST-TEST", "Data : " + data) ;
+        if (camera.getChoice() == "camera") {
 
-                //first add the image to the camera
-                camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
+            Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
+            Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture()) ;
 
-                //then encode the picture and add to the string
-                pod.setPicture(camera.encodeBitmap(bitmap));
-            } else {
-                camera.addToImageViewGallery(requestCode, resultCode, getActivity(), pictureView, data);
-                //then encode the picture and add to the string
-                pod.setPicture(camera.encodeImageWithGallery());
-            }
+
+            pictureView.setImageBitmap(picture);
+            //then encode the picture and add to the string
+            pod.setPicture(camera.encodeBitmap(picture));
+
+        } else {
+            camera.addToImageViewGallery(requestCode, resultCode, getActivity(), pictureView, data);
+            //then encode the picture and add to the string
+            pod.setPicture(camera.encodeImageWithGallery());
         }
     }
 

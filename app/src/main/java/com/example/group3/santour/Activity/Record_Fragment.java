@@ -75,6 +75,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             case R.id.list_pod:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPods().size() > 0) {
                     fragment = new ListPODs();
+                    fragmentManager = getActivity().getSupportFragmentManager() ;
                     transaction = fragmentManager.beginTransaction();
                     transaction.replace(R.id.main_container, fragment).commit();
                     transaction.addToBackStack(null);
@@ -86,6 +87,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             case R.id.list_poi:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPois().size() > 0) {
                     fragment = new ListPOIs();
+                    fragmentManager = getActivity().getSupportFragmentManager() ;
                     transaction = fragmentManager.beginTransaction();
                     transaction.replace(R.id.main_container, fragment).commit();
                     transaction.addToBackStack(null);

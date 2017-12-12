@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -20,14 +22,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static android.os.Environment.getExternalStoragePublicDirectory;
-
 
 /**
  * Created by aleks on 28.11.2017.
  */
 
-public class Camera {
+public class Camera extends Activity {
 
     //Camera
     //If Request_image_capture > 0 return -> OnActivityResult
@@ -41,9 +41,19 @@ public class Camera {
     private String mCurrentPhotoPath;
     private Bitmap bitmap;
 
+    private String absPathPicture ;
+
+
+    public String getAbsPathPicture(){
+        return absPathPicture ;
+    }
+
+    public void setAbsPathPicture(String absPathPicture){
+        this.absPathPicture = absPathPicture ;
+    }
 
     //Choice made by the user - Camera or Gallery
-    private String choice;
+    private String choice ;
 
     //Getter and Setter for the choice
     public String getChoice() {
@@ -66,11 +76,12 @@ public class Camera {
         }
     }
 
-    private File createImageFile() throws IOException {
+
+    private File createImageFile(Fragment fragment) throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File storageDir = fragment.getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -79,29 +90,28 @@ public class Camera {
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
+        setAbsPathPicture(image.getAbsolutePath());
         return image;
     }
 
 
-    public void dispatchTakePictureIntent(Fragment fragment) {
+    public void takePictureIntent(Fragment fragment) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(fragment.getActivity().getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
             try {
-                photoFile = createImageFile();
-                Log.e("YOLO-TEST", "dispatchTakePictureIntent: ROUTE : " + photoFile);
+                photoFile = createImageFile(fragment);
+                Log.e("TEST-TEST", "dispatchTakePictureIntent: ROUTE : " + getAbsPathPicture());
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                Log.e("YOLO-TEST", "dispatchTakePictureIntent: ERROR : CREATE IMAGE");
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(fragment.getContext(),
                         "com.example.android.fileprovider",
                         photoFile);
-                Log.e("YOLO-TEST", "dispatchTakePictureIntent: PHOTOFILE NOT NULL");
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 fragment.startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
@@ -109,7 +119,7 @@ public class Camera {
     }
 
     //Launching Import Gallery
-    public void launchImportImage(Fragment fragment) {
+    public void launchImportImage(Fragment fragment){
         // Create intent to Open Image applications like Gallery, Google Photos
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         // Start the Intent
@@ -125,14 +135,14 @@ public class Camera {
         }
     }
 
-    public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data) {
+    public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data){
 
         // When an Image is picked
         if (requestCode == RESULT_LOAD_IMG && resultCode == activity.RESULT_OK) {
             // Get the Image from data
 
             Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             // Get the cursor
             Cursor cursor = activity.getContentResolver().query(selectedImage,
@@ -156,13 +166,12 @@ public class Camera {
         return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
     }
 
-    public String encodeImageWithGallery() {
+    public String encodeImageWithGallery(){
         return encodeBitmap(bitmap);
     }
 
     /**
      * Decode the b64 String directly when encoded to test - NOT FROM DB
-     *
      * @param encodedImage
      * @param imgView
      */
@@ -170,6 +179,43 @@ public class Camera {
         byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         imgView.setImageBitmap(decodedByte);
+    }
+
+
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
+    }
+
+    public Bitmap testRotate(Bitmap bitmap, Uri uri) throws IOException {
+
+        ExifInterface ei = new ExifInterface(uri.getPath());
+        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED);
+
+        Bitmap rotatedBitmap = null;
+        switch(orientation) {
+
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                rotatedBitmap = rotateImage(bitmap, 90);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                rotatedBitmap = rotateImage(bitmap, 180);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                rotatedBitmap = rotateImage(bitmap, 270);
+                break;
+
+            case ExifInterface.ORIENTATION_NORMAL:
+            default:
+                rotatedBitmap = bitmap;
+        }
+
+        return rotatedBitmap ;
     }
 
 }
