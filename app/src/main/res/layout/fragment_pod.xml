@@ -122,5 +122,4 @@ tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fr
 
                 </android.support.constraint.ConstraintLayout>
         </ScrollView>
-
 </FrameLayout>
