@@ -1,5 +1,6 @@
 package com.example.group3.santour.Firebase;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import com.example.group3.santour.DTO.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +41,12 @@ public class Authentication {
                 }
             }
         });
+    }
+
+    public static void logout(Activity activity){
+        firebaseAuth.signOut();
+        currentUser = null;
+        activity.finish();
     }
 
     public static User getCurrentUser() {

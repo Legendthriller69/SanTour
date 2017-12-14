@@ -36,52 +36,47 @@ import java.util.List;
  */
 
 public class Record implements Serializable {
-    private FusedLocationProviderClient mFusedLocationClient;
-    private Activity activity;
-    private LocationRequest mLocationRequest;
-    private LocationCallback locationCallback;
-    private GoogleMap mMap;
-    private boolean isRecording;
-    private TextView txtDistance;
-    private String text;
+    private static FusedLocationProviderClient mFusedLocationClient;
+    private static Activity activity;
+    private static LocationRequest mLocationRequest;
+    private static LocationCallback locationCallback;
+    private static GoogleMap mMap;
+    private static boolean isRecording = false;
+    private static TextView txtDistance;
+    private static String text = "0.0";
+
 
     //all linked to tracks
-    private Track track;
-    private double distance;
-    private List<Position> positions;
-    private String idUser;
-    private String idType;
+    private static Track track;
+    private static double distance = 0;
+    private static List<Position> positions = new ArrayList<>();
+
 
     //Last position
-    private Position lastPosition;
+    private static Position lastPosition;
 
-    private float[] distances;
+    private static float[] distances = new float[1];
 
-    public Record(Activity activity, GoogleMap mMap, TextView txtDistance) {
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
-        this.activity = activity;
-        this.mMap = mMap;
-        positions = new ArrayList<>();
-        isRecording = false;
-        distance = 0;
-        distances = new float[1];
-        this.txtDistance = txtDistance;
-        text = "0.0";
+    public static void getInstance(Activity activity, TextView txtDistance) {
+        Record.activity = activity;
+        Record.txtDistance = txtDistance;
+        if (mFusedLocationClient == null) {
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+        }
     }
 
-    public Record(Activity activity) {
-        this.activity = activity;
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+    private Record() {
+
     }
 
-    public void startRecording() {
+    public static void startRecording() {
         setUserCurrentPosition();
         createLocationRequest();
         startLocationUpdates();
         isRecording = true;
     }
 
-    public void moveCameraToUserPosition() {
+    public static void moveCameraToUserPosition() {
         try {
             mFusedLocationClient.getLastLocation()
                     .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
@@ -102,7 +97,7 @@ public class Record implements Serializable {
         }
     }
 
-    public void getUserLatLng(final DataListener dataListener) {
+    public static void getUserLatLng(final DataListener dataListener) {
         try {
             mFusedLocationClient.getLastLocation()
                     .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
@@ -119,14 +114,13 @@ public class Record implements Serializable {
         }
     }
 
-    public void setUserCurrentPosition() {
+    public static void setUserCurrentPosition() {
         try {
             mFusedLocationClient.getLastLocation()
                     .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
                             // Got last known location. In some rare situations this can be null.
-                            mMap.clear();
                             LatLng currentLocation;
                             if (location != null) {
                                 // Logic to handle location object
@@ -142,14 +136,14 @@ public class Record implements Serializable {
         }
     }
 
-    private void createLocationRequest() {
+    private static void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(500);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-    public void startLocationUpdates() {
+    public static void startLocationUpdates() {
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -184,12 +178,12 @@ public class Record implements Serializable {
         }
     }
 
-    public void pauseLocationUpdates() {
+    public static void pauseLocationUpdates() {
         if (locationCallback != null)
             mFusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
-    private void stopLocationUpdates() {
+    private static void stopLocationUpdates() {
         //stop the location update
         if (locationCallback != null)
             mFusedLocationClient.removeLocationUpdates(locationCallback);
@@ -197,7 +191,7 @@ public class Record implements Serializable {
         isRecording = false;
     }
 
-    public void createTrack(String name, String description, int duration, String idType, String idUser) {
+    public static void createTrack(String name, String description, int duration, String idType, String idUser) {
         //stop the location updates
         stopLocationUpdates();
 
@@ -217,11 +211,11 @@ public class Record implements Serializable {
         MainActivity.setTrack(null);
     }
 
-    public boolean isRecording() {
+    public static boolean isRecording() {
         return isRecording;
     }
 
-    private boolean isSamePosition(Position lastPosition, Location location) {
+    private static boolean isSamePosition(Position lastPosition, Location location) {
         double newLong = Math.floor(location.getLongitude() * 100000) / 100000;
         double newLat = Math.floor(location.getLatitude() * 100000) / 100000;
         double lastLong = Math.floor(lastPosition.getLongitude() * 100000) / 100000;
@@ -241,7 +235,36 @@ public class Record implements Serializable {
         return false;
     }
 
-    public String getDistanceText() {
+    public static void addMarker(double latitude, double longitude, String text) {
+        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(text));
+    }
+
+    public static void setMap(GoogleMap mMap) {
+        Record.mMap = mMap;
+    }
+
+    public static String getDistanceText() {
         return text;
+    }
+
+    public static List<Position> getPositions(){
+        return positions;
+    }
+
+    public static void updateMap() {
+        if (MainActivity.getTrack() != null) {
+            if (positions.size() >= 1) {
+                Position currentPosition = positions.get(0);
+                for (int i = 1; i < positions.size(); i++) {
+                    Log.e("add polyline", "add polyline");
+                    LatLng currentLatLng = new LatLng(currentPosition.getLatitude(), currentPosition.getLongitude());
+                    LatLng nextLatLng = new LatLng(positions.get(i).getLatitude(), positions.get(i).getLongitude());
+                    mMap.addPolyline(new PolylineOptions().add(currentLatLng, nextLatLng).width(4f).color(Color.RED)
+                            .geodesic(true));
+                    currentPosition = positions.get(i);
+                    mMap.addMarker(new MarkerOptions().position(nextLatLng).title("fuck " + i));
+                }
+            }
+        }
     }
 }
