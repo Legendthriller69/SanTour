@@ -9,10 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/myTrackListView"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:minHeight="480dp">
+
+
+            <ListView
+                android:id="@+id/myTrackListView"
+                android:layout_width="match_parent"
+                android:layout_height="62dp" />
+        </android.support.constraint.ConstraintLayout>
+
     </ScrollView>
 
 </FrameLayout>
