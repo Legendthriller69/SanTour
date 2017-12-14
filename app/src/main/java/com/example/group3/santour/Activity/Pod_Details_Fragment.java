@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.group3.santour.Activity.MainActivity;
-import com.example.group3.santour.Activity.R;
 import com.example.group3.santour.Adapter.CategoriePod_Adapter;
 import com.example.group3.santour.DTO.Category;
 import com.example.group3.santour.DTO.POD;
@@ -18,7 +16,6 @@ import com.example.group3.santour.DTO.PODCategory;
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.CategoryDB;
 import com.example.group3.santour.Firebase.DataListener;
-import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 import java.util.List;
