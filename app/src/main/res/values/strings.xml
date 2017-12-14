@@ -84,5 +84,8 @@
     <string name="notActivateGPS">Ne pas l\'activer</string>
     <string name="AllTracks">My tracks</string>
     <string name="myTracks">My tracks</string>
+    <string name="list_pod">List POD</string>
+    <string name="list_poi">List POI</string>
+    <string name="dur_e">Durée</string>
 
 </resources>
