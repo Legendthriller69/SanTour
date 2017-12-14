@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 setTitle(getString(R.string.settings));
                 break;
             case ALLTRACKSFRAGMENT:
-                fragment = new MyTracksList();
+                fragment = new MyTracks();
                 setTitle(getString(R.string.myTracks));
                 break;
         }

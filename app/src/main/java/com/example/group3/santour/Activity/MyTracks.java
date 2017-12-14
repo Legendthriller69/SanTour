@@ -1,5 +1,7 @@
 package com.example.group3.santour.Activity;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,7 +11,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.example.group3.santour.Adapter.AdapterMyTrackList;
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.Authentication;
 import com.example.group3.santour.Firebase.DataListener;
@@ -17,10 +21,12 @@ import com.example.group3.santour.Firebase.TrackDB;
 
 import java.util.List;
 
-public class MyTracksList extends Fragment {
+public class MyTracks extends Fragment {
 
+    private AdapterMyTrackList adapterTrack;
+    private ListView mListView;
 
-    public MyTracksList() {
+    public MyTracks() {
 
     }
 
@@ -50,6 +56,8 @@ public class MyTracksList extends Fragment {
         //options menu
         setHasOptionsMenu(true);
 
+        mListView = (ListView) view.findViewById(R.id.myTrackListView);
+
         TrackDB.getAllTracksByIdUser(Authentication.getCurrentUser().getId(), new DataListener() {
             @Override
             public void onSuccess(Object object) {
@@ -57,6 +65,9 @@ public class MyTracksList extends Fragment {
                 for (int i = 0; i < tracks.size(); i++) {
                     Log.e("track", tracks.get(i).getName());
                 }
+                Log.e("tracks size", tracks.size() + "");
+                adapterTrack = new AdapterMyTrackList(getContext(), tracks);
+                mListView.setAdapter(adapterTrack);
             }
 
             @Override
