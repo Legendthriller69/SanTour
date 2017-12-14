@@ -27,6 +27,7 @@ import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
 
+import java.io.IOException;
 import java.util.Date;
 
 
@@ -185,10 +186,17 @@ public class Pod_Fragment extends Fragment {
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
             Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture()) ;
 
+            Bitmap rotatedPic = null;
+            try {
+                rotatedPic = camera.rotatePicture(picture);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            pictureView.setImageBitmap(picture);
+
+            pictureView.setImageBitmap(rotatedPic);
             //then encode the picture and add to the string
-            pod.setPicture(camera.encodeBitmap(picture));
+            pod.setPicture(camera.encodeBitmap(rotatedPic));
 
         } else {
             camera.addToImageViewGallery(requestCode, resultCode, getActivity(), pictureView, data);
