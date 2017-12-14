@@ -189,9 +189,10 @@ public class Camera extends Activity {
                 matrix, true);
     }
 
-    public Bitmap testRotate(Bitmap bitmap, Uri uri) throws IOException {
+    public Bitmap rotatePicture(Bitmap bitmap) throws IOException {
 
-        ExifInterface ei = new ExifInterface(uri.getPath());
+        //Need to bypass ExifInterface Constructor to be able to rotate the bitmap
+        ExifInterface ei = new ExifInterface(getAbsPathPicture());
         int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                 ExifInterface.ORIENTATION_UNDEFINED);
 

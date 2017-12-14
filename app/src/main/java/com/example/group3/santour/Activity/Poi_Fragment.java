@@ -27,11 +27,8 @@ import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.DataListener;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DatabaseError;
 
+import java.io.IOException;
 import java.util.Date;
 
 
@@ -197,10 +194,16 @@ public class Poi_Fragment extends Fragment {
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
             Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture()) ;
 
+            Bitmap rotatedPic = null;
+            try {
+                rotatedPic = camera.rotatePicture(picture);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            img_pictureView.setImageBitmap(picture);
+            img_pictureView.setImageBitmap(rotatedPic);
             //then encode the picture and add to the string
-            poi.setPicture(camera.encodeBitmap(picture));
+            poi.setPicture(camera.encodeBitmap(rotatedPic));
 
         } else {
             camera.addToImageViewGallery(requestCode, resultCode, getActivity(), img_pictureView, data);
