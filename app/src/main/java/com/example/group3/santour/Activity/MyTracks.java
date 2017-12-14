@@ -32,7 +32,7 @@ public class MyTracks extends Fragment {
     private FragmentTransaction transaction;
 
     public MyTracks() {
-
+        DetailsExistingTracks.setInDetails(false);
     }
 
     //Create an action bar button
@@ -68,6 +68,7 @@ public class MyTracks extends Fragment {
             @Override
             public void onSuccess(Object object) {
                 List<Track> tracks = (List<Track>) object;
+                WelcomePage.setTracks(tracks);
                 for (int i = 0; i < tracks.size(); i++) {
                     Log.e("track", tracks.get(i).getName());
                 }
@@ -90,13 +91,16 @@ public class MyTracks extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            Bundle bundle = new Bundle();
+            bundle.putInt("index", i);
+
             //create the fragment and add the bundle to the arguments
             fragment = new DetailsExistingTracks();
+            fragment.setArguments(bundle);
 
             //switch to the new fragment
             transaction = fragmentManager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.main_container, fragment).commit();
+            transaction.replace(R.id.main_container, fragment).addToBackStack(null).commit();
 
         }
     }
