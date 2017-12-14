@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailed(Object object) {
+                        progressing.dismiss();
                         Toast.makeText(LoginActivity.this, R.string.userNotFound, Toast.LENGTH_SHORT).show();
                     }
                 });
