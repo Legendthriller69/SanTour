@@ -60,24 +60,21 @@ public class MainActivity extends AppCompatActivity {
                 setTitle(getString(R.string.settings));
                 break;
             case ALLTRACKSFRAGMENT:
-                // faire fragment pour list tracks
+                fragment = new myTracksList();
+                setTitle(getString(R.string.myTracks));
                 break;
         }
         transaction = fragmentManager.beginTransaction();
-        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
-        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
-        transaction.replace(R.id.main_container, fragment).commit();
-        Log.e("FRAGMENT", "" + fragmentManager.getBackStackEntryCount());
+        transaction.replace(R.id.main_container, fragment).addToBackStack(null).commit();
     }
 
     @Override
     public void onBackPressed() {
-            if (fragmentManager.getBackStackEntryCount() > 1) {
-                fragmentManager.popBackStack();
-            }
-            else {
-                finish();
-            }
+        if (fragmentManager.getBackStackEntryCount() > 1) {
+            fragmentManager.popBackStack();
+        } else {
+            finish();
+        }
     }
 
     public static Track getTrack() {

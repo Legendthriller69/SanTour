@@ -12,6 +12,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by kevin on 21/11/17.
  */
@@ -55,6 +58,30 @@ public class TrackDB {
             }
         });
     }
+
+    public static void getAllTracksByIdUser(final String idUser, final DataListener dataListener){
+        TRACK_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Track> tracks = new ArrayList<>();
+                for (DataSnapshot trackSnapshot : dataSnapshot.getChildren()) {
+                    Track track = trackSnapshot.getValue(Track.class);
+                    if(track.getIdUser().equals(idUser)){
+                        tracks.add(track);
+                    }
+                }
+                dataListener.onSuccess(tracks);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+
 
 
 }

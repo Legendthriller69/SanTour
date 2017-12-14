@@ -83,5 +83,6 @@
     <string name="activateGPS">Activer GPS</string>
     <string name="notActivateGPS">Ne pas l\'activer</string>
     <string name="AllTracks">My tracks</string>
+    <string name="myTracks">My tracks</string>
 
 </resources>

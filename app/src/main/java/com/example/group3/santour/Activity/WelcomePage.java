@@ -9,8 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.Authentication;
 import com.google.android.gms.auth.api.Auth;
+
+import java.util.List;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -23,6 +26,9 @@ public class WelcomePage extends AppCompatActivity {
     final private int ABOUTFRAGMENT = 2;
     final private int SETTINGSFRAGMENT = 3;
     final private int ALLTRACKSFRAGMENT = 4;
+
+    //List of tracks by user
+    private static List<Track> tracks;
 
 
     @Override
@@ -58,6 +64,14 @@ public class WelcomePage extends AppCompatActivity {
         btnAbout.setOnClickListener(new AboutPageListener());
         btnSettings.setOnClickListener(new SettingsPageListener());
         btnAllTracks.setOnClickListener(new MyTracksListener());
+    }
+
+    public static List<Track> getTracks() {
+        return tracks;
+    }
+
+    public static void setTracks(List<Track> tracks) {
+        WelcomePage.tracks = tracks;
     }
 
 
