@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.group3.santour.Adapter.AdapterMyTrackList;
@@ -25,6 +28,11 @@ public class MyTracks extends Fragment {
 
     private AdapterMyTrackList adapterTrack;
     private ListView mListView;
+
+    //fragment
+    private Fragment fragment;
+    private FragmentTransaction transaction;
+    private FragmentManager fragmentManager;
 
     public MyTracks() {
 
@@ -68,6 +76,7 @@ public class MyTracks extends Fragment {
                 Log.e("tracks size", tracks.size() + "");
                 adapterTrack = new AdapterMyTrackList(getContext(), tracks);
                 mListView.setAdapter(adapterTrack);
+                mListView.setOnItemClickListener(new TrackDetails());
             }
 
             @Override
@@ -77,6 +86,18 @@ public class MyTracks extends Fragment {
         });
 
         return view;
+    }
+
+    private class TrackDetails implements AdapterView.OnItemClickListener{
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("index",i);
+
+            fragmentManager = getActivity().getSupportFragmentManager();
+            transaction = fragmentManager.beginTransaction();
+        }
     }
 
 

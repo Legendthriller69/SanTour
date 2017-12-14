@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.group3.santour.Firebase.Authentication;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Logic.Permissions;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,9 +29,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-
         setTitle(getString(R.string.Login));
+
+        //ask for permissions
+        Permissions permissions = new Permissions();
+        permissions.checkPermissions(this);
+
         //initialize elements
         txtMail = (EditText) findViewById(R.id.txtMail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
