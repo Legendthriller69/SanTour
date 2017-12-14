@@ -4,18 +4,36 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-public class myTracksList extends Fragment {
+import com.example.group3.santour.Adapter.AdapterMyTrackList;
+import com.example.group3.santour.DTO.Track;
+
+import java.util.List;
+
+public class MyTracksList extends Fragment {
+
+    //fragment
+    private Fragment fragment;
+    private FragmentTransaction transaction;
+    private FragmentManager fragmentManager;
+    private Bundle bundle;
+
+    //adapter
+    private AdapterMyTrackList adapterMyTrackList;
+    private ListView mListView;
+    private List<Track> tracks;
 
 
-
-    public myTracksList() {
+    public MyTracksList() {
         // Required empty public constructor
     }
 
@@ -43,14 +61,21 @@ public class myTracksList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_about, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_tracks_list, container, false);
 
         //options menu
         setHasOptionsMenu(true);
 
+        // init elements
+        mListView = (ListView) view.findViewById(R.id.myTrackListView);
+
+        //create the adapter
+        tracks.add(MainActivity.getTrack()); // méthode a changer pour avoir la list de toutes les tracks
+        adapterMyTrackList = new AdapterMyTrackList(getContext(), tracks);
+        mListView.setAdapter(adapterMyTrackList);
+
         return view;
     }
-
 
 
 }
