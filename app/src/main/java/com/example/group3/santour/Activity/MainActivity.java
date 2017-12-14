@@ -30,11 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle(this.getString(R.string.start_recording));
 
-        //ask for permissions
-        Permissions permissions = new Permissions();
-        permissions.checkPermissions(this);
-
-
         //title of the navigationBar
         setTitle(this.getString(R.string.start_recording));
 

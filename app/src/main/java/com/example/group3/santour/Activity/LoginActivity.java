@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.group3.santour.Firebase.Authentication;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Logic.Permissions;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,7 +29,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        //ask for permissions
+        Permissions permissions = new Permissions();
+        permissions.checkPermissions(this);
 
         setTitle(getString(R.string.Login));
         //initialize elements
@@ -57,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (formValidation()) {
-                progressing=new ProgressDialog(LoginActivity.this);
+                progressing = new ProgressDialog(LoginActivity.this);
                 progressing.setMessage(getString(R.string.waiting)); // Setting Message
                 progressing.setTitle(getString(R.string.loading)); // Setting Title
                 progressing.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
