@@ -64,7 +64,7 @@ tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fr
                             android:id="@+id/btn_next"
                             android:layout_width="124dp"
                             android:layout_height="56dp"
-
+                            android:background="@color/red_main"
                             android:text="next"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
@@ -95,7 +95,6 @@ tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fr
                             android:hint="@string/Input_Pod_Name"
                             android:inputType="textPersonName"
                             android:text=""
-                            android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
