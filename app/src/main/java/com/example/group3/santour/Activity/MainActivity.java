@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if(!DetailsExistingTracks.isInDetails()){
+            finish();
+            return;
+        }
         if (fragmentManager.getBackStackEntryCount() > 1) {
             fragmentManager.popBackStack();
         } else {

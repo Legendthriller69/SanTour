@@ -29,12 +29,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        setTitle(getString(R.string.Login));
-
         //ask for permissions
         Permissions permissions = new Permissions();
         permissions.checkPermissions(this);
 
+        setTitle(getString(R.string.Login));
         //initialize elements
         txtMail = (EditText) findViewById(R.id.txtMail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
@@ -61,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (formValidation()) {
-                progressing=new ProgressDialog(LoginActivity.this);
+                progressing = new ProgressDialog(LoginActivity.this);
                 progressing.setMessage(getString(R.string.waiting)); // Setting Message
                 progressing.setTitle(getString(R.string.loading)); // Setting Title
                 progressing.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner

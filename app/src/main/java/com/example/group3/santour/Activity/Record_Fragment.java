@@ -76,6 +76,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         switch (item.getItemId()) {
             case R.id.list_pod:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPods().size() > 0) {
+                    btnPause.callOnClick();
+                    outOfView = true;
                     fragment = new ListPODs();
                     fragmentManager = getActivity().getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
@@ -88,6 +90,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                 }
             case R.id.list_poi:
                 if (MainActivity.getTrack() != null && MainActivity.getTrack().getPois().size() > 0) {
+                    btnPause.callOnClick();
+                    outOfView = true;
                     fragment = new ListPOIs();
                     fragmentManager = getActivity().getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
@@ -116,7 +120,6 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_record, container, false);
 
-        Log.e("FDP", "FDP");
         //options menu
         setHasOptionsMenu(true);
 
