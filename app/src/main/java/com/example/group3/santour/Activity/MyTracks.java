@@ -1,9 +1,9 @@
 package com.example.group3.santour.Activity;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.group3.santour.Adapter.AdapterMyTrackList;
@@ -25,6 +26,10 @@ public class MyTracks extends Fragment {
 
     private AdapterMyTrackList adapterTrack;
     private ListView mListView;
+
+    private Fragment fragment;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
 
     public MyTracks() {
 
@@ -53,6 +58,7 @@ public class MyTracks extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_my_tracks_list, container, false);
 
+        fragmentManager = getActivity().getSupportFragmentManager();
         //options menu
         setHasOptionsMenu(true);
 
@@ -68,6 +74,7 @@ public class MyTracks extends Fragment {
                 Log.e("tracks size", tracks.size() + "");
                 adapterTrack = new AdapterMyTrackList(getContext(), tracks);
                 mListView.setAdapter(adapterTrack);
+                mListView.setOnItemClickListener(new ItemClickTrack());
             }
 
             @Override
@@ -77,6 +84,21 @@ public class MyTracks extends Fragment {
         });
 
         return view;
+    }
+
+    private class ItemClickTrack implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            //create the fragment and add the bundle to the arguments
+            fragment = new DetailsExistingTracks();
+
+            //switch to the new fragment
+            transaction = fragmentManager.beginTransaction();
+            transaction.addToBackStack(null);
+            transaction.replace(R.id.main_container, fragment).commit();
+
+        }
     }
 
 
