@@ -1,7 +1,5 @@
 package com.example.group3.santour.Activity;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,10 +17,10 @@ import com.example.group3.santour.Firebase.TrackDB;
 
 import java.util.List;
 
-public class myTracksList extends Fragment {
+public class MyTracksList extends Fragment {
 
 
-    public myTracksList() {
+    public MyTracksList() {
 
     }
 
@@ -47,7 +45,7 @@ public class myTracksList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_about, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_tracks_list, container, false);
 
         //options menu
         setHasOptionsMenu(true);

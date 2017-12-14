@@ -5,9 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Permissions;
@@ -60,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 setTitle(getString(R.string.settings));
                 break;
             case ALLTRACKSFRAGMENT:
-                fragment = new myTracksList();
+                fragment = new MyTracksList();
                 setTitle(getString(R.string.myTracks));
                 break;
         }
