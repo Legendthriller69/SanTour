@@ -18,7 +18,6 @@ tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fr
                             android:id="@+id/imageView"
                             android:layout_width="350dp"
                             android:layout_height="173dp"
-
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="148dp"
                             android:layout_marginStart="8dp"
@@ -88,6 +87,7 @@ tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fr
 
                         <EditText
                             android:id="@+id/input_NamePod"
+                            android:textColor="@color/grey_dark"
                             android:layout_width="340dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
@@ -103,6 +103,7 @@ tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fr
 
                         <EditText
                             android:id="@+id/input_descriptionPod"
+                            android:textColor="@color/grey_dark"
                             android:layout_width="340dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
