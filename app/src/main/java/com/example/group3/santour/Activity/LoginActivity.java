@@ -2,16 +2,22 @@ package com.example.group3.santour.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.group3.santour.Firebase.Authentication;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Firebase.StoragePicture;
 import com.example.group3.santour.Logic.Permissions;
 
 public class LoginActivity extends AppCompatActivity {
@@ -20,9 +26,13 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtMail;
     private EditText txtPassword;
     private Button btnSignIn;
+    private ImageView imgView;
 
     // progress bar
     private ProgressDialog progressing;
+
+    private StoragePicture storagePicture;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +54,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean formValidation() {
-        if (TextUtils.isEmpty(txtMail.getText()) && !android.util.Patterns.EMAIL_ADDRESS.matcher(txtMail.getText()).matches()) {
-            Toast.makeText(this, R.string.enterValidMail, Toast.LENGTH_SHORT);
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(txtMail.getText()).matches()) {
+            Toast.makeText(this, R.string.enterValidMail, Toast.LENGTH_SHORT).show();
             return false;
         } else if (TextUtils.isEmpty(txtPassword.getText())) {
-            Toast.makeText(this, R.string.enterPassword, Toast.LENGTH_SHORT);
+            Toast.makeText(this, R.string.enterPassword, Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -59,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
+            Log.e("FORM", "FORM VALIDATION : " + formValidation());
             if (formValidation()) {
                 progressing = new ProgressDialog(LoginActivity.this);
                 progressing.setMessage(getString(R.string.waiting)); // Setting Message

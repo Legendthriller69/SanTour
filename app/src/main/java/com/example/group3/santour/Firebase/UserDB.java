@@ -91,25 +91,4 @@ public class UserDB {
             }
         });
     }
-
-    public static void getUserByMail(final String mail, final DataListener dataListener) {
-        USER_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    User user = userSnapshot.getValue(User.class);
-                    user.setId(userSnapshot.getKey());
-                    if (user.getMail().equals(mail)) {
-                        dataListener.onSuccess(user);
-                        return;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                dataListener.onFailed(databaseError);
-            }
-        });
-    }
 }

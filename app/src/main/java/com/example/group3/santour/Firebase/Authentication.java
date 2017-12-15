@@ -26,7 +26,7 @@ public class Authentication {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    UserDB.getUserByMail(mail, new DataListener() {
+                    UserDB.getUserById(firebaseAuth.getCurrentUser().getUid(), new DataListener() {
                         @Override
                         public void onSuccess(Object object) {
                             currentUser = (User) object;

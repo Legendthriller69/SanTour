@@ -247,7 +247,7 @@ public class Record implements Serializable {
         return text;
     }
 
-    public static List<Position> getPositions(){
+    public static List<Position> getPositions() {
         return positions;
     }
 
@@ -262,7 +262,6 @@ public class Record implements Serializable {
                     mMap.addPolyline(new PolylineOptions().add(currentLatLng, nextLatLng).width(4f).color(Color.RED)
                             .geodesic(true));
                     currentPosition = positions.get(i);
-                    mMap.addMarker(new MarkerOptions().position(nextLatLng).title("fuck " + i));
                 }
             }
         }
