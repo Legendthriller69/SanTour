@@ -11,6 +11,7 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -268,12 +269,14 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                                 Record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", Authentication.getCurrentUser().getId());
                                 Toast.makeText(getActivity(), R.string.trackSaved, Toast.LENGTH_SHORT).show();
                                 getActivity().finish();
+
                             }
 
                         })
                         .setNegativeButton("No", null)
                         .show();
-            }
+
+           }
 
         }
     }
