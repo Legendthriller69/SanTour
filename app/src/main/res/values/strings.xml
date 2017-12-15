@@ -88,4 +88,7 @@
     <string name="list_poi">List POI</string>
     <string name="dur_e">Durée</string>
 
+    <string name="noPOI">There is no POI for this track</string>
+    <string name="noPOD">There is no POD for this track</string>
+
 </resources>

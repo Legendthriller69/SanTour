@@ -16,11 +16,11 @@
 
             <Button
                 android:id="@+id/btnListPOD"
-                android:background="@color/red_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@color/red_main"
                 android:text="@string/list_pod"
                 app:layout_constraintBottom_toBottomOf="@+id/btnListPOI"
                 app:layout_constraintEnd_toEndOf="@+id/Duree"
@@ -56,8 +56,8 @@
 
             <TextView
                 android:id="@+id/TitleDuree"
-                android:layout_width="46dp"
-                android:layout_height="wrap_content"
+                android:layout_width="54dp"
+                android:layout_height="25dp"
                 android:layout_marginEnd="80dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -80,6 +80,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:text="TextView"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/TitleDistance"
                 app:layout_constraintStart_toStartOf="@+id/TitleDistance"
                 app:layout_constraintTop_toBottomOf="@+id/TitleDistance" />
@@ -91,6 +92,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:text="TextView"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/TitleDuree"
                 app:layout_constraintStart_toStartOf="@+id/TitleDuree"
                 app:layout_constraintTop_toBottomOf="@+id/TitleDuree"
