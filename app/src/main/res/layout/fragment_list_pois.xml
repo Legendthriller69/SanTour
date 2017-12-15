@@ -5,26 +5,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fragment.Pod_Details_Fragment">
 
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.constraint.ConstraintLayout
+        <ListView
+            android:id="@+id/listViewPOI"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ListView
-                android:id="@+id/listViewPOI"
-                android:layout_width="368dp"
-                android:layout_height="442dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 </FrameLayout>
