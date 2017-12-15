@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     // progress bar
     private ProgressDialog progressing;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         txtMail = (EditText) findViewById(R.id.txtMail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         btnSignIn = (Button) findViewById(R.id.btnSignIn);
+
 
         //button listener
         btnSignIn.setOnClickListener(new SignIn());

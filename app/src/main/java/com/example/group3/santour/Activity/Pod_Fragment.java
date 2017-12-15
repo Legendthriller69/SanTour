@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +25,12 @@ import android.widget.Toast;
 import com.example.group3.santour.DTO.POD;
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Firebase.StoragePicture;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -61,6 +64,10 @@ public class Pod_Fragment extends Fragment {
     private Bitmap bitmap;
     private Intent data;
 
+    private StoragePicture storePic ;
+    private String filenamePOD_Cam ;
+    private String pathFileStore ;
+
 
     public Pod_Fragment() {
         pod = new POD();
@@ -83,6 +90,8 @@ public class Pod_Fragment extends Fragment {
         pictureView = (ImageView) view.findViewById(R.id.imageView);
         txtLng = (TextView) view.findViewById(R.id.label_valuesGpsLongitude);
         txtLat = (TextView) view.findViewById(R.id.label_valuesGpsLattitude);
+
+        storePic = new StoragePicture();
 
         if (getArguments() != null) {
             update = true;
@@ -133,6 +142,9 @@ public class Pod_Fragment extends Fragment {
                 if (pod.getPosition() == null) {
                     pod.setPosition(position);
                 }
+
+                pod.setPicture(filenamePOD_Cam);
+                storePic.uploadPicture(pathFileStore, filenamePOD_Cam);
 
                 //create new bundle to put the pod object
                 bundle = new Bundle();
@@ -197,15 +209,20 @@ public class Pod_Fragment extends Fragment {
                 e.printStackTrace();
             }
 
-
             pictureView.setImageBitmap(rotatedPic);
             //then encode the picture and add to the string
-            pod.setPicture(camera.encodeBitmap(rotatedPic));
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            filenamePOD_Cam = "POD_" + timeStamp ;
+            pathFileStore = camera.getAbsPathPicture();
+
 
         } else {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            filenamePOD_Cam = "POD_" + timeStamp ;
+
             camera.addToImageViewGallery(requestCode, resultCode, getActivity(), pictureView, data);
-            //then encode the picture and add to the string
-            pod.setPicture(camera.encodeImageWithGallery());
+
+            pathFileStore = camera.getImgDecodableString();
         }
     }
 
@@ -231,7 +248,7 @@ public class Pod_Fragment extends Fragment {
         } else if (txtDescription.getText().toString().equals("")) {
             Toast.makeText(getContext(), R.string.addDescriptionPOD, Toast.LENGTH_SHORT).show();
             return false;
-        } else if (pod.getPicture().equals("")) {
+        } else if (TextUtils.isEmpty(pathFileStore)) {
             Toast.makeText(getContext(), R.string.addPicturePOD, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -246,6 +263,5 @@ public class Pod_Fragment extends Fragment {
         String longi = "Longitude : " + pod.getPosition().getLongitude();
         txtLng.setText(longi);
         txtLat.setText(lat);
-        camera.decodeB64Bitmap(pod.getPicture(), pictureView);
     }
 }

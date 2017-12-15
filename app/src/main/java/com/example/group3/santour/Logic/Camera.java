@@ -12,11 +12,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -38,10 +36,17 @@ public class Camera extends Activity {
     private final int REQUEST_TAKE_PHOTO = 1;
 
     private String imgDecodableString;
+
+    public String getImgDecodableString() {
+        return imgDecodableString;
+    }
+
     private String mCurrentPhotoPath;
     private Bitmap bitmap;
 
     private String absPathPicture ;
+
+    private Uri selectedImage ;
 
 
     public String getAbsPathPicture(){
@@ -67,15 +72,6 @@ public class Camera extends Activity {
     public Camera() {
 
     }
-
-    //Launching Camera
-    public void launchCamera(Fragment fragment) {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(fragment.getActivity().getPackageManager()) != null) {
-            fragment.startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
 
     private File createImageFile(Fragment fragment) throws IOException {
         // Create an image file name
@@ -129,11 +125,6 @@ public class Camera extends Activity {
         //fragment.startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
     }
 
-    public void addToImageViewCamera(int requestCode, int resultCode, Bitmap bitmap, Activity activity, ImageView imgView) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == activity.RESULT_OK) {
-            imgView.setImageBitmap(bitmap);
-        }
-    }
 
     public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data){
 
@@ -141,7 +132,7 @@ public class Camera extends Activity {
         if (requestCode == RESULT_LOAD_IMG && resultCode == activity.RESULT_OK) {
             // Get the Image from data
 
-            Uri selectedImage = data.getData();
+            selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             // Get the cursor
@@ -152,6 +143,7 @@ public class Camera extends Activity {
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             imgDecodableString = cursor.getString(columnIndex);
+            Log.e("PATH OF GALLERY", "DATA :" + imgDecodableString);
             cursor.close();
             // Set the Image in ImageView after decoding the String
             bitmap = BitmapFactory.decodeFile(imgDecodableString);
@@ -159,28 +151,6 @@ public class Camera extends Activity {
         }
 
     }
-
-    public String encodeBitmap(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-    }
-
-    public String encodeImageWithGallery(){
-        return encodeBitmap(bitmap);
-    }
-
-    /**
-     * Decode the b64 String directly when encoded to test - NOT FROM DB
-     * @param encodedImage
-     * @param imgView
-     */
-    public void decodeB64Bitmap(String encodedImage, ImageView imgView) {
-        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        imgView.setImageBitmap(decodedByte);
-    }
-
 
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();

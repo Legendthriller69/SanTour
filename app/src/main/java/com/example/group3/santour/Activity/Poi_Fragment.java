@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +26,12 @@ import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Firebase.DataListener;
+import com.example.group3.santour.Firebase.StoragePicture;
 import com.example.group3.santour.Logic.Camera;
 import com.example.group3.santour.Logic.Record;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -57,6 +60,11 @@ public class Poi_Fragment extends Fragment {
     private boolean update;
     private int index;
 
+    private StoragePicture storePic ;
+    private String filenamePOI_Cam ;
+    private String pathFileStore ;
+
+
     public Poi_Fragment() {
         poi = new POI();
         poi.setPicture("");
@@ -78,6 +86,8 @@ public class Poi_Fragment extends Fragment {
         btn_poiSave = (Button) view.findViewById(R.id.btn_save);
         edtxt_poiName = (EditText) view.findViewById(R.id.input_NamePoi);
         edtxt_poiDescription = (EditText) view.findViewById(R.id.input_descriptinPoi);
+
+        storePic = new StoragePicture();
 
         if (getArguments() != null) {
             update = true;
@@ -137,6 +147,9 @@ public class Poi_Fragment extends Fragment {
                     poi.setPosition(position);
                 }
 
+                poi.setPicture(filenamePOI_Cam);
+                storePic.uploadPicture(pathFileStore, filenamePOI_Cam);
+
                 //update or add the poi
                 if (index != -1) {
                     track.getPois().set(index, poi);
@@ -192,7 +205,6 @@ public class Poi_Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("TEST-TEST", "Data : " + data);
         if (camera.getChoice() == "camera") {
 
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
@@ -207,12 +219,19 @@ public class Poi_Fragment extends Fragment {
 
             img_pictureView.setImageBitmap(rotatedPic);
             //then encode the picture and add to the string
-            poi.setPicture(camera.encodeBitmap(rotatedPic));
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            filenamePOI_Cam = "POI_" + timeStamp ;
+            pathFileStore = camera.getAbsPathPicture();
 
         } else {
+
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            filenamePOI_Cam = "POI_" + timeStamp ;
+
             camera.addToImageViewGallery(requestCode, resultCode, getActivity(), img_pictureView, data);
-            //then encode the picture and add to the string
-            poi.setPicture(camera.encodeImageWithGallery());
+
+            pathFileStore = camera.getImgDecodableString();
+
         }
     }
 
@@ -225,7 +244,7 @@ public class Poi_Fragment extends Fragment {
         } else if (edtxt_poiDescription.getText().toString().equals("")) {
             Toast.makeText(getContext(), R.string.addDescriptionPOI, Toast.LENGTH_SHORT).show();
             return false;
-        } else if (poi.getPicture().equals("")) {
+        } else if (TextUtils.isEmpty(pathFileStore)) {
             Toast.makeText(getContext(), R.string.addPicturePOI, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -240,6 +259,5 @@ public class Poi_Fragment extends Fragment {
         String longi = getString(R.string.longitude) + poi.getPosition().getLongitude();
         label_valuesGpsLongetude.setText(longi);
         label_valuesGpsLattitude.setText(lat);
-        camera.decodeB64Bitmap(poi.getPicture(), img_pictureView);
     }
 }
