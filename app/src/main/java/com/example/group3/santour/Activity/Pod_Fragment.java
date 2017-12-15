@@ -40,7 +40,7 @@ public class Pod_Fragment extends Fragment {
     private EditText txtDescription;
     private Button btnNext;
     private TextView txtLng;
-    private TextView txtLa;
+    private TextView txtLat;
 
     //Track's objects
     private POD pod;
@@ -82,6 +82,7 @@ public class Pod_Fragment extends Fragment {
         btnTakePicture = (ImageButton) view.findViewById(R.id.imageButton);
         pictureView = (ImageView) view.findViewById(R.id.imageView);
         txtLng = (TextView) view.findViewById(R.id.label_valuesGpsLongitude);
+        txtLat = (TextView) view.findViewById(R.id.label_valuesGpsLattitude);
 
         if (getArguments() != null) {
             update = true;
@@ -101,8 +102,10 @@ public class Pod_Fragment extends Fragment {
                 @Override
                 public void onSuccess(Object object) {
                     Location location = (Location) object;
-                    String latLng = "Longitude : " + location.getLongitude() + ", Latitude : " + location.getLatitude();
-                    txtLng.setText(latLng);
+                    String lat = getString(R.string.latitude) + location.getLatitude();
+                    String longi = getString(R.string.longitude) + location.getLongitude();
+                    txtLng.setText(longi);
+                    txtLat.setText(lat);
                     position = new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString());
                 }
 
@@ -239,8 +242,10 @@ public class Pod_Fragment extends Fragment {
     private void initGUI(POD pod) {
         txtName.setText(pod.getName());
         txtDescription.setText(pod.getDescription());
-        String latLng = "Longitude : " + pod.getPosition().getLongitude() + ", Latitude : " + pod.getPosition().getLatitude();
-        txtLng.setText(latLng);
+        String lat = getString(R.string.latitude) + pod.getPosition().getLatitude();
+        String longi = getString(R.string.longitude) + pod.getPosition().getLongitude();
+        txtLng.setText(longi);
+        txtLat.setText(lat);
         camera.decodeB64Bitmap(pod.getPicture(), pictureView);
     }
 }

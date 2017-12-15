@@ -74,6 +74,7 @@ public class Poi_Fragment extends Fragment {
         img_takePicture = (ImageButton) view.findViewById(R.id.imageButton);
         img_pictureView = (ImageView) view.findViewById(R.id.imageView);
         label_valuesGpsLongetude = (TextView) view.findViewById(R.id.label_valuesGpsLongitude);
+        label_valuesGpsLattitude = (TextView) view.findViewById(R.id.label_valuesGpsLattitude);
         btn_poiSave = (Button) view.findViewById(R.id.btn_save);
         edtxt_poiName = (EditText) view.findViewById(R.id.input_NamePoi);
         edtxt_poiDescription = (EditText) view.findViewById(R.id.input_descriptinPoi);
@@ -96,8 +97,10 @@ public class Poi_Fragment extends Fragment {
                 @Override
                 public void onSuccess(Object object) {
                     Location location = (Location) object;
-                    String latLng = "Longitude : " + location.getLongitude() + ", Latitude : " + location.getLatitude();
-                    label_valuesGpsLongetude.setText(latLng);
+                    String lat = getString(R.string.latitude) + location.getLatitude();
+                    String longi = getString(R.string.longitude) + location.getLongitude();
+                    label_valuesGpsLongetude.setText(longi);
+                    label_valuesGpsLattitude.setText(lat);
                     position = new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString());
                 }
 
@@ -189,11 +192,11 @@ public class Poi_Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("TEST-TEST", "Data : " + data) ;
+        Log.e("TEST-TEST", "Data : " + data);
         if (camera.getChoice() == "camera") {
 
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
-            Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture()) ;
+            Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture());
 
             Bitmap rotatedPic = null;
             try {
@@ -212,7 +215,6 @@ public class Poi_Fragment extends Fragment {
             poi.setPicture(camera.encodeImageWithGallery());
         }
     }
-
 
 
     //Change the id's
@@ -234,8 +236,10 @@ public class Poi_Fragment extends Fragment {
     private void initGUI(POI poi) {
         edtxt_poiName.setText(poi.getName());
         edtxt_poiDescription.setText(poi.getDescription());
-        String latLng = "Longitude : " + poi.getPosition().getLongitude() + ", Latitude : " + poi.getPosition().getLatitude();
-        label_valuesGpsLongetude.setText(latLng);
+        String lat = getString(R.string.latitude) + poi.getPosition().getLatitude();
+        String longi = getString(R.string.longitude) + poi.getPosition().getLongitude();
+        label_valuesGpsLongetude.setText(longi);
+        label_valuesGpsLattitude.setText(lat);
         camera.decodeB64Bitmap(poi.getPicture(), img_pictureView);
     }
 }
