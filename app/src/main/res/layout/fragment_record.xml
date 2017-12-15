@@ -36,7 +36,7 @@
 
             <ImageButton
                 android:id="@+id/ButtonSave"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/ButtonPause"
                 android:layout_alignStart="@+id/ButtonPause"
@@ -60,12 +60,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/imageButtonAddPOD"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@+id/imageButtonAddPOD"
                 android:layout_toRightOf="@+id/imageButtonAddPOD"
-                android:text="@string/TitlePod"
+                android:text="@string/addPOD"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/ButtonAddPOD"
                 app:layout_constraintStart_toEndOf="@+id/ButtonAddPOD"
@@ -80,10 +80,10 @@
                 android:layout_alignLeft="@+id/NameTrack"
                 android:layout_alignStart="@+id/NameTrack"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/TitlePoi"
+                android:text="@string/addPOI"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/ButtonAddPOI"
                 app:layout_constraintStart_toEndOf="@+id/ButtonAddPOI"
@@ -94,7 +94,7 @@
             <com.example.group3.santour.Activity.CustomMapView
                 android:id="@+id/Map"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="230dp"
                 android:layout_alignEnd="@+id/TitlePOI"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/TitlePOI"
@@ -107,7 +107,7 @@
 
             <ImageButton
                 android:id="@+id/ButtonPause"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/ButtonPlay"
                 android:layout_alignStart="@+id/ButtonPlay"
@@ -124,44 +124,44 @@
 
             <ImageButton
                 android:id="@+id/ButtonPlay"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/TitlePOI"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="44dp"
-                android:layout_marginRight="44dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="@string/common_google_play_services_enable_button"
                 android:src="@android:drawable/ic_media_play"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTrackName"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:layout_marginRight="24dp" />
 
             <ImageButton
                 android:id="@+id/ButtonAddPOI"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="24dp"
                 android:src="@android:drawable/ic_input_add"
                 app:layout_constraintBottom_toTopOf="@+id/ButtonAddPOD"
                 app:layout_constraintEnd_toEndOf="@+id/ButtonAddPOD"
-                app:layout_constraintHorizontal_bias="0.875"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/ButtonAddPOD"
                 tools:ignore="MissingConstraints"
-                android:layout_marginLeft="8dp" />
+                android:layout_marginLeft="24dp" />
 
             <ImageButton
                 android:id="@+id/ButtonAddPOD"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:src="@android:drawable/ic_input_add"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="32dp" />
+                android:layout_marginLeft="24dp" />
 
             <Chronometer
                 android:id="@+id/chrono"
@@ -192,27 +192,27 @@
                 android:id="@+id/TitleSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="28dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/TitleTime"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTrackName"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:layout_marginLeft="24dp" />
 
             <TextView
                 android:id="@+id/TitleKM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/distance"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/TitleSize"
                 app:layout_constraintTop_toBottomOf="@+id/txtTrackName"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:layout_marginLeft="32dp" />
 
 
         </android.support.constraint.ConstraintLayout>

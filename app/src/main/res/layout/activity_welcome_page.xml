@@ -33,6 +33,20 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
+        android:id="@+id/btnAllTracks"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/red_main"
+        android:text="@string/AllTracks"
+        app:layout_constraintEnd_toEndOf="@+id/btnCreateTrack"
+        app:layout_constraintStart_toStartOf="@+id/btnCreateTrack"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateTrack"
+        />
+
+    <Button
         android:id="@+id/btnAbout"
         android:layout_width="140dp"
         android:layout_height="45dp "
@@ -41,9 +55,10 @@
         android:layout_marginTop="24dp"
         android:background="@color/red_main"
         android:text="@string/about"
-        app:layout_constraintEnd_toEndOf="@+id/btnCreateTrack"
-        app:layout_constraintStart_toStartOf="@+id/btnCreateTrack"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateTrack" />
+        app:layout_constraintEnd_toEndOf="@+id/btnAllTracks"
+        app:layout_constraintStart_toStartOf="@+id/btnAllTracks"
+        app:layout_constraintTop_toBottomOf="@+id/btnAllTracks"
+        />
 
     <Button
         android:id="@+id/btnSettings"
@@ -58,16 +73,5 @@
         app:layout_constraintStart_toStartOf="@+id/btnAbout"
         app:layout_constraintTop_toBottomOf="@+id/btnAbout" />
 
-    <Button
-        android:id="@+id/btnAllTracks"
-        android:layout_width="140dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/red_main"
-        android:text="@string/AllTracks"
-        app:layout_constraintEnd_toEndOf="@+id/btnSettings"
-        app:layout_constraintStart_toStartOf="@+id/btnSettings"
-        app:layout_constraintTop_toBottomOf="@+id/btnSettings" />
+
 </android.support.constraint.ConstraintLayout>

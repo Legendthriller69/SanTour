@@ -17,9 +17,11 @@
     <string name="input_description_pod">write a description for the pod</string>
     <string name="btn_save">save</string>
     <string name="labeldescritpion">Description</string>
-    <string name="trackName">Name</string>
+    <string name="trackName">Name of track</string>
     <string name="TitlePod">POD</string>
     <string name="TitlePoi">POI</string>
+    <string name="addPOD">Add POD</string>
+    <string name="addPOI">Add POI</string>
     <string name="distance">Distance</string>
     <string name="TitleTime">Time</string>
     <string name="nbKM">TextView</string>
@@ -76,7 +78,7 @@
     <string name="enterPassword">Please enter a password</string>
     <string name="userNotFound">User not found</string>
     <string name="Home">Home</string>
-    <string name="Login">Log In</string>
+    <string name="Login">Login</string>
     <string name="Recording">Record tracks</string>
     <string name="about">About</string>
     <string name="gpsDisabled">Le GPS est inactif, voulez-vous l\'activer ?</string>
