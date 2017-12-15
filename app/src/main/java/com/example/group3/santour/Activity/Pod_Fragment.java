@@ -64,9 +64,9 @@ public class Pod_Fragment extends Fragment {
     private Bitmap bitmap;
     private Intent data;
 
-    private StoragePicture storePic ;
-    private String filenamePOD_Cam ;
-    private String pathFileStore ;
+    private StoragePicture storePic;
+    private String filenamePOD_Cam;
+    private String pathFileStore;
 
 
     public Pod_Fragment() {
@@ -212,13 +212,13 @@ public class Pod_Fragment extends Fragment {
             pictureView.setImageBitmap(rotatedPic);
             //then encode the picture and add to the string
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            filenamePOD_Cam = "POD_" + timeStamp ;
+            filenamePOD_Cam = "POD_" + timeStamp;
             pathFileStore = camera.getAbsPathPicture();
 
 
         } else {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            filenamePOD_Cam = "POD_" + timeStamp ;
+            filenamePOD_Cam = "POD_" + timeStamp;
 
             camera.addToImageViewGallery(requestCode, resultCode, getActivity(), pictureView, data);
 
@@ -263,5 +263,18 @@ public class Pod_Fragment extends Fragment {
         String longi = "Longitude : " + pod.getPosition().getLongitude();
         txtLng.setText(longi);
         txtLat.setText(lat);
+        storePic.downloadPicture(pod.getPicture(), new DataListener() {
+            @Override
+            public void onSuccess(Object object) {
+                byte[] byteArray = (byte[]) object;
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                pictureView.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onFailed(Object object) {
+
+            }
+        });
     }
 }

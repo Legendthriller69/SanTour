@@ -1,5 +1,7 @@
 package com.example.group3.santour.Firebase;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -23,34 +25,11 @@ public class StoragePicture {
 
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     // Create a storage reference from our app
-    private  StorageReference storageRef = storage.getReference();
+    private StorageReference storageRef = storage.getReference();
 
-    //"Folder" name
-    private  String imageFolder = "images" ;
-
-    // Create a child reference
-    // imagesRef now points to "images"
-    private  StorageReference imagesRef = storageRef.child(imageFolder);
-
-    private  String filename ;
-    //Getter and Setter for the filename
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    //private static StorageReference picImagesRef = storageRef.child(imageFolder+"/"+filename);
-
-
-    public void uploadPicture(String pathPicture, String filename){
-
+    public void uploadPicture(String pathPicture, String filename) {
         StorageReference picRef = storageRef.child(filename);
-
         InputStream stream = null;
-
         try {
             stream = new FileInputStream(new File(pathPicture));
         } catch (FileNotFoundException e) {
@@ -73,10 +52,14 @@ public class StoragePicture {
         });
     }
 
-
-
-
-
+    public void downloadPicture(String pathPicture, final DataListener dataListener) {
+        storageRef.child(pathPicture).getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                dataListener.onSuccess(bytes);
+            }
+        });
+    }
 
 
 }
