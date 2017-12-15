@@ -36,6 +36,7 @@
 
             <ImageButton
                 android:id="@+id/ButtonSave"
+                android:background="@drawable/roundcorner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/ButtonPause"
@@ -140,6 +141,7 @@
 
             <ImageButton
                 android:id="@+id/ButtonAddPOI"
+                android:radius="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -154,6 +156,7 @@
 
             <ImageButton
                 android:id="@+id/ButtonAddPOD"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
