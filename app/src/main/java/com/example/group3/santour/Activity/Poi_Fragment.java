@@ -97,8 +97,8 @@ public class Poi_Fragment extends Fragment {
                 @Override
                 public void onSuccess(Object object) {
                     Location location = (Location) object;
-                    String lat = getString(R.string.latitude) + location.getLatitude();
-                    String longi = getString(R.string.longitude) + location.getLongitude();
+                    String lat = "Latitude : " + location.getLatitude();
+                    String longi = "Longitude : " + location.getLongitude();
                     label_valuesGpsLongetude.setText(longi);
                     label_valuesGpsLattitude.setText(lat);
                     position = new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString());

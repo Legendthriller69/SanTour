@@ -102,8 +102,8 @@ public class Pod_Fragment extends Fragment {
                 @Override
                 public void onSuccess(Object object) {
                     Location location = (Location) object;
-                    String lat = getString(R.string.latitude) + location.getLatitude();
-                    String longi = getString(R.string.longitude) + location.getLongitude();
+                    String lat = "Latitude : " + location.getLatitude();
+                    String longi = "Longitude : " + location.getLongitude();
                     txtLng.setText(longi);
                     txtLat.setText(lat);
                     position = new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString());
@@ -184,11 +184,11 @@ public class Pod_Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("TEST-TEST", "Data : " + data) ;
+        Log.e("TEST-TEST", "Data : " + data);
         if (camera.getChoice() == "camera") {
 
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
-            Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture()) ;
+            Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture());
 
             Bitmap rotatedPic = null;
             try {
@@ -242,8 +242,8 @@ public class Pod_Fragment extends Fragment {
     private void initGUI(POD pod) {
         txtName.setText(pod.getName());
         txtDescription.setText(pod.getDescription());
-        String lat = getString(R.string.latitude) + pod.getPosition().getLatitude();
-        String longi = getString(R.string.longitude) + pod.getPosition().getLongitude();
+        String lat = "Latitude : " + pod.getPosition().getLatitude();
+        String longi = "Longitude : " + pod.getPosition().getLongitude();
         txtLng.setText(longi);
         txtLat.setText(lat);
         camera.decodeB64Bitmap(pod.getPicture(), pictureView);

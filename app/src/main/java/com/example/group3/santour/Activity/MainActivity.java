@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.Permissions;
+import com.example.group3.santour.Logic.Record;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,10 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!DetailsExistingTracks.isInDetails()){
-            finish();
-            return;
-        }
+        if(!Record.isRecording())
+            if(!DetailsExistingTracks.isInDetails()){
+                finish();
+                return;
+            }
         if (fragmentManager.getBackStackEntryCount() > 1) {
             fragmentManager.popBackStack();
         } else {
