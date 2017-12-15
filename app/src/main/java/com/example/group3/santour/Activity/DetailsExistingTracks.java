@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.group3.santour.DTO.POD;
+import com.example.group3.santour.DTO.POI;
 import com.example.group3.santour.DTO.Position;
 import com.example.group3.santour.DTO.Track;
 import com.example.group3.santour.Logic.MapUpdate;
@@ -24,7 +26,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.w3c.dom.Text;
@@ -57,9 +61,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
 
     public DetailsExistingTracks() {
         inDetails = true;
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,7 +114,8 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         zoomMap();
-        updateMap();
+        addPolylineOnMap();
+        addMarkerOnMap();
     }
 
     @Override
@@ -122,7 +125,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
     }
 
     @Override
-    public void updateMap() {
+    public void addPolylineOnMap() {
         List<LatLng> points = new ArrayList<>();
         for (int i = 0; i < track.getPositions().size(); i++) {
             Position position = track.getPositions().get(i);
@@ -132,6 +135,32 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         PolylineOptions polylineOptions = new PolylineOptions();
         polylineOptions.addAll(points).width(5).color(Color.RED);
         mMap.addPolyline(polylineOptions);
+    }
+
+    @Override
+    public void addMarkerOnMap() {
+        LatLng position;
+        POI currentPoi;
+        POD currentPod;
+
+        //loop on all poi
+        for (int i = 0; i < track.getPois().size(); i++) {
+            currentPoi = track.getPois().get(i);
+            position = new LatLng(currentPoi.getPosition().getLatitude(), currentPoi.getPosition().getLongitude());
+            mMap.addMarker(new MarkerOptions()
+                    .position(position)
+                    .title("POI : " + currentPoi.getName())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        }
+
+        //loop on all pod
+        for (int i = 0; i < track.getPods().size(); i++) {
+            currentPod = track.getPods().get(i);
+            position = new LatLng(currentPod.getPosition().getLatitude(), currentPod.getPosition().getLongitude());
+            mMap.addMarker(new MarkerOptions().
+                    position(position).
+                    title("POD : " + currentPod.getName()));
+        }
     }
 
     private class ListPOIListener implements View.OnClickListener {

@@ -7,5 +7,7 @@ package com.example.group3.santour.Logic;
 public interface MapUpdate {
 
     void zoomMap();
-    void updateMap();
+    void addPolylineOnMap();
+    void addMarkerOnMap();
+
 }
