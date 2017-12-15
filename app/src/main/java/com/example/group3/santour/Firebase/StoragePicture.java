@@ -61,5 +61,13 @@ public class StoragePicture {
         });
     }
 
+    public void deletePicture(String pathPicture) {
+        storageRef.child(pathPicture).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.e("DELETE", "FILE DELETED");
+            }
+        });
+    }
 
 }

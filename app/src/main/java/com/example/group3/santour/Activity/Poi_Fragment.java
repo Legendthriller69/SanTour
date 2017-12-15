@@ -58,11 +58,12 @@ public class Poi_Fragment extends Fragment {
     private FragmentTransaction transaction;
     private Bundle bundle;
     private boolean update;
+    private boolean pictureChanged;
     private int index;
 
-    private StoragePicture storePic ;
-    private String filenamePOI_Cam ;
-    private String pathFileStore ;
+    private StoragePicture storePic;
+    private String filenamePOI_Cam;
+    private String pathFileStore;
 
 
     public Poi_Fragment() {
@@ -70,6 +71,7 @@ public class Poi_Fragment extends Fragment {
         poi.setPicture("");
         update = false;
         index = -1;
+        pictureChanged = false;
     }
 
     @Override
@@ -147,8 +149,20 @@ public class Poi_Fragment extends Fragment {
                     poi.setPosition(position);
                 }
 
-                poi.setPicture(filenamePOI_Cam);
-                storePic.uploadPicture(pathFileStore, filenamePOI_Cam);
+                if (!update) {
+                    poi.setPicture(filenamePOI_Cam);
+                    storePic.uploadPicture(pathFileStore, filenamePOI_Cam);
+                }
+
+                String oldPictureName;
+                if (update) {
+                    if (pictureChanged) {
+                        oldPictureName = poi.getPicture();
+                        poi.setPicture(filenamePOI_Cam);
+                        storePic.uploadPicture(pathFileStore, filenamePOI_Cam);
+                        storePic.deletePicture(oldPictureName);
+                    }
+                }
 
                 //update or add the poi
                 if (index != -1) {
@@ -205,6 +219,7 @@ public class Poi_Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        pictureChanged = true;
         if (camera.getChoice() == "camera") {
 
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
@@ -220,13 +235,13 @@ public class Poi_Fragment extends Fragment {
             img_pictureView.setImageBitmap(rotatedPic);
             //then encode the picture and add to the string
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            filenamePOI_Cam = "POI_" + timeStamp ;
+            filenamePOI_Cam = "POI_" + timeStamp;
             pathFileStore = camera.getAbsPathPicture();
 
         } else {
 
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            filenamePOI_Cam = "POI_" + timeStamp ;
+            filenamePOI_Cam = "POI_" + timeStamp;
 
             camera.addToImageViewGallery(requestCode, resultCode, getActivity(), img_pictureView, data);
 
@@ -244,7 +259,7 @@ public class Poi_Fragment extends Fragment {
         } else if (edtxt_poiDescription.getText().toString().equals("")) {
             Toast.makeText(getContext(), R.string.addDescriptionPOI, Toast.LENGTH_SHORT).show();
             return false;
-        } else if (TextUtils.isEmpty(pathFileStore)) {
+        } else if (TextUtils.isEmpty(filenamePOI_Cam)) {
             Toast.makeText(getContext(), R.string.addPicturePOI, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -259,5 +274,19 @@ public class Poi_Fragment extends Fragment {
         String longi = getString(R.string.longitude) + poi.getPosition().getLongitude();
         label_valuesGpsLongetude.setText(longi);
         label_valuesGpsLattitude.setText(lat);
+        filenamePOI_Cam = poi.getPicture();
+        storePic.downloadPicture(poi.getPicture(), new DataListener() {
+            @Override
+            public void onSuccess(Object object) {
+                byte[] byteArray = (byte[]) object;
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                img_pictureView.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onFailed(Object object) {
+
+            }
+        });
     }
 }

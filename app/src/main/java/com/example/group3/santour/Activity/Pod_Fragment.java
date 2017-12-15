@@ -67,12 +67,14 @@ public class Pod_Fragment extends Fragment {
     private StoragePicture storePic;
     private String filenamePOD_Cam;
     private String pathFileStore;
+    private boolean pictureChanged;
 
 
     public Pod_Fragment() {
         pod = new POD();
         pod.setPicture("");
         update = false;
+        pictureChanged = false;
     }
 
     @Override
@@ -143,8 +145,20 @@ public class Pod_Fragment extends Fragment {
                     pod.setPosition(position);
                 }
 
-                pod.setPicture(filenamePOD_Cam);
-                storePic.uploadPicture(pathFileStore, filenamePOD_Cam);
+                if(!update){
+                    pod.setPicture(filenamePOD_Cam);
+                    storePic.uploadPicture(pathFileStore, filenamePOD_Cam);
+                }
+
+                String oldPictureName;
+                if(update){
+                    if(pictureChanged){
+                        oldPictureName = pod.getPicture();
+                        pod.setPicture(filenamePOD_Cam);
+                        storePic.uploadPicture(pathFileStore, filenamePOD_Cam);
+                        storePic.deletePicture(oldPictureName);
+                    }
+                }
 
                 //create new bundle to put the pod object
                 bundle = new Bundle();
@@ -197,6 +211,7 @@ public class Pod_Fragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.e("TEST-TEST", "Data : " + data);
+        pictureChanged = true;
         if (camera.getChoice() == "camera") {
 
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
@@ -248,7 +263,7 @@ public class Pod_Fragment extends Fragment {
         } else if (txtDescription.getText().toString().equals("")) {
             Toast.makeText(getContext(), R.string.addDescriptionPOD, Toast.LENGTH_SHORT).show();
             return false;
-        } else if (TextUtils.isEmpty(pathFileStore)) {
+        } else if (TextUtils.isEmpty(filenamePOD_Cam)) {
             Toast.makeText(getContext(), R.string.addPicturePOD, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -263,6 +278,7 @@ public class Pod_Fragment extends Fragment {
         String longi = "Longitude : " + pod.getPosition().getLongitude();
         txtLng.setText(longi);
         txtLat.setText(lat);
+        filenamePOD_Cam = pod.getPicture();
         storePic.downloadPicture(pod.getPicture(), new DataListener() {
             @Override
             public void onSuccess(Object object) {
