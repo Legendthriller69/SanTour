@@ -36,7 +36,8 @@ public class Poi_Fragment extends Fragment {
 
     //elements
     private EditText edtxt_poiName;
-    private TextView label_valuesGps;
+    private TextView label_valuesGpsLongetude;
+    private TextView label_valuesGpsLattitude;
     private ImageButton img_takePicture;
     private ImageView img_pictureView;
     private EditText edtxt_poiDescription;
@@ -72,7 +73,7 @@ public class Poi_Fragment extends Fragment {
         //init elements
         img_takePicture = (ImageButton) view.findViewById(R.id.imageButton);
         img_pictureView = (ImageView) view.findViewById(R.id.imageView);
-        label_valuesGps = (TextView) view.findViewById(R.id.label_valuesGps);
+        label_valuesGpsLongetude = (TextView) view.findViewById(R.id.label_valuesGpsLongitude);
         btn_poiSave = (Button) view.findViewById(R.id.btn_save);
         edtxt_poiName = (EditText) view.findViewById(R.id.input_NamePoi);
         edtxt_poiDescription = (EditText) view.findViewById(R.id.input_descriptinPoi);
@@ -96,7 +97,7 @@ public class Poi_Fragment extends Fragment {
                 public void onSuccess(Object object) {
                     Location location = (Location) object;
                     String latLng = "Longitude : " + location.getLongitude() + ", Latitude : " + location.getLatitude();
-                    label_valuesGps.setText(latLng);
+                    label_valuesGpsLongetude.setText(latLng);
                     position = new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString());
                 }
 
@@ -234,7 +235,7 @@ public class Poi_Fragment extends Fragment {
         edtxt_poiName.setText(poi.getName());
         edtxt_poiDescription.setText(poi.getDescription());
         String latLng = "Longitude : " + poi.getPosition().getLongitude() + ", Latitude : " + poi.getPosition().getLatitude();
-        label_valuesGps.setText(latLng);
+        label_valuesGpsLongetude.setText(latLng);
         camera.decodeB64Bitmap(poi.getPicture(), img_pictureView);
     }
 }

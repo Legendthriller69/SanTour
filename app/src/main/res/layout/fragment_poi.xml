@@ -18,18 +18,19 @@
             android:minHeight="480dp">
 
             <TextView
-                android:id="@+id/label_valuesGpsLattitude2"
+                android:id="@+id/label_valuesGpsLattitude"
                 android:layout_width="150dp"
                 android:layout_height="39dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/label_valuesGps"
+                app:layout_constraintBottom_toBottomOf="@+id/label_valuesGpsLongitude"
                 app:layout_constraintEnd_toEndOf="@+id/input_NamePoi"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/label_valuesGps"
+                app:layout_constraintStart_toEndOf="@+id/label_valuesGpsLongitude"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="UnknownId" />
 
             <EditText
                 android:id="@+id/input_NamePoi"
@@ -64,7 +65,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/input_NamePoi" />
 
             <TextView
-                android:id="@+id/label_valuesGps"
+                android:id="@+id/label_valuesGpsLongitude"
                 android:layout_width="150dp"
                 android:layout_height="36dp"
                 android:layout_marginLeft="0dp"
@@ -88,7 +89,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/btn_save"
                 app:layout_constraintEnd_toEndOf="@+id/input_NamePoi"
                 app:layout_constraintStart_toStartOf="@+id/input_NamePoi"
-                app:layout_constraintTop_toBottomOf="@+id/label_valuesGps" />
+                app:layout_constraintTop_toBottomOf="@+id/label_valuesGpsLongitude" />
 
             <Button
                 android:id="@+id/btn_save"

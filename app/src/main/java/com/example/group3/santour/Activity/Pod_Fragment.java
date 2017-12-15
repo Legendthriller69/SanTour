@@ -39,7 +39,8 @@ public class Pod_Fragment extends Fragment {
     private ImageView pictureView;
     private EditText txtDescription;
     private Button btnNext;
-    private TextView txtLatLng;
+    private TextView txtLng;
+    private TextView txtLa;
 
     //Track's objects
     private POD pod;
@@ -80,7 +81,7 @@ public class Pod_Fragment extends Fragment {
         txtDescription = (EditText) view.findViewById(R.id.input_descriptionPod);
         btnTakePicture = (ImageButton) view.findViewById(R.id.imageButton);
         pictureView = (ImageView) view.findViewById(R.id.imageView);
-        txtLatLng = (TextView) view.findViewById(R.id.label_valuesGps);
+        txtLng = (TextView) view.findViewById(R.id.label_valuesGpsLongitude);
 
         if (getArguments() != null) {
             update = true;
@@ -101,7 +102,7 @@ public class Pod_Fragment extends Fragment {
                 public void onSuccess(Object object) {
                     Location location = (Location) object;
                     String latLng = "Longitude : " + location.getLongitude() + ", Latitude : " + location.getLatitude();
-                    txtLatLng.setText(latLng);
+                    txtLng.setText(latLng);
                     position = new Position(location.getLongitude(), location.getLatitude(), location.getAltitude(), new Date().toString());
                 }
 
@@ -239,7 +240,7 @@ public class Pod_Fragment extends Fragment {
         txtName.setText(pod.getName());
         txtDescription.setText(pod.getDescription());
         String latLng = "Longitude : " + pod.getPosition().getLongitude() + ", Latitude : " + pod.getPosition().getLatitude();
-        txtLatLng.setText(latLng);
+        txtLng.setText(latLng);
         camera.decodeB64Bitmap(pod.getPicture(), pictureView);
     }
 }
