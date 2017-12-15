@@ -91,7 +91,7 @@
                 app:layout_constraintVertical_bias="1.0"
                 tools:ignore="MissingConstraints,UnknownId" />
 
-            <com.example.group3.santour.Activity.CustomMapView
+            <ch.hes.group3.santour.Activity.CustomMapView
                 android:id="@+id/Map"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"

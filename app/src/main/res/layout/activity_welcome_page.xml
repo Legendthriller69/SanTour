@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.group3.santour.Activity.WelcomePage">
+    tools:context="com.example.group3.santour.Activity.ch.example.group3.santour.Activity.WelcomePage">
 
     <ImageView
         android:id="@+id/imageView2"
