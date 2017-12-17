@@ -22,6 +22,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ch.hes.group3.santour.DTO.POI;
 import ch.hes.group3.santour.DTO.Position;
 import ch.hes.group3.santour.DTO.Track;
@@ -29,10 +33,6 @@ import ch.hes.group3.santour.Firebase.DataListener;
 import ch.hes.group3.santour.Firebase.StoragePicture;
 import ch.hes.group3.santour.Logic.Camera;
 import ch.hes.group3.santour.Logic.Record;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class Poi_Fragment extends Fragment {
@@ -77,7 +77,7 @@ public class Poi_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for tghis fragment
         View view = inflater.inflate(R.layout.fragment_poi, container, false);
 
         //init elements
