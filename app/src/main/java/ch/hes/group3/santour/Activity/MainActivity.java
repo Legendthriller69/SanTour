@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (intentFragment) {
             case RECORDFRAGMENT:
+                track = null;
                 fragment = new Record_Fragment();
                 setTitle(getString(R.string.Recording));
                 break;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(!Record.isRecording())
             if(!DetailsExistingTracks.isInDetails()){
+                Record.destroy();
                 finish();
                 return;
             }
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
             fragmentManager.popBackStack();
         } else {
             finish();
+            Record.destroy();
+            fragmentManager.popBackStack();
         }
     }
 

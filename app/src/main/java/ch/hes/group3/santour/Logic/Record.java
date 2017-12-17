@@ -264,4 +264,9 @@ public class Record implements Serializable {
             }
         }
     }
+
+    public static void destroy(){
+        mFusedLocationClient = null;
+        isRecording = false;
+    }
 }
