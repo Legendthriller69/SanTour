@@ -84,6 +84,8 @@ public class Pod_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pod, container, false);
 
+        MainActivity.setIsInRecordFragment(false);
+
         //instantiate elements
         btnNext = (Button) view.findViewById(R.id.btn_next);
         txtName = (EditText) view.findViewById(R.id.input_NamePod);

@@ -80,6 +80,8 @@ public class Poi_Fragment extends Fragment {
         // Inflate the layout for tghis fragment
         View view = inflater.inflate(R.layout.fragment_poi, container, false);
 
+        MainActivity.setIsInRecordFragment(false);
+
         //init elements
         img_takePicture = (ImageButton) view.findViewById(R.id.imageButton);
         img_pictureView = (ImageView) view.findViewById(R.id.imageView);

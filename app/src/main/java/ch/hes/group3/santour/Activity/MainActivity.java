@@ -5,6 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.util.List;
 
 import ch.hes.group3.santour.DTO.Track;
 import ch.hes.group3.santour.Logic.Record;
@@ -22,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Track that will be used everywhere
     private static Track track;
+
+    private static boolean isInRecordFragment = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +69,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!Record.isRecording())
-            if(!DetailsExistingTracks.isInDetails()){
+        if (!Record.isRecording())
+            if (!DetailsExistingTracks.isInDetails()) {
                 Record.destroy();
                 finish();
                 return;
             }
+
+        if (Record.isRecording()) {
+            if (isInRecordFragment) {
+                Log.e("record fragment", "je suis dans le record fragment");
+                Toast.makeText(this, R.string.saveTrackFirst, Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         if (fragmentManager.getBackStackEntryCount() > 1) {
             fragmentManager.popBackStack();
         } else {
@@ -86,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.track = track;
     }
 
+    public static void setIsInRecordFragment(boolean isInRecordFragment) {
+        MainActivity.isInRecordFragment = isInRecordFragment;
+    }
 }
 
 

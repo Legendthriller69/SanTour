@@ -59,6 +59,8 @@ public class ListPODs extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_pods, container, false);
 
+        MainActivity.setIsInRecordFragment(false);
+
         // options menu
         setHasOptionsMenu(true);
 

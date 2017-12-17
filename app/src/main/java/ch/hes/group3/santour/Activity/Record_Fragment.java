@@ -114,6 +114,7 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_record, container, false);
 
+        MainActivity.setIsInRecordFragment(true);
         //options menu
         setHasOptionsMenu(true);
 

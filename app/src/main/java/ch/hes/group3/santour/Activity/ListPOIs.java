@@ -56,6 +56,8 @@ public class ListPOIs extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_pois, container, false);
 
+        MainActivity.setIsInRecordFragment(false);
+
         fragmentManager = getActivity().getSupportFragmentManager();
 
         //options menu

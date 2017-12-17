@@ -52,6 +52,9 @@ public class Pod_Details_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pod__details, container, false);
 
+        MainActivity.setIsInRecordFragment(false);
+
+
         //instantiate all elements
         btnSave = (Button) view.findViewById(R.id.btn_savePodDetails);
         mListView = (ListView) view.findViewById(R.id.listView);
