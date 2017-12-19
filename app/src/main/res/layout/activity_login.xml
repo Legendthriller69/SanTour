@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.example.group3.santour.Activity.ch.example.group3.santour.Activity.LoginActivity">
+    tools:context="ch.hes.group3.santour.Activity.LoginActivity">
 
     <EditText
         android:id="@+id/txtMail"

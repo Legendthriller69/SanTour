@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fragment.Pod_Details_Fragment">
+    tools:context="ch.hes.group3.santour.Activity.Pod_Details_Fragment">
 
         <ListView
             android:id="@+id/listViewPOI"

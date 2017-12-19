@@ -3,7 +3,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fragment.Poi_Fragment">
+tools:context="ch.hes.group3.santour.Activity.Poi_Fragment">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -41,7 +41,8 @@ tools:context="com.example.group3.santour.Activity.com.example.group3.santour.Fr
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/input_NamePod"
-                            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+                            app:layout_constraintTop_toBottomOf="@+id/imageButton"
+                            android:layout_marginRight="8dp" />
 
                         <TextView
                             android:id="@+id/label_valuesGpsLongitude"
