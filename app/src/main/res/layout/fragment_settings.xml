@@ -7,82 +7,71 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <android.support.constraint.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="215dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Select your language"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/ImageBtn_EnLanguage"
-            android:layout_width="200dp"
-            android:layout_height="75dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:src="@mipmap/ic_flat_en"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            <TextView
+                android:id="@+id/txtView_SentenceLangage"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/txt_settingLanguage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/ImageBtn_DeLanguage"
-            android:layout_width="200dp"
-            android:layout_height="68dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:src="@mipmap/dic_flat_de"
-            app:layout_constraintEnd_toEndOf="@+id/ImageBtn_EnLanguage"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/ImageBtn_EnLanguage"
-            app:layout_constraintTop_toBottomOf="@+id/ImageBtn_EnLanguage" />
+            <ImageView
+                android:id="@+id/imView_FrFlag"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="24dp"
+                android:src="@mipmap/ic_flat_fr"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imView_DeFlag"
+                app:layout_constraintHorizontal_bias="0.75"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imView_DeFlag"
+                app:layout_constraintTop_toBottomOf="@+id/imView_EnFlag" />
 
-        <ImageButton
-            android:id="@+id/ImageBtn_FrLanguage"
-            android:layout_width="200dp"
-            android:layout_height="75dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:src="@mipmap/ic_flat_fr"
-            app:layout_constraintEnd_toEndOf="@+id/ImageBtn_DeLanguage"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/ImageBtn_DeLanguage"
-            app:layout_constraintTop_toBottomOf="@+id/ImageBtn_DeLanguage" />
+            <ImageView
+                android:id="@+id/imView_DeFlag"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="52dp"
+                android:src="@mipmap/dic_flat_de"
+                app:layout_constraintEnd_toEndOf="@+id/txtView_SentenceLangage"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txtView_SentenceLangage"
+                app:layout_constraintTop_toBottomOf="@+id/txtView_SentenceLangage" />
 
-        <Button
-            android:id="@+id/SettingSaveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/btn_save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/ImageBtn_FrLanguage"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/ImageBtn_FrLanguage"
-            app:layout_constraintTop_toBottomOf="@+id/ImageBtn_FrLanguage" />
+            <ImageView
+                android:id="@+id/imView_EnFlag"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="24dp"
+                android:src="@mipmap/ic_flat_en"
+                app:layout_constraintEnd_toEndOf="@+id/imView_DeFlag"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imView_DeFlag"
+                app:layout_constraintTop_toBottomOf="@+id/imView_DeFlag" />
 
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
 </FrameLayout>
