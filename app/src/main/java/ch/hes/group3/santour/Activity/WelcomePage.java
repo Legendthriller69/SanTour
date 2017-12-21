@@ -62,20 +62,25 @@ public class WelcomePage extends AppCompatActivity {
         btnSettings = (Button) findViewById(R.id.btnSettings);
         btnAllTracks = (Button) findViewById(R.id.btnAllTracks);
 
-        RoleDB.getRoleById(Authentication.getCurrentUser().getIdRole(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-                Role role = (Role) object ;
-                if(role.getName().equals("user")){
-                    btnRecord.setVisibility(View.GONE);
+        if(Authentication.getCurrentRole() == null) {
+            RoleDB.getRoleById(Authentication.getCurrentUser().getIdRole(), new DataListener() {
+                @Override
+                public void onSuccess(Object object) {
+                    Role role = (Role) object;
+                    if (role.getName().equals("user")) {
+                        btnRecord.setVisibility(View.GONE);
+                    }
                 }
-            }
+                @Override
+                public void onFailed(Object object) {
 
-            @Override
-            public void onFailed(Object object) {
-
+                }
+            });
+        }else{
+            if(Authentication.getCurrentRole().getName().equals("user")){
+                btnRecord.setVisibility(View.GONE);
             }
-        });
+        }
 
         btnRecord.setOnClickListener(new RecordTrackListener());
         btnAbout.setOnClickListener(new AboutPageListener());

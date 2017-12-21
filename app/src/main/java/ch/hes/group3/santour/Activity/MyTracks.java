@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.List;
+
 import ch.hes.group3.santour.Adapter.AdapterMyTrackList;
 import ch.hes.group3.santour.DTO.Track;
 import ch.hes.group3.santour.Firebase.Authentication;
 import ch.hes.group3.santour.Firebase.DataListener;
 import ch.hes.group3.santour.Firebase.TrackDB;
-
-import java.util.List;
 
 public class MyTracks extends Fragment {
 
@@ -64,25 +63,41 @@ public class MyTracks extends Fragment {
 
         mListView = (ListView) view.findViewById(R.id.myTrackListView);
 
-        TrackDB.getAllTracksByIdUser(Authentication.getCurrentUser().getId(), new DataListener() {
-            @Override
-            public void onSuccess(Object object) {
-                List<Track> tracks = (List<Track>) object;
-                WelcomePage.setTracks(tracks);
-                for (int i = 0; i < tracks.size(); i++) {
-                    Log.e("track", tracks.get(i).getName());
+
+        if(Authentication.getCurrentRole().getName().equals("user")){
+            TrackDB.getAllTracks(new DataListener() {
+                @Override
+                public void onSuccess(Object object) {
+                    List<Track> tracks = (List<Track>) object ;
+                    WelcomePage.setTracks(tracks);
+                    adapterTrack = new AdapterMyTrackList(getContext(), tracks);
+                    mListView.setAdapter(adapterTrack);
+                    mListView.setOnItemClickListener(new ItemClickTrack());
                 }
-                Log.e("tracks size", tracks.size() + "");
-                adapterTrack = new AdapterMyTrackList(getContext(), tracks);
-                mListView.setAdapter(adapterTrack);
-                mListView.setOnItemClickListener(new ItemClickTrack());
-            }
 
-            @Override
-            public void onFailed(Object object) {
+                @Override
+                public void onFailed(Object object) {
 
-            }
-        });
+                }
+            });
+        }else if(Authentication.getCurrentRole().getName().equals("tracker")){
+            TrackDB.getAllTracksByIdUser(Authentication.getCurrentUser().getId(), new DataListener() {
+                @Override
+                public void onSuccess(Object object) {
+                    List<Track> tracks = (List<Track>) object;
+                    WelcomePage.setTracks(tracks);
+                    adapterTrack = new AdapterMyTrackList(getContext(), tracks);
+                    mListView.setAdapter(adapterTrack);
+                    mListView.setOnItemClickListener(new ItemClickTrack());
+                }
+
+                @Override
+                public void onFailed(Object object) {
+
+                }
+            });
+        }
+
 
         return view;
     }
