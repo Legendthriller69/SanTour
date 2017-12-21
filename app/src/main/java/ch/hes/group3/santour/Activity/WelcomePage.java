@@ -9,10 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
+import ch.hes.group3.santour.DTO.Role;
 import ch.hes.group3.santour.DTO.Track;
 import ch.hes.group3.santour.Firebase.Authentication;
-
-import java.util.List;
+import ch.hes.group3.santour.Firebase.DataListener;
+import ch.hes.group3.santour.Firebase.RoleDB;
 
 public class WelcomePage extends AppCompatActivity {
 
@@ -58,6 +61,21 @@ public class WelcomePage extends AppCompatActivity {
         btnAbout = (Button) findViewById(R.id.btnAbout);
         btnSettings = (Button) findViewById(R.id.btnSettings);
         btnAllTracks = (Button) findViewById(R.id.btnAllTracks);
+
+        RoleDB.getRoleById(Authentication.getCurrentUser().getIdRole(), new DataListener() {
+            @Override
+            public void onSuccess(Object object) {
+                Role role = (Role) object ;
+                if(role.getName().equals("user")){
+                    btnRecord.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailed(Object object) {
+
+            }
+        });
 
         btnRecord.setOnClickListener(new RecordTrackListener());
         btnAbout.setOnClickListener(new AboutPageListener());
