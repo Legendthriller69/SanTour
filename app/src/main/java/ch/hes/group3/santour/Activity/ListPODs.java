@@ -94,10 +94,11 @@ public class ListPODs extends Fragment {
             if(getArguments() == null){
                 //create the fragment and add the bundle to the arguments
                 fragment = new Pod_Fragment();
-                fragment.setArguments(bundle);
             } else {
-                return;
+                fragment = new PodDetailsUser_Fragment();
             }
+            //set arguments to fragment
+            fragment.setArguments(bundle);
 
             //switch to the new fragment
             fragmentManager = getActivity().getSupportFragmentManager();
