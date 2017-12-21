@@ -1,0 +1,111 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.hes.group3.santour.Activity.PodDetailsUser_Frgament">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ImgView_PodUser"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtV_GpsUseLat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/ImgView_PodUser"
+                app:layout_constraintTop_toBottomOf="@+id/ImgView_PodUser"
+                tools:text="@string/latitude"
+                android:layout_marginLeft="8dp" />
+
+            <TextView
+                android:id="@+id/txtV_GpsUseLong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/txtV_GpsUseLat"
+                app:layout_constraintEnd_toEndOf="@+id/ImgView_PodUser"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtV_GpsUseLat"
+                app:layout_constraintTop_toBottomOf="@+id/ImgView_PodUser"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="@string/longitude" />
+
+            <TextView
+                android:id="@+id/txtV_NamePodUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/txtV_GpsUseLat"
+                app:layout_constraintTop_toBottomOf="@+id/txtV_GpsUseLat"
+                tools:text="NamePod" />
+
+            <TextView
+                android:id="@+id/txtV_PodDescripUser"
+                android:layout_width="365dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txtV_NamePodUser"
+                app:layout_constraintTop_toBottomOf="@+id/txtV_NamePodUser"
+                tools:text="Description Pod"
+                android:layout_marginRight="8dp" />
+
+            <TextView
+                android:id="@+id/txtV_PodDifficulites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/ListV_PodUser"
+                app:layout_constraintStart_toStartOf="@+id/txtV_PodDescripUser"
+                app:layout_constraintTop_toBottomOf="@+id/txtV_PodDescripUser"
+                tools:text="Difficulties" />
+
+            <ListView
+                android:id="@+id/ListV_PodUser"
+                android:layout_width="369dp"
+                android:layout_height="165dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtV_PodDescripUser"
+                app:layout_constraintStart_toStartOf="@+id/txtV_PodDifficulites"
+                app:layout_constraintTop_toBottomOf="@+id/txtV_PodDifficulites"
+                android:layout_marginRight="8dp" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>
