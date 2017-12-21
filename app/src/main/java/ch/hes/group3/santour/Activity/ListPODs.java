@@ -17,6 +17,7 @@ import java.util.List;
 
 import ch.hes.group3.santour.Adapter.AdapterPODList;
 import ch.hes.group3.santour.DTO.POD;
+import ch.hes.group3.santour.DTO.Track;
 
 
 public class ListPODs extends Fragment {
@@ -68,7 +69,12 @@ public class ListPODs extends Fragment {
         mListView = (ListView) view.findViewById(R.id.listViewPOI);
 
         //create the adapter
-        pods = MainActivity.getTrack().getPods();
+        if(getArguments() != null){
+            bundle = getArguments();
+            pods = ((Track) bundle.getSerializable("TRACK")).getPods();
+        } else {
+            pods = MainActivity.getTrack().getPods();
+        }
         adapterPODList = new AdapterPODList(getContext(), pods);
         mListView.setAdapter(adapterPODList);
         mListView.setOnItemClickListener(new ItemClickPOD());
@@ -85,9 +91,13 @@ public class ListPODs extends Fragment {
             bundle.putSerializable("POD", pods.get(i));
             bundle.putString("index", String.valueOf(i));
 
-            //create the fragment and add the bundle to the arguments
-            fragment = new Pod_Fragment();
-            fragment.setArguments(bundle);
+            if(getArguments() == null){
+                //create the fragment and add the bundle to the arguments
+                fragment = new Pod_Fragment();
+                fragment.setArguments(bundle);
+            } else {
+                return;
+            }
 
             //switch to the new fragment
             fragmentManager = getActivity().getSupportFragmentManager();

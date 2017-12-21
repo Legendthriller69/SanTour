@@ -96,5 +96,10 @@
     <string name="latitude">Latitude :</string>
     <string name="txt_settingLanguage">Select your language</string>
     <string name="txt_aboutpage">SanTour est une application de tracker. Autrement dit, elle permet d\'enregistrer les parcours avec les points intéressant ou inversément les points de diffcultés que vous pouvez croiser. Ces trajets enregistrés serviront à alimenter des applications qui utiliseront ces données pour mettre à disposition de nouveaux trajets</string>
+    <string name="noPOIForThisTrack">There\'s no POI for this track</string>
+    <string name="noPODForTrack">There\'s no POD for this track</string>
+    <string name="difficulties">Difficulties</string>
+    <string name="descriptionPOD">Description Pod</string>
+    <string name="namePOD">NamePod</string>
 
 </resources>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,6 +25,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.hes.group3.santour.Adapter.AdapterPODList;
+import ch.hes.group3.santour.Adapter.AdapterPOIList;
 import ch.hes.group3.santour.DTO.POD;
 import ch.hes.group3.santour.DTO.POI;
 import ch.hes.group3.santour.DTO.Position;
@@ -40,6 +43,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
     private TextView txtTime;
     private TextView txtName;
 
+    //fragment
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
@@ -159,14 +163,34 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
     private class ListPOIListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            if(track.getPois().size() > 0){
+                fragment = new ListPOIs();
+                bundle = new Bundle();
+                bundle.putSerializable("TRACK", track);
+                fragment.setArguments(bundle);
+                fragmentManager = getActivity().getSupportFragmentManager();
+                transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_container, fragment).addToBackStack(null).commit();
+            } else {
+                Toast.makeText(getActivity(), R.string.noPOIForThisTrack, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     private class ListPODListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-
+            if(track.getPods().size() > 0){
+                fragment = new ListPODs();
+                bundle = new Bundle();
+                bundle.putSerializable("TRACK", track);
+                fragment.setArguments(bundle);
+                fragmentManager = getActivity().getSupportFragmentManager();
+                transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_container, fragment).addToBackStack(null).commit();
+            } else {
+                Toast.makeText(getActivity(), R.string.noPODForTrack, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

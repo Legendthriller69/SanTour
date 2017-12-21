@@ -16,7 +16,9 @@ import android.widget.ListView;
 import java.util.List;
 
 import ch.hes.group3.santour.Adapter.AdapterPOIList;
+import ch.hes.group3.santour.DTO.POD;
 import ch.hes.group3.santour.DTO.POI;
+import ch.hes.group3.santour.DTO.Track;
 
 
 public class ListPOIs extends Fragment {
@@ -66,8 +68,13 @@ public class ListPOIs extends Fragment {
         //init elements
         mListView = (ListView) view.findViewById(R.id.listViewPOI);
 
-        //create adapter
-        pois = MainActivity.getTrack().getPois();
+        //create the adapter
+        if(getArguments() != null){
+            bundle = getArguments();
+            pois = ((Track) bundle.getSerializable("TRACK")).getPois();
+        } else {
+            pois = MainActivity.getTrack().getPois();
+        }
         adapterPOIList = new AdapterPOIList(getContext(), pois);
         mListView.setAdapter(adapterPOIList);
         mListView.setOnItemClickListener(new ItemClickPOI());
@@ -83,9 +90,13 @@ public class ListPOIs extends Fragment {
             bundle.putSerializable("POI", pois.get(i));
             bundle.putString("index", String.valueOf(i));
 
-            //create the fragment and add the bundle to the arguments
-            fragment = new Poi_Fragment();
-            fragment.setArguments(bundle);
+            if(getArguments() == null){
+                //create the fragment and add the bundle to the arguments
+                fragment = new Poi_Fragment();
+                fragment.setArguments(bundle);
+            } else {
+                return;
+            }
 
             //switch to the new fragment
             transaction = fragmentManager.beginTransaction();
