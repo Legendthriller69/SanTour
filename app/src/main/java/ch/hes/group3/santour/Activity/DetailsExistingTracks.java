@@ -27,10 +27,13 @@ import java.util.List;
 
 import ch.hes.group3.santour.Adapter.AdapterPODList;
 import ch.hes.group3.santour.Adapter.AdapterPOIList;
+import ch.hes.group3.santour.DTO.Category;
 import ch.hes.group3.santour.DTO.POD;
 import ch.hes.group3.santour.DTO.POI;
 import ch.hes.group3.santour.DTO.Position;
 import ch.hes.group3.santour.DTO.Track;
+import ch.hes.group3.santour.Firebase.CategoryDB;
+import ch.hes.group3.santour.Firebase.DataListener;
 import ch.hes.group3.santour.Logic.MapUpdate;
 
 
@@ -51,6 +54,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
     private int indexTrack;
     private Track track;
     private static boolean inDetails = false;
+    private static List<Category> categories;
 
     //maps object
     private MapView mapView;
@@ -103,6 +107,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         listPOIBtn.setOnClickListener(new ListPOIListener());
         listPODBtn.setOnClickListener(new ListPODListener());
 
+        setCategories();
 
         return view;
     }
@@ -230,5 +235,23 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
 
     public static void setInDetails(boolean inDetails) {
         DetailsExistingTracks.inDetails = inDetails;
+    }
+
+    public static List<Category> getCategories(){
+        return DetailsExistingTracks.categories;
+    }
+
+    private void setCategories(){
+        CategoryDB.getAllCategories(new DataListener() {
+            @Override
+            public void onSuccess(Object object) {
+                categories = (List<Category>) object;
+            }
+
+            @Override
+            public void onFailed(Object object) {
+
+            }
+        });
     }
 }
