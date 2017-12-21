@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 
 
 
-public class PodDetailsUser_Frgament extends Fragment {
+public class PodDetailsUser_Fragment extends Fragment {
 
-    public PodDetailsUser_Frgament() {
+    public PodDetailsUser_Fragment() {
         // Required empty public constructor
     }
 
