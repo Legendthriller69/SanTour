@@ -75,7 +75,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtV_NamePodUser"
-                tools:text="@string/descriptionPOD" />
+                tools:text="@string/descriptionPOD"
+                android:layout_marginLeft="16dp" />
 
             <TextView
                 android:id="@+id/txtV_PodDifficulites"

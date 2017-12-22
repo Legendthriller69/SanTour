@@ -100,7 +100,7 @@
                 android:layout_marginLeft="108dp"
                 android:layout_marginRight="144dp"
                 android:layout_marginStart="108dp"
-                android:text="@string/btn_save"
+                android:text="@string/save"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
                 app:layout_constraintRight_toRightOf="parent"

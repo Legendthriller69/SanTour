@@ -280,8 +280,8 @@ public class Pod_Fragment extends Fragment {
     private void initGUI(POD pod) {
         txtName.setText(pod.getName());
         txtDescription.setText(pod.getDescription());
-        String lat = "Latitude : " + pod.getPosition().getLatitude();
-        String longi = "Longitude : " + pod.getPosition().getLongitude();
+        String lat = getString(R.string.latitude) + pod.getPosition().getLatitude();
+        String longi = getString(R.string.longitude) + pod.getPosition().getLongitude();
         txtLng.setText(longi);
         txtLat.setText(lat);
         filenamePOD_Cam = pod.getPicture();

@@ -40,7 +40,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:background="@color/red_main"
-        android:text="@string/AllTracks"
+        android:text="@string/tracks"
         app:layout_constraintEnd_toEndOf="@+id/btnCreateTrack"
         app:layout_constraintStart_toStartOf="@+id/btnCreateTrack"
         app:layout_constraintTop_toBottomOf="@+id/btnCreateTrack"
