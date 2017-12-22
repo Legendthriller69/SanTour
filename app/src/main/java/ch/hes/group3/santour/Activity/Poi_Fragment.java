@@ -194,16 +194,19 @@ public class Poi_Fragment extends Fragment {
 
         @Override
         public void onClick(View view) {
+            TextView myTitle = new TextView(getContext());
+            myTitle.setText(R.string.choice_picture_title);
+            myTitle.setTextSize(25);
+            myTitle.setTextColor(getResources().getColor(R.color.red_main));
+            myTitle.setPadding(80,30,10,10);
             camera = new Camera();
             new AlertDialog.Builder(getActivity())
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(R.string.choice_picture_title)
+                    .setCustomTitle(myTitle)
                     .setMessage(R.string.choice_picture_message)
                     .setPositiveButton(R.string.choice_picture_camera, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             camera.setChoice("camera");
-                            //camera.launchCamera(Poi_Fragment.this);
                             camera.takePictureIntent(Poi_Fragment.this);
                         }
 
