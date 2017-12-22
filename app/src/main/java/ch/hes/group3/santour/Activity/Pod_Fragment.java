@@ -22,16 +22,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import ch.hes.group3.santour.DTO.POD;
 import ch.hes.group3.santour.DTO.Position;
 import ch.hes.group3.santour.Firebase.DataListener;
 import ch.hes.group3.santour.Firebase.StoragePicture;
 import ch.hes.group3.santour.Logic.Camera;
 import ch.hes.group3.santour.Logic.Record;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class Pod_Fragment extends Fragment {
@@ -186,11 +186,15 @@ public class Pod_Fragment extends Fragment {
 
         @Override
         public void onClick(View view) {
+            TextView myTitle = new TextView(getContext());
+            myTitle.setText(R.string.choice_picture_title);
+            myTitle.setTextSize(25);
+            myTitle.setTextColor(getResources().getColor(R.color.red_main));
+            myTitle.setPadding(80,30,10,10);
             if (camera == null)
                 camera = new Camera();
             new AlertDialog.Builder(getActivity())
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(R.string.choice_picture_title)
+                    .setCustomTitle(myTitle)
                     .setMessage(R.string.choice_picture_message)
                     .setPositiveButton(R.string.choice_picture_camera, new DialogInterface.OnClickListener() {
                         @Override
