@@ -56,7 +56,7 @@
                 android:layout_width="350dp"
                 android:layout_height="160dp"
                 android:layout_marginTop="8dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/ic_launcher_round"
                 app:layout_constraintEnd_toEndOf="@+id/input_NamePoi"
                 app:layout_constraintHorizontal_bias="0.294"
                 app:layout_constraintLeft_toLeftOf="parent"
