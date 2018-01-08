@@ -1,0 +1,130 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.hes.group3.santour.Activity.DetailsExistingTracks">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="1100dp">
+
+
+            <Button
+                android:id="@+id/btnListPOD"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/red_main"
+                android:text="@string/list_pod"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnListPOI"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/Duree"
+                app:layout_constraintTop_toTopOf="@+id/btnListPOI"
+                app:layout_constraintVertical_bias="1.0"
+                android:layout_marginRight="150dp"
+                android:layout_marginLeft="8dp" />
+
+            <Button
+                android:id="@+id/btnListPOI"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="200dp"
+                android:background="@color/red_main"
+                android:text="@string/list_poi"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/Distance"
+                app:layout_constraintHorizontal_bias="0.322"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Distance"
+                android:layout_marginLeft="150dp" />
+
+            <TextView
+                android:id="@+id/TitleDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="75dp"
+                android:text="@string/distance"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Map"
+                android:layout_marginLeft="150dp" />
+
+            <TextView
+                android:id="@+id/TitleDuree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="150dp"
+                android:text="@string/duration"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/TitleDistance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.68"
+                app:layout_constraintStart_toEndOf="@+id/TitleDistance"
+                app:layout_constraintTop_toTopOf="@+id/TitleDistance"
+                app:layout_constraintVertical_bias="1.0"
+                android:layout_marginRight="150dp" />
+
+            <TextView
+                android:id="@+id/Distance"
+                android:layout_width="79dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="32dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/TitleDistance"
+                app:layout_constraintStart_toStartOf="@+id/TitleDistance"
+                app:layout_constraintTop_toBottomOf="@+id/TitleDistance" />
+
+            <TextView
+                android:id="@+id/Duree"
+                android:layout_width="77dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="32dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/TitleDuree"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="@+id/TitleDuree"
+                app:layout_constraintTop_toBottomOf="@+id/TitleDuree" />
+
+            <TextView
+                android:id="@+id/TitleTrack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ch.hes.group3.santour.Activity.CustomMapView
+                android:id="@+id/Map"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_alignEnd="@+id/TitlePOI"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/TitlePOI"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/TitleTrack"
+                app:layout_constraintStart_toStartOf="@+id/TitleTrack"
+                app:layout_constraintTop_toBottomOf="@+id/TitleTrack" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </ScrollView>
+</FrameLayout>
