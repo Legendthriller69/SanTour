@@ -99,6 +99,11 @@
     <!-- USER VIEW -->
     <string name="difficulties">Difficulties</string>
     <string name="descriptionPOD">Description Pod</string>
+    <string name="walk">Walk</string>
+    <string name="bike">Bike</string>
+    <string name="racket">Racket</string>
+    <string name="roller">Roller</string>
+    <string name="chooseType">Choose the type of the record</string>
     <string name="namePOD" translatable="false">NamePod</string>
     <string name="descriptionPOI" translatable="false">descriptionPoiUser</string>
 

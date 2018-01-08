@@ -23,12 +23,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import ch.hes.group3.santour.DTO.Track;
-import ch.hes.group3.santour.Firebase.Authentication;
-import ch.hes.group3.santour.Logic.Record;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+
+import ch.hes.group3.santour.DTO.Track;
+import ch.hes.group3.santour.Firebase.Authentication;
+import ch.hes.group3.santour.Logic.Record;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
 
@@ -255,8 +256,10 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
             if (formValidation()) {
                 new AlertDialog.Builder(getActivity())
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle(R.string.save_track_confirmation_title)
-                        .setMessage(R.string.save_track_confirmation_text)
+                        //.setTitle(R.string.save_track_confirmation_title)
+                        //.setMessage(R.string.save_track_confirmation_text)
+                        .setTitle(R.string.chooseType)
+                        .setMessage(R.string.chooseType)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

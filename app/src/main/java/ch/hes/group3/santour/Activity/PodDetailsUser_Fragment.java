@@ -7,9 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.List;
+
+import ch.hes.group3.santour.DTO.Category;
 import ch.hes.group3.santour.DTO.POD;
 import ch.hes.group3.santour.Firebase.DataListener;
 import ch.hes.group3.santour.Firebase.StoragePicture;
@@ -23,13 +28,16 @@ public class PodDetailsUser_Fragment extends Fragment {
     private TextView txtLongitude;
     private TextView txtName;
     private TextView txtDescription;
-    private TextView listViewCategories;
+    private ListView listViewCategories;
 
     //Bundle
     private Bundle bundle;
 
     //POD object
     private POD pod;
+    private String[] categories;
+    private List<Category> categoryList;
+    private ArrayAdapter<String> adapter;
 
     //Firebase storage
     private StoragePicture storagePicture;
@@ -49,17 +57,23 @@ public class PodDetailsUser_Fragment extends Fragment {
         txtLongitude = (TextView) view.findViewById(R.id.txtV_GpsUseLong);
         txtName = (TextView) view.findViewById(R.id.txtV_NamePodUser);
         txtDescription = (TextView) view.findViewById(R.id.txtV_PodDescripUser);
+        listViewCategories = (ListView) view.findViewById(R.id.ListV_PodUser);
 
         storagePicture = new StoragePicture();
 
         bundle = getArguments();
-        pod = (POD)bundle.getSerializable("POD");
+        pod = (POD) bundle.getSerializable("POD");
 
+        //set all elements values
         txtLatitude.setText(pod.getPosition().getLatitude() + "");
         txtLongitude.setText(pod.getPosition().getLongitude() + "");
         txtName.setText(pod.getName());
         txtDescription.setText(pod.getDescription());
+        setDifficulties();
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, categories);
+        listViewCategories.setAdapter(adapter);
 
+        //get the picture from firebase storage
         storagePicture.downloadPicture(pod.getPicture(), new DataListener() {
             @Override
             public void onSuccess(Object object) {
@@ -70,16 +84,19 @@ public class PodDetailsUser_Fragment extends Fragment {
 
             @Override
             public void onFailed(Object object) {
-
             }
         });
 
 
-
-
-
         return view;
+    }
 
+    private void setDifficulties(){
+        categories = new String[pod.getPodCategories().size()];
+        categoryList = DetailsExistingTracks.getCategories();
+        for(int i = 0 ; i<categoryList.size() ; i++){
+            categories[i] = "\t" + categoryList.get(i).getName() + " : \t" + pod.getPodCategories().get(i).getValue();
+        }
     }
 
 }

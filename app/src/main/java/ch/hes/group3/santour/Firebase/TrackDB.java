@@ -2,7 +2,6 @@ package ch.hes.group3.santour.Firebase;
 
 import android.support.annotation.NonNull;
 
-import ch.hes.group3.santour.DTO.Track;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +13,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ch.hes.group3.santour.DTO.Track;
 
 /**
  * Created by kevin on 21/11/17.
@@ -69,6 +70,25 @@ public class TrackDB {
                     if(track.getIdUser().equals(idUser)){
                         tracks.add(track);
                     }
+                }
+                dataListener.onSuccess(tracks);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public static void getAllTracks(final DataListener dataListener){
+        TRACK_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Track> tracks = new ArrayList<>();
+                for (DataSnapshot trackSnapshot : dataSnapshot.getChildren()) {
+                    Track track = trackSnapshot.getValue(Track.class);
+                    tracks.add(track) ;
                 }
                 dataListener.onSuccess(tracks);
             }
