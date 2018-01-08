@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.util.List;
-
 import ch.hes.group3.santour.DTO.Track;
 import ch.hes.group3.santour.Logic.Record;
 
@@ -34,10 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        setTitle(this.getString(R.string.start_recording));
+        setTitle(this.getString(R.string.Recording));
 
-        //title of the navigationBar
-        setTitle(this.getString(R.string.start_recording));
 
         //everything linked to the fragments
         fragmentManager = getSupportFragmentManager();
@@ -60,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case ALLTRACKSFRAGMENT:
                 fragment = new MyTracks();
-                setTitle(getString(R.string.myTracks));
+                setTitle(getString(R.string.tracks));
                 break;
         }
         transaction = fragmentManager.beginTransaction();

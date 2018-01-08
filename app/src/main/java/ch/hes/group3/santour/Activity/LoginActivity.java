@@ -2,7 +2,10 @@ package ch.hes.group3.santour.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,9 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import ch.hes.group3.santour.Activity.R;
 
 import ch.hes.group3.santour.Firebase.Authentication;
 import ch.hes.group3.santour.Firebase.DataListener;
@@ -68,14 +71,26 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
+            TextView myTitle = new TextView(getApplicationContext());
+            myTitle.setText(R.string.loading);
+            myTitle.setTextSize(20);
+            myTitle.setTextColor(getResources().getColor(R.color.red_main));
+            myTitle.setPadding(80,30,10,10);
             Log.e("FORM", "FORM VALIDATION : " + formValidation());
             if (formValidation()) {
                 progressing = new ProgressDialog(LoginActivity.this);
                 progressing.setMessage(getString(R.string.waiting)); // Setting Message
-                progressing.setTitle(getString(R.string.loading)); // Setting Title
+                progressing.setCustomTitle(myTitle);
                 progressing.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
                 progressing.show(); // Display Progress Dialog
                 progressing.setCancelable(false);
+                progressing.setIndeterminate(true);
+
+                Drawable drawable = new ProgressBar(getApplicationContext()).getIndeterminateDrawable().mutate();
+                drawable.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.red_main),
+                        PorterDuff.Mode.SRC_IN);
+                progressing.setIndeterminateDrawable(drawable);
+
                 Authentication.signIn(txtMail.getText().toString(), txtPassword.getText().toString(), new DataListener() {
                     @Override
                     public void onSuccess(Object object) {

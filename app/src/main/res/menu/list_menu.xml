@@ -11,11 +11,11 @@
 
     <item
         android:id="@+id/list_poi"
-        android:title="@string/liste_pois"/>
+        android:title="@string/list_poi"/>
 
     <item
         android:id="@+id/list_pod"
-        android:title="@string/liste_pods"/>
+        android:title="@string/list_pod"/>
 
 
 </menu>

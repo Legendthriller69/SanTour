@@ -13,11 +13,11 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="168dp"
-            android:layout_height="175dp"
+            android:layout_width="500dp"
+            android:layout_height="400dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="100dp"
             android:src="@drawable/ic_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -30,10 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="298dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="50dp"
             android:text="@string/txt_aboutpage"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -41,7 +42,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            app:layout_constraintVertical_bias="0.272"
+            app:layout_constraintVertical_bias="0.286"
             tools:text="@string/txt_aboutpage" />
 
     </android.support.constraint.ConstraintLayout>
