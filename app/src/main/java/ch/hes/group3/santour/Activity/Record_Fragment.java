@@ -258,8 +258,8 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         //.setTitle(R.string.save_track_confirmation_title)
                         //.setMessage(R.string.save_track_confirmation_text)
-                        .setTitle(R.string.chooseType)
-                        .setMessage(R.string.chooseType)
+                        .setTitle("SCHMIDT")
+                        .setMessage("SCHMIDT")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

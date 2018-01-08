@@ -65,6 +65,8 @@ public class ListPODs extends Fragment {
         // options menu
         setHasOptionsMenu(true);
 
+        fragmentManager = getActivity().getSupportFragmentManager();
+
         // init elements
         mListView = (ListView) view.findViewById(R.id.listViewPOI);
 
@@ -101,10 +103,8 @@ public class ListPODs extends Fragment {
             fragment.setArguments(bundle);
 
             //switch to the new fragment
-            fragmentManager = getActivity().getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.main_container, fragment).commit();
+            transaction.replace(R.id.main_container, fragment).addToBackStack(null).commit();
         }
     }
 }

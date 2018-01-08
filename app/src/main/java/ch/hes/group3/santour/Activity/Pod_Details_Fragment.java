@@ -54,7 +54,6 @@ public class Pod_Details_Fragment extends Fragment {
 
         MainActivity.setIsInRecordFragment(false);
 
-
         //instantiate all elements
         btnSave = (Button) view.findViewById(R.id.btn_savePodDetails);
         mListView = (ListView) view.findViewById(R.id.listView);
