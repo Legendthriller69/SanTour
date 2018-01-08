@@ -101,6 +101,10 @@
     <string name="difficulties">Difficulties</string>
     <string name="descriptionPOD">Description Pod</string>
     <string name="namePOD">NamePod</string>
-    <string name="descriptionPOI">desciptionPoiUser</string>
+    <string name="walk">Walk</string>
+    <string name="bike">Bike</string>
+    <string name="racket">Racket</string>
+    <string name="roller">Roller</string>
+    <string name="chooseType">Choose the type of the record</string>
 
 </resources>
