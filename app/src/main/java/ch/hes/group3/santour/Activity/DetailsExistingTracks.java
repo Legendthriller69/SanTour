@@ -32,6 +32,7 @@ import ch.hes.group3.santour.DTO.POD;
 import ch.hes.group3.santour.DTO.POI;
 import ch.hes.group3.santour.DTO.Position;
 import ch.hes.group3.santour.DTO.Track;
+import ch.hes.group3.santour.DTO.Type;
 import ch.hes.group3.santour.Firebase.CategoryDB;
 import ch.hes.group3.santour.Firebase.DataListener;
 import ch.hes.group3.santour.Logic.MapUpdate;
@@ -55,6 +56,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
     private Track track;
     private static boolean inDetails = false;
     private static List<Category> categories;
+    private Type type;
 
     //maps object
     private MapView mapView;
@@ -80,7 +82,8 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         track = WelcomePage.getTracks().get(indexTrack);
 
         //set name
-        txtName.setText(track.getName());
+        setType();
+        txtName.setText(track.getName() + " - type : " + type.getName());
 
         //set time and distance
         if (track.getDistance() < 1000) {
@@ -253,5 +256,15 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
 
             }
         });
+    }
+
+    private void setType(){
+        for(int i =0 ; i<WelcomePage.getTypes().size() ; i++){
+            Type currentType = WelcomePage.getTypes().get(i);
+            if(currentType.getId().equals(track.getIdType())){
+                type = currentType;
+                return;
+            }
+        }
     }
 }
