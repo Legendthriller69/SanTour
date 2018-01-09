@@ -11,12 +11,14 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -27,8 +29,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.hes.group3.santour.DTO.Track;
+import ch.hes.group3.santour.DTO.Type;
 import ch.hes.group3.santour.Firebase.Authentication;
+import ch.hes.group3.santour.Firebase.DataListener;
+import ch.hes.group3.santour.Firebase.TypeDB;
 import ch.hes.group3.santour.Logic.Record;
 
 public class Record_Fragment extends Fragment implements OnMapReadyCallback {
@@ -54,6 +62,10 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private boolean outOfView;
+
+    //types
+    private List<Type> types;
+    private String[] typesString;
 
     public Record_Fragment() {
         timeWhenPause = Long.valueOf(0);
@@ -166,6 +178,23 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         //trackname text
         txtTrackName.setText("");
 
+        //load list of types
+        TypeDB.getAllTypes(new DataListener() {
+            @Override
+            public void onSuccess(Object object) {
+                types = (ArrayList<Type>) object;
+                typesString = new String[types.size()];
+                for (int i = 0; i < types.size(); i++) {
+                    typesString[i] = types.get(i).getName();
+                }
+            }
+
+            @Override
+            public void onFailed(Object object) {
+
+            }
+        });
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -254,27 +283,19 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         @Override
         public void onClick(View view) {
             if (formValidation()) {
-                new AlertDialog.Builder(getActivity())
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        //.setTitle(R.string.save_track_confirmation_title)
-                        //.setMessage(R.string.save_track_confirmation_text)
-                        .setTitle(R.string.chooseType)
-                        .setMessage(R.string.chooseType)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Record.createTrack(txtTrackName.getText().toString(), "DESCRIPTION A FAIRE", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), "idTypeAFAIRE", Authentication.getCurrentUser().getId());
-                                Toast.makeText(getActivity(), R.string.trackSaved, Toast.LENGTH_SHORT).show();
-                                getActivity().finish();
-
-                            }
-
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-
-           }
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.typeTrack);
+                builder.setItems(typesString, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Record.createTrack(txtTrackName.getText().toString(), "no description", (int) ((SystemClock.elapsedRealtime() - chrono.getBase()) / 1000), types.get(i).getId(), Authentication.getCurrentUser().getId());
+                        Toast.makeText(getActivity(), R.string.trackSaved, Toast.LENGTH_SHORT).show();
+                        getActivity().finish();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
         }
     }
 

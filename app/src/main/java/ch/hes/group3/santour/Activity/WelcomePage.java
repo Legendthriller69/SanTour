@@ -35,7 +35,7 @@ public class WelcomePage extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater =getMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.logout, menu);
         return true;
     }
@@ -45,6 +45,8 @@ public class WelcomePage extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout:
                 Authentication.logout(this);
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
                 break;
         }
         return true;
@@ -62,7 +64,7 @@ public class WelcomePage extends AppCompatActivity {
         btnSettings = (Button) findViewById(R.id.btnSettings);
         btnAllTracks = (Button) findViewById(R.id.btnAllTracks);
 
-        if(Authentication.getCurrentRole() == null) {
+        if (Authentication.getCurrentRole() == null) {
             RoleDB.getRoleById(Authentication.getCurrentUser().getIdRole(), new DataListener() {
                 @Override
                 public void onSuccess(Object object) {
@@ -73,11 +75,10 @@ public class WelcomePage extends AppCompatActivity {
                 }
                 @Override
                 public void onFailed(Object object) {
-
                 }
             });
-        }else{
-            if(Authentication.getCurrentRole().getName().equals("user")){
+        } else {
+            if (Authentication.getCurrentRole().getName().equals("user")) {
                 btnRecord.setVisibility(View.GONE);
             }
         }
@@ -118,6 +119,7 @@ public class WelcomePage extends AppCompatActivity {
     private class SettingsPageListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            finish();
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", SETTINGSFRAGMENT);
             startActivity(intent);

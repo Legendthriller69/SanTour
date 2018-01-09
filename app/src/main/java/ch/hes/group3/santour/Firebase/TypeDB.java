@@ -12,6 +12,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by kevin on 21/11/17.
  */
@@ -54,6 +57,26 @@ public class TypeDB {
                 Type type = dataSnapshot.getValue(Type.class);
                 type.setId(dataSnapshot.getKey());
                 dataListener.onSuccess(type);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                dataListener.onFailed(databaseError);
+            }
+        });
+    }
+
+    public static void getAllTypes(final DataListener dataListener) {
+        TYPE_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Type> types = new ArrayList<Type>();
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    Type type = userSnapshot.getValue(Type.class);
+                    type.setId(userSnapshot.getKey());
+                    types.add(type);
+                }
+                dataListener.onSuccess(types);
             }
 
             @Override

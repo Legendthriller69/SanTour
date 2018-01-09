@@ -93,15 +93,13 @@ public class ListPOIs extends Fragment {
             if(getArguments() == null){
                 //create the fragment and add the bundle to the arguments
                 fragment = new Poi_Fragment();
-                fragment.setArguments(bundle);
             } else {
-                return;
+                fragment = new PoiDetailsUser_Fragment();
             }
-
+            fragment.setArguments(bundle);
             //switch to the new fragment
             transaction = fragmentManager.beginTransaction();
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.main_container, fragment).commit();
+            transaction.replace(R.id.main_container, fragment).addToBackStack(null).commit();
 
         }
     }
