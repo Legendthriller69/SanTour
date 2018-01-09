@@ -101,5 +101,6 @@
     <string name="descriptionPOD">Description Pod</string>
     <string name="namePOD" translatable="false">NamePod</string>
     <string name="descriptionPOI" translatable="false">descriptionPoiUser</string>
+    <string name="typeTrack">Choose the type of track</string>
 
 </resources>

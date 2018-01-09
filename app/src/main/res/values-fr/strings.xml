@@ -57,4 +57,5 @@
     <string name="latitude">"Latitude: "</string>
     <string name="difficulties">Difficulté</string>
     <string name="descriptionPOD">Description POD</string>
+    <string name="typeTrack">Veuillez choisir le type de piste</string>
 </resources>
