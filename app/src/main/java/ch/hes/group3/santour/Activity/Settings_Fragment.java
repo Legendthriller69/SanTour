@@ -3,7 +3,9 @@ package ch.hes.group3.santour.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,8 +52,15 @@ public class Settings_Fragment extends Fragment {
         //options menu
         setHasOptionsMenu(true);
 
+        //initialize elements
+        frButton = (ImageView) view.findViewById(R.id.imView_FrFlag);
+        enButton = (ImageView) view.findViewById(R.id.imView_EnFlag);
+        deButton = (ImageView) view.findViewById(R.id.imView_DeFlag);
 
-        //TODO: ONCLICKLISTENER FOR CHANGING LANGUAGE
+        //listeners on buttons
+        frButton.setOnClickListener(new FrListener());
+        enButton.setOnClickListener(new EnListener());
+        deButton.setOnClickListener(new DeListener());
 
         return view;
     }
@@ -78,45 +87,47 @@ public class Settings_Fragment extends Fragment {
     }
 
 
-    public void changeToFR(View v){
-        String languageToLoad="fr";
+    public void changeToFR(View v) {
+        String languageToLoad = "fr";
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-
-        config.locale=locale;
-
+        config.locale = locale;
         getResources().updateConfiguration(config, v.getResources().getDisplayMetrics());
 
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
+        PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).edit().putString("LANGUAGE", languageToLoad).commit();
+        getActivity().finish();
+        Intent myIntent = new Intent(v.getContext(), WelcomePage.class);
+        startActivity(myIntent);
     }
 
-    public void changeToDE(View v){
-        String languageToLoad="de";
+    public void changeToDE(View v) {
+        Log.e("je change la langue", "je change la langue");
+        String languageToLoad = "de";
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-
-        config.locale=locale;
+        config.locale = locale;
         getResources().updateConfiguration(config, v.getResources().getDisplayMetrics());
 
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
+        PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).edit().putString("LANGUAGE", languageToLoad).commit();
+        getActivity().finish();
+        Intent myIntent = new Intent(v.getContext(), WelcomePage.class);
+        startActivity(myIntent);
     }
 
-    public void changeToEN(View v){
-        String languageToLoad="en";
+    public void changeToEN(View v) {
+        String languageToLoad = "en-rGB";
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-
-        config.locale=locale;
+        config.locale = locale;
         getResources().updateConfiguration(config, v.getResources().getDisplayMetrics());
 
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
-
+        PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).edit().putString("LANGUAGE", languageToLoad).commit();
+        getActivity().finish();
+        Intent myIntent = new Intent(v.getContext(), WelcomePage.class);
+        startActivity(myIntent);
     }
 
 }

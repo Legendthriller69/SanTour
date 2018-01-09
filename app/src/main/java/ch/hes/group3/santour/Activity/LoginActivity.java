@@ -2,9 +2,11 @@ package ch.hes.group3.santour.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -16,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import ch.hes.group3.santour.Firebase.Authentication;
 import ch.hes.group3.santour.Firebase.DataListener;
@@ -33,13 +37,12 @@ public class LoginActivity extends AppCompatActivity {
     // progress bar
     private ProgressDialog progressing;
 
-    private StoragePicture storagePicture;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        loadLastLanguage();
 
         //ask for permissions
         Permissions permissions = new Permissions();
@@ -95,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Object object) {
                         progressing.dismiss(); // dismiss progress bar
+                        finish();
                         Intent intent = new Intent(LoginActivity.this, WelcomePage.class);
                         startActivity(intent);
                     }
@@ -107,6 +111,16 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         }
+    }
+
+    private void loadLastLanguage(){
+        String language = PreferenceManager.getDefaultSharedPreferences(this).getString("LANGUAGE", "en");
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
     }
 }
 
