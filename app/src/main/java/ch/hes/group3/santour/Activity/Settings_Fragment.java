@@ -97,6 +97,7 @@ public class Settings_Fragment extends Fragment {
 
         PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).edit().putString("LANGUAGE", languageToLoad).commit();
         getActivity().finish();
+        WelcomePage.getActivity().finish();
         Intent myIntent = new Intent(v.getContext(), WelcomePage.class);
         startActivity(myIntent);
     }
@@ -112,6 +113,7 @@ public class Settings_Fragment extends Fragment {
 
         PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).edit().putString("LANGUAGE", languageToLoad).commit();
         getActivity().finish();
+        WelcomePage.getActivity().finish();
         Intent myIntent = new Intent(v.getContext(), WelcomePage.class);
         startActivity(myIntent);
     }
@@ -126,6 +128,7 @@ public class Settings_Fragment extends Fragment {
 
         PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).edit().putString("LANGUAGE", languageToLoad).commit();
         getActivity().finish();
+        WelcomePage.getActivity().finish();
         Intent myIntent = new Intent(v.getContext(), WelcomePage.class);
         startActivity(myIntent);
     }

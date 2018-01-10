@@ -1,5 +1,6 @@
 package ch.hes.group3.santour.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,10 @@ import ch.hes.group3.santour.Firebase.TypeDB;
 
 public class WelcomePage extends AppCompatActivity {
 
+    //Activity access to finish it from the settings
+    private static Activity activity;
+
+    //elements
     private Button btnRecord;
     private Button btnAbout;
     private Button btnSettings;
@@ -62,6 +67,8 @@ public class WelcomePage extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_page);
         setTitle(getString(R.string.Home));
 
+        WelcomePage.activity = this;
+
         btnRecord = (Button) findViewById(R.id.btnCreateTrack);
         btnAbout = (Button) findViewById(R.id.btnAbout);
         btnSettings = (Button) findViewById(R.id.btnSettings);
@@ -89,6 +96,7 @@ public class WelcomePage extends AppCompatActivity {
                         btnRecord.setVisibility(View.GONE);
                     }
                 }
+
                 @Override
                 public void onFailed(Object object) {
                 }
@@ -104,15 +112,6 @@ public class WelcomePage extends AppCompatActivity {
         btnSettings.setOnClickListener(new SettingsPageListener());
         btnAllTracks.setOnClickListener(new MyTracksListener());
     }
-
-    public static List<Track> getTracks() {
-        return tracks;
-    }
-
-    public static void setTracks(List<Track> tracks) {
-        WelcomePage.tracks = tracks;
-    }
-
 
     private class RecordTrackListener implements View.OnClickListener {
         @Override
@@ -135,7 +134,6 @@ public class WelcomePage extends AppCompatActivity {
     private class SettingsPageListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            finish();
             Intent intent = new Intent(WelcomePage.this, MainActivity.class);
             intent.putExtra("frgToLoad", SETTINGSFRAGMENT);
             startActivity(intent);
@@ -157,5 +155,21 @@ public class WelcomePage extends AppCompatActivity {
 
     public static void setTypes(List<Type> types) {
         WelcomePage.types = types;
+    }
+
+    public static List<Track> getTracks() {
+        return tracks;
+    }
+
+    public static void setTracks(List<Track> tracks) {
+        WelcomePage.tracks = tracks;
+    }
+
+    public static Activity getActivity() {
+        return activity;
+    }
+
+    public static void setActivity(Activity activity) {
+        WelcomePage.activity = activity;
     }
 }
