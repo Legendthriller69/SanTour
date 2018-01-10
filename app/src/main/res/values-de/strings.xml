@@ -58,4 +58,6 @@
     <string name="descriptionPOD">Beschreibung POD</string>
     <string name="txt_aboutpage">SanTour est une application de tracker. Autrement dit, elle permet d\'enregistrer les parcours avec les points intéressant ou inversément les points de diffcultés que vous pouvez croiser. Ces trajets enregistrés serviront à alimenter des applications qui utiliseront ces données pour mettre à disposition de nouveaux trajets</string>
     <string name="typeTrack">Wählen Sie die Art der Strecke</string>
+    <string name="endTrack">Ende</string>
+    <string name="beginTrack">Anfang</string>
 </resources>

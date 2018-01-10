@@ -121,6 +121,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         zoomMap();
         addPolylineOnMap();
         addMarkerOnMap();
+        addBeginEndMarkerOnMap();
     }
 
     @Override
@@ -168,10 +169,27 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         }
     }
 
+    @Override
+    public void addBeginEndMarkerOnMap() {
+        LatLng position;
+        //begin marker
+        position = new LatLng(track.getPositions().get(0).getLatitude(), track.getPositions().get(0).getLongitude());
+        mMap.addMarker(new MarkerOptions()
+                .position(position)
+                .title(getString(R.string.beginTrack))
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        //end marker
+        position = new LatLng(track.getPositions().get(track.getPositions().size() - 1).getLatitude(), track.getPositions().get(track.getPositions().size() - 1).getLongitude());
+        mMap.addMarker(new MarkerOptions()
+                .position(position)
+                .title(getString(R.string.endTrack))
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+    }
+
     private class ListPOIListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if(track.getPois().size() > 0){
+            if (track.getPois().size() > 0) {
                 fragment = new ListPOIs();
                 bundle = new Bundle();
                 bundle.putSerializable("TRACK", track);
@@ -188,7 +206,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
     private class ListPODListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            if(track.getPods().size() > 0){
+            if (track.getPods().size() > 0) {
                 fragment = new ListPODs();
                 bundle = new Bundle();
                 bundle.putSerializable("TRACK", track);
@@ -240,11 +258,11 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         DetailsExistingTracks.inDetails = inDetails;
     }
 
-    public static List<Category> getCategories(){
+    public static List<Category> getCategories() {
         return DetailsExistingTracks.categories;
     }
 
-    private void setCategories(){
+    private void setCategories() {
         CategoryDB.getAllCategories(new DataListener() {
             @Override
             public void onSuccess(Object object) {
@@ -258,10 +276,10 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         });
     }
 
-    private void setType(){
-        for(int i =0 ; i<WelcomePage.getTypes().size() ; i++){
+    private void setType() {
+        for (int i = 0; i < WelcomePage.getTypes().size(); i++) {
             Type currentType = WelcomePage.getTypes().get(i);
-            if(currentType.getId().equals(track.getIdType())){
+            if (currentType.getId().equals(track.getIdType())) {
                 type = currentType;
                 return;
             }

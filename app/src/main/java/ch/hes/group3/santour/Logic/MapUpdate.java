@@ -9,5 +9,6 @@ public interface MapUpdate {
     void zoomMap();
     void addPolylineOnMap();
     void addMarkerOnMap();
+    void addBeginEndMarkerOnMap();
 
 }
