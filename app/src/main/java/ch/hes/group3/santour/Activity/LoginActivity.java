@@ -18,6 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Locale;
 
 import ch.hes.group3.santour.Firebase.Authentication;
@@ -47,6 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         permissions.checkPermissions(this);
 
         setTitle(getString(R.string.Login));
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         //initialize elements
         txtMail = (EditText) findViewById(R.id.txtMail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
