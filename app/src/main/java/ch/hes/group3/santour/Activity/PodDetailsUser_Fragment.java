@@ -92,8 +92,8 @@ public class PodDetailsUser_Fragment extends Fragment {
         pod = (POD) bundle.getSerializable("POD");
 
         //set all elements values
-        //txtLatitude.setText(pod.getPosition().getLatitude() + "");
-        //txtLongitude.setText(pod.getPosition().getLongitude() + "");
+        txtLatitude.setText("Lattitude: " + pod.getPosition().getLatitude() + "");
+        txtLongitude.setText("Longitude: " +pod.getPosition().getLongitude() + "");
         txtName.setText(pod.getName());
         txtDescription.setText(pod.getDescription());
         setDifficulties();

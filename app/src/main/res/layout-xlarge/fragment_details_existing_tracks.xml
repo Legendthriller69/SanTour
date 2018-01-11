@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="150dp"
-                android:layout_marginTop="75dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/distance"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,14 +65,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="150dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/duration"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/TitleDistance"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.68"
-                app:layout_constraintStart_toEndOf="@+id/TitleDistance"
-                app:layout_constraintTop_toTopOf="@+id/TitleDistance"
-                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintTop_toBottomOf="@+id/Map"
                 android:layout_marginRight="150dp" />
 
             <TextView
@@ -93,6 +91,7 @@
                 android:layout_marginTop="32dp"
                 android:text="TextView"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/Distance"
                 app:layout_constraintEnd_toEndOf="@+id/TitleDuree"
                 app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="@+id/TitleDuree"
@@ -124,7 +123,5 @@
                 app:layout_constraintTop_toBottomOf="@+id/TitleTrack" />
 
         </android.support.constraint.ConstraintLayout>
-
-
     </ScrollView>
 </FrameLayout>
