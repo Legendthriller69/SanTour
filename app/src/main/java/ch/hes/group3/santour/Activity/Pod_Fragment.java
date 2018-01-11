@@ -135,6 +135,9 @@ public class Pod_Fragment extends Fragment {
         return view;
     }
 
+    /**
+     * listener on a button to go to the categories of the pod
+     */
     private class NextPOD implements View.OnClickListener {
 
         @Override
@@ -147,14 +150,14 @@ public class Pod_Fragment extends Fragment {
                     pod.setPosition(position);
                 }
 
-                if(!update){
+                if (!update) {
                     pod.setPicture(filenamePOD_Cam);
                     storePic.uploadPicture(pathFileStore, filenamePOD_Cam);
                 }
 
                 String oldPictureName;
-                if(update){
-                    if(pictureChanged){
+                if (update) {
+                    if (pictureChanged) {
                         oldPictureName = pod.getPicture();
                         pod.setPicture(filenamePOD_Cam);
                         storePic.uploadPicture(pathFileStore, filenamePOD_Cam);
@@ -182,6 +185,11 @@ public class Pod_Fragment extends Fragment {
         }
     }
 
+    /**
+     * listener on the button to add a picture to the pod
+     * you can choose between an import from the gallery
+     * and to take the picture directly from your phone
+     */
     private class TakePicture implements View.OnClickListener {
 
         @Override
@@ -190,7 +198,7 @@ public class Pod_Fragment extends Fragment {
             myTitle.setText(R.string.choice_picture_title);
             myTitle.setTextSize(25);
             myTitle.setTextColor(getResources().getColor(R.color.red_main));
-            myTitle.setPadding(80,30,10,10);
+            myTitle.setPadding(80, 30, 10, 10);
             if (camera == null)
                 camera = new Camera();
             new AlertDialog.Builder(getActivity())
@@ -216,12 +224,10 @@ public class Pod_Fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("TEST-TEST", "Data : " + data);
         pictureChanged = true;
         if (camera.getChoice() == "camera") {
 
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
-            Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture());
 
             Bitmap rotatedPic = null;
             try {
@@ -250,18 +256,12 @@ public class Pod_Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        Log.e("BITMAP", (bitmap != null) + "");
-//        if (bitmap != null) {
-//            if (camera.getChoice() == "camera") {
-//                Log.e("CHOICE", camera.getChoice());
-//                camera.addToImageViewCamera(requestCode, resultCode, bitmap, getActivity(), pictureView);
-//            } else {
-//                Log.e("CHOICE", camera.getChoice());
-//                camera.addToImageViewGallery(requestCode, resultCode, getActivity(), pictureView, data);
-//            }
-//        }
     }
 
+    /**
+     * form validation to check that everything is filled in for the form
+     * @return
+     */
     private boolean formValidation() {
         if (txtName.getText().toString().equals("")) {
             Toast.makeText(getContext(), R.string.addNamePOD, Toast.LENGTH_SHORT).show();
@@ -277,6 +277,10 @@ public class Pod_Fragment extends Fragment {
         return true;
     }
 
+    /**
+     * initialize the GUI on the creation of the ragment by setting everything needed in the view
+     * @param pod
+     */
     private void initGUI(POD pod) {
         txtName.setText(pod.getName());
         txtDescription.setText(pod.getDescription());

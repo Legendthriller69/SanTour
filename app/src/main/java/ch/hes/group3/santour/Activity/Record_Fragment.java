@@ -199,6 +199,11 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         return view;
     }
 
+    /**
+     * instantiage the map on map ready async method
+     *
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -207,6 +212,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         Record.updateMap();
     }
 
+    /**
+     * listener to add a new pod
+     */
     private class AddPOD implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -221,6 +229,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    /**
+     * listener to add a new poi
+     */
     private class AddPOI implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -233,6 +244,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    /**
+     * listener to start recording the track
+     */
     private class StartRecording implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -262,6 +276,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    /**
+     * listener to pause recording for the track
+     */
     private class PauseRecording implements View.OnClickListener {
 
         @Override
@@ -278,6 +295,9 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    /**
+     * listener to stop recording for the track and save the track into the db
+     */
     private class StopRecording implements View.OnClickListener {
 
         @Override
@@ -333,32 +353,16 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         mapView.onStop();
     }
 
-    public void onBackPressed() {
-        if (Record.isRecording()) {
-            new AlertDialog.Builder(getActivity())
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(R.string.application_close)
-                    .setMessage(R.string.track_lost_message)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            getActivity().finish();
-                        }
-
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
-        } else {
-            getActivity().finish();
-        }
-    }
-
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
     }
 
+    /**
+     * create an alert dialog to say that the gps is disabled
+     * will start another activity to activate the gps
+     */
     private void createGpsDisabledAlert() {
         AlertDialog.Builder localBuilder = new AlertDialog.Builder(getActivity());
         localBuilder
@@ -382,10 +386,18 @@ public class Record_Fragment extends Fragment implements OnMapReadyCallback {
         localBuilder.create().show();
     }
 
+    /**
+     * starts the activity to activate the location
+     */
     private void showGpsOptions() {
         startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
     }
 
+    /**
+     * check that everything is correctly filled
+     * shows a toast if not
+     * @return
+     */
     private boolean formValidation() {
         if (txtTrackName.getText().toString().equals("")) {
             Toast.makeText(getContext(), R.string.NameTrackFirst, Toast.LENGTH_SHORT).show();

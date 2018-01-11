@@ -82,6 +82,9 @@ public class ListPOIs extends Fragment {
         return view;
     }
 
+    /**
+     * click on an item list to get the details of a poi
+     */
     private class ItemClickPOI implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

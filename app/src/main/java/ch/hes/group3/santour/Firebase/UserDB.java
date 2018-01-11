@@ -27,12 +27,11 @@ public class UserDB {
 
     }
 
-    public static void createUser(User user) {
-        DatabaseReference id = USER_REFERENCE.push();
-        id.setValue(user);
-        ;
-    }
-
+    /**
+     * creates a user into the firebase
+     * @param user
+     * @param dataListener
+     */
     public static void createUser(User user, final DataListener dataListener) {
         final DatabaseReference id = USER_REFERENCE.push();
         id.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

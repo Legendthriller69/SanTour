@@ -102,6 +102,9 @@ public class MyTracks extends Fragment {
         return view;
     }
 
+    /**
+     * listener to click on an item to get the details of a track
+     */
     private class ItemClickTrack implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

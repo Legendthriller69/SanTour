@@ -24,13 +24,11 @@ public class RoleDB {
 
     }
 
-    ;
-
-    public static void createRole(Role role) {
-        final DatabaseReference id = ROLE_REFERENCE.push();
-        id.setValue(role);
-    }
-
+    /**
+     * creates a role into the db
+     * @param role
+     * @param dataListener
+     */
     public static void createRole(final Role role, final DataListener dataListener) {
         final DatabaseReference id = ROLE_REFERENCE.push();
         id.setValue(role).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -42,8 +40,7 @@ public class RoleDB {
     }
 
     /**
-     * get user by id
-     *
+     * get role by id
      * @param id
      * @param dataListener
      */

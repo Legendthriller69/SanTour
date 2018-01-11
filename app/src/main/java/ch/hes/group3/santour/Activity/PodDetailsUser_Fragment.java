@@ -29,8 +29,6 @@ public class PodDetailsUser_Fragment extends Fragment {
 
     //elements
     private ImageView imgView;
-    private TextView txtLatitude;
-    private TextView txtLongitude;
     private TextView txtName;
     private TextView txtDescription;
     private ListView listViewCategories;
@@ -81,8 +79,6 @@ public class PodDetailsUser_Fragment extends Fragment {
         fragmentManager = getActivity().getSupportFragmentManager();
 
         imgView = (ImageView) view.findViewById(R.id.ImgView_PodUser);
-        txtLatitude = (TextView) view.findViewById(R.id.txtV_GpsUseLat);
-        txtLongitude = (TextView) view.findViewById(R.id.txtV_GpsUseLong);
         txtName = (TextView) view.findViewById(R.id.txtV_NamePodUser);
         txtDescription = (TextView) view.findViewById(R.id.txtV_PodDescripUser);
         listViewCategories = (ListView) view.findViewById(R.id.ListV_PodUser);
@@ -121,6 +117,9 @@ public class PodDetailsUser_Fragment extends Fragment {
         return view;
     }
 
+    /**
+     * set the difficulties of the current pod
+     */
     private void setDifficulties(){
         categories = new String[pod.getPodCategories().size()];
         categoryList = DetailsExistingTracks.getCategories();

@@ -28,6 +28,11 @@ public class TrackDB {
 
     }
 
+    /**
+     * creates a track into the firebase database
+     * @param track
+     * @param dataListener
+     */
     public static void createTrack(Track track, final DataListener dataListener) {
         final DatabaseReference id = TRACK_REFERENCE.push();
         id.setValue(track).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -38,11 +43,20 @@ public class TrackDB {
         });
     }
 
+    /**
+     * create a track into the db
+     * @param track
+     */
     public static void createTrack(Track track) {
         final DatabaseReference id = TRACK_REFERENCE.push();
         id.setValue(track);
     }
 
+    /**
+     * get a track by id
+     * @param id
+     * @param dataListener
+     */
     public static void getTrackById(final String id, final DataListener dataListener) {
         Query query = TRACK_REFERENCE.child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -60,6 +74,11 @@ public class TrackDB {
         });
     }
 
+    /**
+     * get all tracks for the user
+     * @param idUser
+     * @param dataListener
+     */
     public static void getAllTracksByIdUser(final String idUser, final DataListener dataListener){
         TRACK_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -81,6 +100,10 @@ public class TrackDB {
         });
     }
 
+    /**
+     * get all tracks from the firebase
+     * @param dataListener
+     */
     public static void getAllTracks(final DataListener dataListener){
         TRACK_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

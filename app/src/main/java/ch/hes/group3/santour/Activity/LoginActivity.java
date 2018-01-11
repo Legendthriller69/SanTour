@@ -58,6 +58,12 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new SignIn());
     }
 
+    /**
+     * check if all the input text are well filled in
+     * show toast if not
+     *
+     * @return
+     */
     private boolean formValidation() {
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(txtMail.getText()).matches()) {
             Toast.makeText(this, R.string.enterValidMail, Toast.LENGTH_SHORT).show();
@@ -70,6 +76,9 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * listener to sign in will compare the form's input with the authentication from firebase
+     */
     private class SignIn implements View.OnClickListener {
 
         @Override
@@ -78,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             myTitle.setText(R.string.loading);
             myTitle.setTextSize(20);
             myTitle.setTextColor(getResources().getColor(R.color.red_main));
-            myTitle.setPadding(80,30,10,10);
+            myTitle.setPadding(80, 30, 10, 10);
             Log.e("FORM", "FORM VALIDATION : " + formValidation());
             if (formValidation()) {
                 progressing = new ProgressDialog(LoginActivity.this);
@@ -113,8 +122,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void loadLastLanguage(){
-        String language = PreferenceManager.getDefaultSharedPreferences(this).getString("LANGUAGE", "en");
+    /**
+     * load the last language from the database by using the shared preferences
+     */
+    private void loadLastLanguage() {
+        String language = PreferenceManager.getDefaultSharedPreferences(this).getString("LANGUAGE", "en-rGB");
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration config = new Configuration();

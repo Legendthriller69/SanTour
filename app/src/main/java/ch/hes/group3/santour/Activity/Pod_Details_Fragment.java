@@ -95,6 +95,9 @@ public class Pod_Details_Fragment extends Fragment {
         return view;
     }
 
+    /**
+     * listener on method to save the pod with the categories
+     */
     private class SavePOD implements View.OnClickListener {
 
         @Override

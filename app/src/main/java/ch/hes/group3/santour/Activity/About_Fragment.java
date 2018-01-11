@@ -16,7 +16,11 @@ public class About_Fragment extends Fragment {
         // Required empty public constructor
     }
 
-    //Create an action bar button
+    /**
+     * to create options menu
+     * @param menu
+     * @param inflater
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.navigation_top, menu);

@@ -56,6 +56,10 @@ public class Record implements Serializable {
 
     private static float[] distances = new float[1];
 
+    private Record() {
+
+    }
+
     public static void getInstance(Activity activity, TextView txtDistance) {
         Record.activity = activity;
         Record.txtDistance = txtDistance;
@@ -64,10 +68,10 @@ public class Record implements Serializable {
         }
     }
 
-    private Record() {
-
-    }
-
+    /**
+     * start the recording of a track
+     * and creates the locationUpdate
+     */
     public static void startRecording() {
         setUserCurrentPosition();
         createLocationRequest();
@@ -75,6 +79,9 @@ public class Record implements Serializable {
         isRecording = true;
     }
 
+    /**
+     * move the camera to the user position
+     */
     public static void moveCameraToUserPosition() {
         try {
             mFusedLocationClient.getLastLocation()
@@ -95,6 +102,10 @@ public class Record implements Serializable {
         }
     }
 
+    /**
+     * get the user latitude and longitude
+     * @param dataListener
+     */
     public static void getUserLatLng(final DataListener dataListener) {
         try {
             mFusedLocationClient.getLastLocation()
@@ -112,6 +123,9 @@ public class Record implements Serializable {
         }
     }
 
+    /**
+     * set the user current position on the map
+     */
     public static void setUserCurrentPosition() {
         try {
             mFusedLocationClient.getLastLocation()
@@ -134,6 +148,9 @@ public class Record implements Serializable {
         }
     }
 
+    /**
+     * creates the location request with an interval of 1 second
+     */
     private static void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
@@ -141,6 +158,10 @@ public class Record implements Serializable {
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
+    /**
+     * starts the location update
+     * method will be called at every location change
+     */
     public static void startLocationUpdates() {
         locationCallback = new LocationCallback() {
             @Override
@@ -176,11 +197,17 @@ public class Record implements Serializable {
         }
     }
 
+    /**
+     * pause the location update
+     */
     public static void pauseLocationUpdates() {
         if (locationCallback != null)
             mFusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
+    /**
+     * stops the location update
+     */
     private static void stopLocationUpdates() {
         //stop the location update
         if (locationCallback != null)
@@ -189,6 +216,14 @@ public class Record implements Serializable {
         isRecording = false;
     }
 
+    /**
+     * create the track into the database with all the needed informations
+     * @param name
+     * @param description
+     * @param duration
+     * @param idType
+     * @param idUser
+     */
     public static void createTrack(String name, String description, int duration, String idType, String idUser) {
         //stop the location updates
         stopLocationUpdates();
@@ -209,10 +244,21 @@ public class Record implements Serializable {
         MainActivity.setTrack(null);
     }
 
+    /**
+     * boolean to check if it is recording
+     * @return
+     */
     public static boolean isRecording() {
         return isRecording;
     }
 
+    /**
+     * check if the last position and the current location are the same
+     * not to add twice some locations into the db
+     * @param lastPosition
+     * @param location
+     * @return
+     */
     private static boolean isSamePosition(Position lastPosition, Location location) {
         double newLong = Math.floor(location.getLongitude() * 100000) / 100000;
         double newLat = Math.floor(location.getLatitude() * 100000) / 100000;
@@ -233,22 +279,35 @@ public class Record implements Serializable {
         return false;
     }
 
+    /**
+     * add marker on the map
+     * @param latitude
+     * @param longitude
+     * @param text
+     */
     public static void addMarker(double latitude, double longitude, String text) {
         mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(text));
     }
 
+    /**
+     * set the map to the current one
+     * @param mMap
+     */
     public static void setMap(GoogleMap mMap) {
         Record.mMap = mMap;
     }
 
+    /**
+     * get current distance
+     * @return
+     */
     public static String getDistanceText() {
         return text;
     }
 
-    public static List<Position> getPositions() {
-        return positions;
-    }
-
+    /**
+     * update the map with all the needed informations
+     */
     public static void updateMap() {
         if (MainActivity.getTrack() != null) {
             if (positions.size() >= 1) {
@@ -265,6 +324,10 @@ public class Record implements Serializable {
         }
     }
 
+    /**
+     * destroy the current record when the
+     * track is saved
+     */
     public static void destroy(){
         mFusedLocationClient = null;
         isRecording = false;

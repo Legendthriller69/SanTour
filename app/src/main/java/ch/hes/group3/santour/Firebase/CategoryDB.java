@@ -27,6 +27,12 @@ public class CategoryDB {
 
     }
 
+    /**
+     * create a category into firebase
+     * data listener used to get the result asynchronously
+     * @param category
+     * @param dataListener
+     */
     public static void createCategory(Category category, final DataListener dataListener) {
         final DatabaseReference id = CATEGORY_REFERENCE.push();
         id.setValue(category).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -37,11 +43,19 @@ public class CategoryDB {
         });
     }
 
+    /**
+     * creates the category into firebase
+     * @param category
+     */
     public static void createCategory(Category category) {
         final DatabaseReference id = CATEGORY_REFERENCE.push();
         id.setValue(category);
     }
 
+    /**
+     * get all categories from the db
+     * @param dataListener
+     */
     public static void getAllCategories(final DataListener dataListener) {
         CATEGORY_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -62,6 +76,11 @@ public class CategoryDB {
         });
     }
 
+    /**
+     * get category by id from the db
+     * @param id
+     * @param dataListener
+     */
     public static void getCategoryById(final String id, final DataListener dataListener) {
         Query query = CATEGORY_REFERENCE.child(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {

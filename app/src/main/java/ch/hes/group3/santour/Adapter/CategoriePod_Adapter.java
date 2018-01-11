@@ -80,6 +80,9 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
         }
     }
 
+    /**
+     * seek change listener to get all changes from the seekbar and set the pod values
+     */
     private class SeekChange implements SeekBar.OnSeekBarChangeListener {
         private int position;
         private TextView txtViewValue;
@@ -106,6 +109,10 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
         }
     }
 
+    /**
+     * get all the podCategories to set it to the current pod
+     * @return
+     */
     public List<PODCategory> getPodCategories() {
         return podCategories;
     }

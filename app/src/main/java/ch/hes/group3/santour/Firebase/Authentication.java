@@ -23,10 +23,20 @@ public class Authentication {
     private static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private static User currentUser;
 
+    /**
+     * private constructor
+     */
     private Authentication() {
 
     }
 
+    /**
+     * method to sign in the application with the mail and the password
+     * data listener is used to get the asynchronous result from firebase
+     * @param mail
+     * @param password
+     * @param dataListener
+     */
     public static void signIn(final String mail, String password, final DataListener dataListener) {
         firebaseAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -61,6 +71,11 @@ public class Authentication {
         });
     }
 
+    /**
+     * method to logout from the application
+     * closes the current activity passed in parameter
+     * @param activity
+     */
     public static void logout(Activity activity){
         firebaseAuth.signOut();
         currentUser = null;
@@ -68,14 +83,18 @@ public class Authentication {
         role = null ;
     }
 
+    /**
+     * get the current user
+     * @return
+     */
     public static User getCurrentUser() {
         return currentUser;
     }
 
-    public static void setCurrentUser(User user) {
-        currentUser = user;
-    }
-
+    /**
+     * get the current role
+     * @return
+     */
     public static Role getCurrentRole() {
         return role ;
     }

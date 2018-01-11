@@ -85,6 +85,13 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         return true;
     }
 
+    /**
+     * creation of the view
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -139,6 +146,10 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         return view;
     }
 
+    /**
+     * instantiate google map async
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -148,12 +159,18 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         addBeginEndMarkerOnMap();
     }
 
+    /**
+     * zoom on the map at the center of the track
+     */
     @Override
     public void zoomMap() {
         Position position = track.getPositions().get(track.getPositions().size() / 2);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(position.getLatitude(), position.getLongitude()), 15));
     }
 
+    /**
+     * add polyline on the map with all the track's positions
+     */
     @Override
     public void addPolylineOnMap() {
         List<LatLng> points = new ArrayList<>();
@@ -167,6 +184,9 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         mMap.addPolyline(polylineOptions);
     }
 
+    /**
+     * add all the markers for the pod and poi
+     */
     @Override
     public void addMarkerOnMap() {
         LatLng position;
@@ -193,6 +213,9 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         }
     }
 
+    /**
+     * add begin and end marker on the map in a different color
+     */
     @Override
     public void addBeginEndMarkerOnMap() {
         LatLng position;
@@ -210,6 +233,9 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
     }
 
+    /**
+     * listener to show the list of all the poi for the current track
+     */
     private class ListPOIListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -227,6 +253,9 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         }
     }
 
+    /**
+     * listener to get all the pod of the current track
+     */
     private class ListPODListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -286,6 +315,9 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         return DetailsExistingTracks.categories;
     }
 
+    /**
+     * set all the categories with the list from firebase
+     */
     private void setCategories() {
         CategoryDB.getAllCategories(new DataListener() {
             @Override
@@ -300,6 +332,9 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         });
     }
 
+    /**
+     * set the type of the track
+     */
     private void setType() {
         for (int i = 0; i < WelcomePage.getTypes().size(); i++) {
             Type currentType = WelcomePage.getTypes().get(i);

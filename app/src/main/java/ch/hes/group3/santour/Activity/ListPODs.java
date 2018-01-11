@@ -84,6 +84,9 @@ public class ListPODs extends Fragment {
         return view;
     }
 
+    /**
+     * click on the pod list to go to the details of a POD
+     */
     private class ItemClickPOD implements AdapterView.OnItemClickListener {
 
         @Override

@@ -135,6 +135,9 @@ public class Poi_Fragment extends Fragment {
 
     }
 
+    /**
+     * listener to save the poi
+     */
     private class savePOI implements View.OnClickListener {
 
         @Override
@@ -190,6 +193,11 @@ public class Poi_Fragment extends Fragment {
         }
     }
 
+    /**
+     * listener on the button to add a picture to the pod
+     * you can choose between an import from the gallery
+     * and to take the picture directly from your phone
+     */
     private class TakePicture implements View.OnClickListener {
 
         @Override
@@ -228,7 +236,6 @@ public class Poi_Fragment extends Fragment {
         if (camera.getChoice() == "camera") {
 
             Bitmap picture = BitmapFactory.decodeFile(camera.getAbsPathPicture());
-            Log.e("TEST-TEST", "Path is : " + camera.getAbsPathPicture());
 
             Bitmap rotatedPic = null;
             try {
@@ -256,7 +263,10 @@ public class Poi_Fragment extends Fragment {
     }
 
 
-    //Change the id's
+    /**
+     * form validation to check that everything is filled in for the form
+     * @return
+     */
     private boolean formValidation() {
         if (edtxt_poiName.getText().toString().equals("")) {
             Toast.makeText(getContext(), R.string.addNamePOI, Toast.LENGTH_SHORT).show();
@@ -272,6 +282,10 @@ public class Poi_Fragment extends Fragment {
         return true;
     }
 
+    /**
+     * initialize the GUI on the creation of the ragment by setting everything needed in the view
+     * @param poi
+     */
     private void initGUI(POI poi) {
         edtxt_poiName.setText(poi.getName());
         edtxt_poiDescription.setText(poi.getDescription());

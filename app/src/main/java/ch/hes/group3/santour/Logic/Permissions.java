@@ -19,6 +19,10 @@ public class Permissions {
 
     }
 
+    /**
+     * check the permissions written into the string array of permission
+     * @param activity
+     */
     public void checkPermissions(Activity activity){
         int PERMISSION_ALL = 1;
 
@@ -33,6 +37,12 @@ public class Permissions {
         }
     }
 
+    /**
+     * check if the user has the permissions
+     * @param context
+     * @param permissions
+     * @return
+     */
     public boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= M && context != null && permissions != null) {
             for (String permission : permissions) {
@@ -44,6 +54,10 @@ public class Permissions {
         return true;
     }
 
+    /**
+     * get the permissions
+     * @return
+     */
     public String[] getPermissions() {
         return permissions;
     }

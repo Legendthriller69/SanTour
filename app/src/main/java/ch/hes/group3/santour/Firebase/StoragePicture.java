@@ -22,9 +22,13 @@ import java.io.InputStream;
 public class StoragePicture {
 
     private FirebaseStorage storage = FirebaseStorage.getInstance();
-    // Create a storage reference from our app
     private StorageReference storageRef = storage.getReference();
 
+    /**
+     * upload a picture into the firebase storage
+     * @param pathPicture
+     * @param filename
+     */
     public void uploadPicture(String pathPicture, String filename) {
         StorageReference picRef = storageRef.child(filename);
         InputStream stream = null;
@@ -37,19 +41,19 @@ public class StoragePicture {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-                Log.e("TEST-UPLOAD-FILE", "upload failed");
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                Log.e("TEST-UPLOAD-FILE", "upload successfull");
             }
         });
     }
 
+    /**
+     * download the picture from the firebase storage with the path
+     * @param pathPicture
+     * @param dataListener
+     */
     public void downloadPicture(String pathPicture, final DataListener dataListener) {
         storageRef.child(pathPicture).getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
@@ -59,6 +63,10 @@ public class StoragePicture {
         });
     }
 
+    /**
+     * deletes a picture from the firebase storage
+     * @param pathPicture
+     */
     public void deletePicture(String pathPicture) {
         storageRef.child(pathPicture).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

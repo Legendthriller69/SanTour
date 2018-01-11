@@ -15,15 +15,18 @@ public class CustomMapView extends MapView {
         super(context, attrs);
     }
 
+    /**
+     * custom map view to have priority on the scroll
+     * @param ev
+     * @return
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
-                Log.d(TAG, "dispatchTouchEvent: unlocked ");
                 this.getParent().requestDisallowInterceptTouchEvent(false);
                 break;
             case MotionEvent.ACTION_DOWN:
-                Log.d(TAG, "dispatchTouchEvent: locked ");
                 this.getParent().requestDisallowInterceptTouchEvent(true);
                 break;
         }

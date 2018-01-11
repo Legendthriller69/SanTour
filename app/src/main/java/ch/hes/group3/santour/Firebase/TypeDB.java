@@ -28,11 +28,11 @@ public class TypeDB {
     }
 
 
-    public static void createType(Type type) {
-        DatabaseReference id = TYPE_REFERENCE.push();
-        id.setValue(type);
-    }
-
+    /**
+     * creates a type into the firebase database
+     * @param type
+     * @param dataListener
+     */
     public static void createType(Type type, final DataListener dataListener) {
         final DatabaseReference id = TYPE_REFERENCE.push();
         id.setValue(type).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -44,7 +44,7 @@ public class TypeDB {
     }
 
     /**
-     * Get Type of track by his ID
+     * Get Type by his ID
      * @param id
      * @param dataListener
      */
@@ -66,6 +66,10 @@ public class TypeDB {
         });
     }
 
+    /**
+     * get all types from the db
+     * @param dataListener
+     */
     public static void getAllTypes(final DataListener dataListener) {
         TYPE_REFERENCE.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

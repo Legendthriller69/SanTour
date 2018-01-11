@@ -113,6 +113,9 @@ public class WelcomePage extends AppCompatActivity {
         btnAllTracks.setOnClickListener(new MyTracksListener());
     }
 
+    /**
+     * listener to access the record page
+     */
     private class RecordTrackListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -122,6 +125,9 @@ public class WelcomePage extends AppCompatActivity {
         }
     }
 
+    /**
+     * listener to access the about page
+     */
     private class AboutPageListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -131,6 +137,9 @@ public class WelcomePage extends AppCompatActivity {
         }
     }
 
+    /**
+     * listener to access the settings page
+     */
     private class SettingsPageListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -140,6 +149,9 @@ public class WelcomePage extends AppCompatActivity {
         }
     }
 
+    /**
+     * listener to access all the tracks page
+     */
     private class MyTracksListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -151,10 +163,6 @@ public class WelcomePage extends AppCompatActivity {
 
     public static List<Type> getTypes() {
         return types;
-    }
-
-    public static void setTypes(List<Type> types) {
-        WelcomePage.types = types;
     }
 
     public static List<Track> getTracks() {

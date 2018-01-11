@@ -27,6 +27,9 @@ public class ResetDB {
 
     private final static DatabaseReference DB_REFERENCE = FirebaseDatabase.getInstance().getReference();
 
+    /**
+     * this method bas used to reset all the data from the db
+     */
     public static void resetDB() {
         //remove everything from DB
         DB_REFERENCE.removeValue();

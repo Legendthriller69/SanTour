@@ -24,7 +24,6 @@ public class Settings_Fragment extends Fragment {
     private ImageView deButton;
 
     public Settings_Fragment() {
-        // Required empty public constructor
     }
 
     //Create an action bar button
@@ -33,15 +32,17 @@ public class Settings_Fragment extends Fragment {
         inflater.inflate(R.menu.navigation_top, menu);
     }
 
-    //Handle button activities
+    /**
+     * options item selected
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.home:
                 getActivity().finish();
                 break;
         }
-
         return true;
     }
 
@@ -86,7 +87,10 @@ public class Settings_Fragment extends Fragment {
         }
     }
 
-
+    /**
+     * change the language to french
+     * @param v
+     */
     public void changeToFR(View v) {
         String languageToLoad = "fr";
         Locale locale = new Locale(languageToLoad);
@@ -102,6 +106,10 @@ public class Settings_Fragment extends Fragment {
         startActivity(myIntent);
     }
 
+    /**
+     * change the language to deutsch
+     * @param v
+     */
     public void changeToDE(View v) {
         Log.e("je change la langue", "je change la langue");
         String languageToLoad = "de";
@@ -118,6 +126,10 @@ public class Settings_Fragment extends Fragment {
         startActivity(myIntent);
     }
 
+    /**
+     * change the language to english
+     * @param v
+     */
     public void changeToEN(View v) {
         String languageToLoad = "en-rGB";
         Locale locale = new Locale(languageToLoad);
