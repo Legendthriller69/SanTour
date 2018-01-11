@@ -12,7 +12,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -27,10 +26,6 @@ import java.util.Date;
 
 public class Camera extends Activity {
 
-    //Camera
-    //If Request_image_capture > 0 return -> OnActivityResult
-    private final int REQUEST_IMAGE_CAPTURE = 1;
-
     //Gallery
     private final int RESULT_LOAD_IMG = 1;
     private final int REQUEST_TAKE_PHOTO = 1;
@@ -40,19 +35,14 @@ public class Camera extends Activity {
     public String getImgDecodableString() {
         return imgDecodableString;
     }
-
-    private String mCurrentPhotoPath;
     private Bitmap bitmap;
-
     private String absPathPicture ;
-
     private Uri selectedImage ;
 
-
+    //Getter and setter for the Absolute path of the picture
     public String getAbsPathPicture(){
         return absPathPicture ;
     }
-
     public void setAbsPathPicture(String absPathPicture){
         this.absPathPicture = absPathPicture ;
     }
@@ -60,11 +50,12 @@ public class Camera extends Activity {
     //Choice made by the user - Camera or Gallery
     private String choice ;
 
+    private String mCurrentPhotoPath ;
+
     //Getter and Setter for the choice
     public String getChoice() {
         return choice;
     }
-
     public void setChoice(String choice) {
         this.choice = choice;
     }
@@ -73,6 +64,12 @@ public class Camera extends Activity {
 
     }
 
+    /**
+     * Create an image when capturing it on the phone and storing it in the external storage of the phone
+     * @param fragment
+     * @return
+     * @throws IOException
+     */
     private File createImageFile(Fragment fragment) throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -90,7 +87,10 @@ public class Camera extends Activity {
         return image;
     }
 
-
+    /**
+     * Take a picture method from the phone directly
+     * @param fragment
+     */
     public void takePictureIntent(Fragment fragment) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -99,7 +99,6 @@ public class Camera extends Activity {
             File photoFile = null;
             try {
                 photoFile = createImageFile(fragment);
-                Log.e("TEST-TEST", "dispatchTakePictureIntent: ROUTE : " + getAbsPathPicture());
             } catch (IOException ex) {
                 // Error occurred while creating the File
             }
@@ -114,7 +113,10 @@ public class Camera extends Activity {
         }
     }
 
-    //Launching Import Gallery
+    /**
+     * Launch the Gallery from the phone
+     * @param fragment
+     */
     public void launchImportImage(Fragment fragment){
         // Create intent to Open Image applications like Gallery, Google Photos
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -122,10 +124,16 @@ public class Camera extends Activity {
         if (galleryIntent.resolveActivity(fragment.getActivity().getPackageManager()) != null) {
             fragment.startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
         }
-        //fragment.startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
     }
 
-
+    /**
+     * Retrieve the picture from the phone gallery and display it on the ImageView
+     * @param requestCode
+     * @param resultCode
+     * @param activity
+     * @param imgView
+     * @param data
+     */
     public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data){
 
         // When an Image is picked
@@ -143,7 +151,6 @@ public class Camera extends Activity {
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             imgDecodableString = cursor.getString(columnIndex);
-            Log.e("PATH OF GALLERY", "DATA :" + imgDecodableString);
             cursor.close();
             // Set the Image in ImageView after decoding the String
             bitmap = BitmapFactory.decodeFile(imgDecodableString);
@@ -152,6 +159,12 @@ public class Camera extends Activity {
 
     }
 
+    /**
+     * Rotating the picture
+     * @param source
+     * @param angle
+     * @return
+     */
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
@@ -159,6 +172,12 @@ public class Camera extends Activity {
                 matrix, true);
     }
 
+    /**
+     * Implemanting the Rotating the picture method on the phone when displaying on the phone
+     * @param bitmap
+     * @return
+     * @throws IOException
+     */
     public Bitmap rotatePicture(Bitmap bitmap) throws IOException {
 
         //Need to bypass ExifInterface Constructor to be able to rotate the bitmap
