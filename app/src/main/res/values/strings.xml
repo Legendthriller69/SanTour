@@ -104,10 +104,6 @@
     <string name="racket">Racket</string>
     <string name="roller">Roller</string>
     <string name="chooseType">Choose the type of the record</string>
-    <string name="namePOD" translatable="false">NamePod</string>
-    <string name="descriptionPOI" translatable="false">descriptionPoiUser</string>
-    <string name="namePOD" translatable="false">NamePod</string>
-    <string name="descriptionPOI" translatable="false">descriptionPoiUser</string>
     <string name="typeTrack">Choose the type of track</string>
     <string name="beginTrack">Begin</string>
     <string name="endTrack">End</string>
