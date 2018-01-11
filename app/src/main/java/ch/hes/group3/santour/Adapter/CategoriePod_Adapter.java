@@ -38,6 +38,7 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
 
     public CategoriePod_Adapter(Context context, List<PODCategory> podCategories, List<Category> categories, boolean update) {
         super(context, 0, podCategories);
+        this.context = context;
         this.podCategories = podCategories;
         this.categories = categories;
         this.update = update;
@@ -47,7 +48,7 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            vi = LayoutInflater.from(getContext());
+            vi = LayoutInflater.from(context);
             convertView = vi.inflate(ch.hes.group3.santour.Activity.R.layout.row_categoriepod, null);
         }
 
@@ -105,4 +106,7 @@ public class CategoriePod_Adapter extends ArrayAdapter<PODCategory> {
         }
     }
 
+    public List<PODCategory> getPodCategories() {
+        return podCategories;
+    }
 }
