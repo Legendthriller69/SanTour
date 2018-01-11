@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,8 +28,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.hes.group3.santour.Adapter.AdapterPODList;
-import ch.hes.group3.santour.Adapter.AdapterPOIList;
 import ch.hes.group3.santour.DTO.Category;
 import ch.hes.group3.santour.DTO.POD;
 import ch.hes.group3.santour.DTO.POI;
@@ -66,10 +67,33 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         inDetails = true;
     }
 
+    //Create an action bar button
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.back_record_menu, menu);
+    }
+
+    //Handle button activities
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.back_record:
+                fragmentManager.popBackStack();
+                break;
+        }
+
+        return true;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details_existing_tracks, container, false);
+
+        // options menu
+        setHasOptionsMenu(true);
+
+        fragmentManager = getActivity().getSupportFragmentManager();
 
         //initialize elements
         txtDistance = (TextView) view.findViewById(R.id.Distance);
