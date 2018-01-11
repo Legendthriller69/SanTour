@@ -4,7 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -30,6 +34,8 @@ public class PodDetailsUser_Fragment extends Fragment {
     private TextView txtDescription;
     private ListView listViewCategories;
 
+    private FragmentManager fragmentManager;
+
     //Bundle
     private Bundle bundle;
 
@@ -42,8 +48,24 @@ public class PodDetailsUser_Fragment extends Fragment {
     //Firebase storage
     private StoragePicture storagePicture;
 
-    public PodDetailsUser_Fragment() {
+    public PodDetailsUser_Fragment() {}
 
+    //Create an action bar button
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.back_record_menu, menu);
+    }
+
+    //Handle button activities
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.back_record:
+                fragmentManager.popBackStack();
+                break;
+        }
+
+        return true;
     }
 
     @Override
@@ -51,6 +73,11 @@ public class PodDetailsUser_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pod_details_user, container, false);
+
+        // options menu
+        setHasOptionsMenu(true);
+
+        fragmentManager = getActivity().getSupportFragmentManager();
 
         imgView = (ImageView) view.findViewById(R.id.ImgView_PodUser);
         txtLatitude = (TextView) view.findViewById(R.id.txtV_GpsUseLat);
