@@ -7,11 +7,6 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import ch.hes.group3.santour.Activity.MainActivity;
-import ch.hes.group3.santour.DTO.Position;
-import ch.hes.group3.santour.DTO.Track;
-import ch.hes.group3.santour.Firebase.DataListener;
-import ch.hes.group3.santour.Firebase.TrackDB;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -28,6 +23,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import ch.hes.group3.santour.Activity.MainActivity;
+import ch.hes.group3.santour.DTO.Position;
+import ch.hes.group3.santour.DTO.Track;
+import ch.hes.group3.santour.Firebase.DataListener;
+import ch.hes.group3.santour.Firebase.TrackDB;
 
 /**
  * Created by aleks on 22.11.2017.
@@ -87,8 +88,7 @@ public class Record implements Serializable {
                                 currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                                 mMap.addMarker(new MarkerOptions().position(currentLocation).title(activity.getString(ch.hes.group3.santour.Activity.R.string.youAreHere)));
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 13.0f));
-                            } else
-                                Toast.makeText(activity, activity.getString(ch.hes.group3.santour.Activity.R.string.check_location_activity), Toast.LENGTH_LONG).show();
+                            }
                         }
                     });
         } catch (SecurityException e) {

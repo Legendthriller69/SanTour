@@ -22,7 +22,7 @@
     <string name="NameTrackFirst">Veuillez donner un nom à votre piste</string>
     <string name="save_track_confirmation_title">Enregitrement d\'une piste</string>
     <string name="save_track_confirmation_text">Êtes-vous sûr de vouloir finir l\'enregistrement ?</string>
-    <string name="trackSaved">La piste à été enregistrée avec succès !</string>
+    <string name="trackSaved">La piste a été enregistrée avec succès !</string>
     <string name="application_close">Fermeture de l\'application</string>
     <string name="track_lost_message">"Êtes-vous sûr de vouloir quitter l'application? Votre piste actuelle ne sera pas enregistrée. "</string>
     <string name="gpsDisabled">La fonction GPS est désactivée. Voulez-vous l\'activer ?</string>
@@ -47,7 +47,7 @@
     <string name="choice_picture_title">Importer</string>
     <string name="choice_picture_message">Comment voulez-vous importer la photo ?</string>
     <string name="choice_picture_camera">Camera</string>
-    <string name="choice_picture_gallery">Gallerie</string>
+    <string name="choice_picture_gallery">Galerie</string>
     <string name="list_pod">Liste des PODs</string>
     <string name="list_poi">Liste des POIs</string>
     <string name="create_track">Créer une piste</string>

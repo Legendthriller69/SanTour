@@ -125,4 +125,5 @@ public class PodDetailsUser_Fragment extends Fragment {
             categories[i] = "\t" + categoryList.get(i).getName() + " : \t" + pod.getPodCategories().get(i).getValue();
         }
     }
+
 }
