@@ -10,7 +10,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +22,6 @@ import java.util.Locale;
 
 import ch.hes.group3.santour.Firebase.Authentication;
 import ch.hes.group3.santour.Firebase.DataListener;
-import ch.hes.group3.santour.Firebase.StoragePicture;
 import ch.hes.group3.santour.Logic.Permissions;
 
 public class LoginActivity extends AppCompatActivity {
@@ -88,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
             myTitle.setTextSize(20);
             myTitle.setTextColor(getResources().getColor(R.color.red_main));
             myTitle.setPadding(80, 30, 10, 10);
-            Log.e("FORM", "FORM VALIDATION : " + formValidation());
             if (formValidation()) {
                 progressing = new ProgressDialog(LoginActivity.this);
                 progressing.setMessage(getString(R.string.waiting)); // Setting Message

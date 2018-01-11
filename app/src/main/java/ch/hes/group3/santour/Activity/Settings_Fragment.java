@@ -111,7 +111,6 @@ public class Settings_Fragment extends Fragment {
      * @param v
      */
     public void changeToDE(View v) {
-        Log.e("je change la langue", "je change la langue");
         String languageToLoad = "de";
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);

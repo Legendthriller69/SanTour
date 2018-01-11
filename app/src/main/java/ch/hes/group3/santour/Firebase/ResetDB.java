@@ -92,7 +92,6 @@ public class ResetDB {
                                         TrackDB.createTrack(new Track("first track", "description track", 2.4, 500, pois, pods, positions, user.getId(), type.getId()), new DataListener() {
                                             @Override
                                             public void onSuccess(Object object) {
-                                                Log.e("TOUT AJOUTER", "EVERYTHING HAS BEEN ADDED IN THE DB");
                                             }
 
                                             @Override

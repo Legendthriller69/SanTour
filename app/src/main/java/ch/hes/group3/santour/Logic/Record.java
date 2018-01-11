@@ -162,7 +162,7 @@ public class Record implements Serializable {
      * starts the location update
      * method will be called at every location change
      */
-    public static void startLocationUpdates() {
+    public static void startLocationUpdates(){
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -181,7 +181,6 @@ public class Record implements Serializable {
                             LatLng latLngLocation = new LatLng(location.getLatitude(), location.getLongitude());
                             mMap.addPolyline(new PolylineOptions().add(latLngLastPosition, latLngLocation).width(4f).color(Color.RED)
                                     .geodesic(true));
-                            Log.e("DISTANCE", distance + "");
                         }
                     }
                 }
@@ -193,7 +192,6 @@ public class Record implements Serializable {
                     locationCallback,
                     null /* Looper */);
         } catch (SecurityException e) {
-            Log.e("Security Exception", e.getMessage());
         }
     }
 
@@ -230,8 +228,6 @@ public class Record implements Serializable {
 
         //create the track
         track = MainActivity.getTrack();
-        Log.e("ALEKS", track.getPods().size() + "");
-        Log.e("ALEKS", track.getPois().size() + "");
 
         track.setName(name);
         track.setDuration(duration);
@@ -269,14 +265,7 @@ public class Record implements Serializable {
         lastLocation.setLongitude(lastLong);
         lastLocation.setLatitude(lastLat);
 
-        Log.e("LAST LATITUDE", lastLong + "");
-        Log.e("LAST LONGITUDE", lastLat + "");
-        Log.e("NEW LATITUDE", newLong + "");
-        Log.e("NEW LONGITUDE", newLat + "");
-
-        if ((newLong == lastLong && newLat == lastLat) || location.distanceTo(lastLocation) < 2)
-            return true;
-        return false;
+        return (newLong == lastLong && newLat == lastLat) || location.distanceTo(lastLocation) < 2;
     }
 
     /**
@@ -313,7 +302,6 @@ public class Record implements Serializable {
             if (positions.size() >= 1) {
                 Position currentPosition = positions.get(0);
                 for (int i = 1; i < positions.size(); i++) {
-                    Log.e("add polyline", "add polyline");
                     LatLng currentLatLng = new LatLng(currentPosition.getLatitude(), currentPosition.getLongitude());
                     LatLng nextLatLng = new LatLng(positions.get(i).getLatitude(), positions.get(i).getLongitude());
                     mMap.addPolyline(new PolylineOptions().add(currentLatLng, nextLatLng).width(4f).color(Color.RED)

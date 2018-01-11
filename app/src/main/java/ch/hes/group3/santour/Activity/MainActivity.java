@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (Record.isRecording()) {
             if (isInRecordFragment) {
-                Log.e("record fragment", "je suis dans le record fragment");
                 Toast.makeText(this, R.string.saveTrackFirst, Toast.LENGTH_SHORT).show();
                 return;
             }

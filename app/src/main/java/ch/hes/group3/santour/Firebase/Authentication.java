@@ -23,16 +23,13 @@ public class Authentication {
     private static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private static User currentUser;
 
-    /**
-     * private constructor
-     */
     private Authentication() {
 
     }
 
     /**
      * method to sign in the application with the mail and the password
-     * data listener is used to get the asynchronous result from firebase
+     *
      * @param mail
      * @param password
      * @param dataListener

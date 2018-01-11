@@ -1,6 +1,11 @@
 package ch.hes.group3.santour;
 
+import android.app.Activity;
+
 import org.junit.Test;
+
+import ch.hes.group3.santour.Activity.LoginActivity;
+import ch.hes.group3.santour.Firebase.Authentication;
 
 import static org.junit.Assert.*;
 

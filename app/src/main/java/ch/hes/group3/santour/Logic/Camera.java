@@ -137,7 +137,7 @@ public class Camera extends Activity {
     public void addToImageViewGallery(int requestCode, int resultCode, Activity activity, ImageView imgView, Intent data){
 
         // When an Image is picked
-        if (requestCode == RESULT_LOAD_IMG && resultCode == activity.RESULT_OK) {
+        if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
             // Get the Image from data
 
             selectedImage = data.getData();
