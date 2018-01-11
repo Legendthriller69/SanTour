@@ -7,14 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.List;
-
-import ch.hes.group3.santour.DTO.Category;
 import ch.hes.group3.santour.DTO.POI;
 import ch.hes.group3.santour.Firebase.DataListener;
 import ch.hes.group3.santour.Firebase.StoragePicture;
@@ -72,8 +67,8 @@ public class PoiDetailsUser_Fragment extends Fragment {
         });
         txtName.setText(poi.getName());
         txtDescription.setText(poi.getDescription());
-        txtLatitude.setText("Latitude : " + poi.getPosition().getLatitude());
-        txtLongitude.setText("Longitude : " + poi.getPosition().getLongitude());
+        //txtLatitude.setText("Latitude : " + poi.getPosition().getLatitude());
+        //txtLongitude.setText("Longitude : " + poi.getPosition().getLongitude());
 
         //set values from the poi
         return view;
