@@ -18,7 +18,7 @@
             <ImageView
                 android:id="@+id/ImgView_PoIUser"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="8dp"
                 android:src="@mipmap/ic_launcher_round"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -29,52 +29,54 @@
                 android:id="@+id/txtV_GpsUseLat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/ImgView_PoIUser"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ImgView_PoIUser"
-                tools:text="@string/latitude" />
+                tools:text="@string/latitude"
+                android:layout_marginLeft="45dp" />
 
             <TextView
                 android:id="@+id/txtV_GpsUseLong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/txtV_GpsUseLat"
-                app:layout_constraintEnd_toEndOf="@+id/ImgView_PoIUser"
-                app:layout_constraintHorizontal_bias="0.493"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/txtV_GpsUseLat"
                 app:layout_constraintTop_toBottomOf="@+id/ImgView_PoIUser"
                 app:layout_constraintVertical_bias="1.0"
-                tools:text="@string/longitude" />
+                tools:text="@string/longitude"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="32dp" />
 
             <TextView
                 android:id="@+id/txtV_NamePoIUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/txtV_GpsUseLat"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtV_GpsUseLat"
-                tools:text="@string/namePOD" />
+                tools:text="@string/addNamePOI"
+                android:layout_marginLeft="8dp" />
 
             <TextView
                 android:id="@+id/txtV_PoIDescripUser"
-                android:layout_width="365dp"
-                android:layout_height="75dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.666"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/txtV_NamePoIUser"
                 app:layout_constraintTop_toBottomOf="@+id/txtV_NamePoIUser"
-                tools:text="@string/descriptionPOI" />
+                tools:text="@string/des" />
 
         </android.support.constraint.ConstraintLayout>
 

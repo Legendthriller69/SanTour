@@ -11,13 +11,15 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:minHeight="600dp">
 
 
             <Button
                 android:id="@+id/btnListPOD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/red_main"
@@ -26,51 +28,43 @@
                 app:layout_constraintEnd_toEndOf="@+id/Duree"
                 app:layout_constraintStart_toStartOf="@+id/Duree"
                 app:layout_constraintTop_toTopOf="@+id/btnListPOI"
-                app:layout_constraintVertical_bias="1.0"
-                android:layout_marginLeft="8dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <Button
                 android:id="@+id/btnListPOI"
-                android:background="@color/red_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="50dp"
+                android:background="@color/red_main"
                 android:text="@string/list_poi"
                 app:layout_constraintEnd_toEndOf="@+id/Distance"
                 app:layout_constraintStart_toStartOf="@+id/Distance"
-                app:layout_constraintTop_toBottomOf="@+id/Distance"
-                android:layout_marginLeft="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/Distance" />
 
             <TextView
                 android:id="@+id/TitleDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/distance"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Map"
-                android:layout_marginLeft="80dp" />
+                app:layout_constraintTop_toBottomOf="@+id/Map" />
 
             <TextView
                 android:id="@+id/TitleDuree"
-                android:layout_width="54dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/duration"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/TitleDistance"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.68"
-                app:layout_constraintStart_toEndOf="@+id/TitleDistance"
-                app:layout_constraintTop_toTopOf="@+id/TitleDistance"
-                app:layout_constraintVertical_bias="1.0"
-                android:layout_marginRight="80dp"
-                android:layout_marginLeft="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/Map" />
 
             <TextView
                 android:id="@+id/Distance"
@@ -89,14 +83,14 @@
                 android:id="@+id/Duree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:text="TextView"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/TitleDuree"
                 app:layout_constraintStart_toStartOf="@+id/TitleDuree"
-                app:layout_constraintTop_toBottomOf="@+id/TitleDuree"
-                android:layout_marginLeft="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/TitleDuree" />
 
             <TextView
                 android:id="@+id/TitleTrack"
