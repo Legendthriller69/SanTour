@@ -32,7 +32,6 @@
     <string name="youAreHere">Vous êtes ici</string>
     <string name="distance">Distance</string>
     <string name="duration">Durée</string>
-    <string name="txt_aboutpage">SanTour est une application de tracker. Autrement dit, elle permet d\'enregistrer les parcours avec les points intéressant ou inversément les points de diffcultés que vous pouvez croiser. Ces trajets enregistrés serviront à alimenter des applications qui utiliseront ces données pour mettre à disposition de nouveaux trajets</string>
     <string name="txt_settingLanguage">Veuillez sélectionner votre langue</string>
     <string name="Input_Poi_Name">Veuillez écrire le nom du point d\'intérêt</string>
     <string name="Input_Pod_Name">Veuillez écrire le nom du point de difficulté</string>
@@ -60,8 +59,16 @@
     <string name="typeTrack">Veuillez choisir le type de piste</string>
     <string name="endTrack">Fin</string>
     <string name="beginTrack">Début</string>
+    <string name="txt_aboutpage1">SanTour est une application qui présente des itinéraires de randonnée. Cette application est utilisée par des professionnels, appelés « trackers » qui enregistreront des pistes. Lesdites pistes seront pour différents types de transports (à pied, en raquettes, à vélo ou même à roller).</string>
+    <string name="txt_aboutpage2">Les trackers vont préciser, sur leurs pistes, les points d’intérêts de l’itinéraire ainsi que ses points de difficultés (si le chemin est rocailleux, pentu ou s’il y a des passages sujets au vertige)</string>
+    <string name="txt_aboutpage3">Il y a un deuxième type d’utilisateur pour SanTour. Ces personnes ne peuvent pas créer de pistes mais peuvent voir toutes les pistes existantes créées par les trackers.</string>
     <string name="nameOfPoi">"Nom du POI : "</string>
     <string name="descOfPoi">"Description du POI : "</string>
     <string name="nameOfPod">"Nom du POD : "</string>
     <string name="descOfPod">"Description du POD : "</string>
+    <string name="walk">Pieds</string>
+    <string name="bike">Vélo</string>
+    <string name="racket">Raquette à neige</string>
+    <string name="roller">Roller</string>
+    <string name="chooseType">Choisissez le type d\'enregistrement</string>
 </resources>

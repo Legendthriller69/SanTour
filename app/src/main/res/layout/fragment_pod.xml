@@ -61,6 +61,7 @@ tools:context="ch.hes.group3.santour.Activity.Poi_Fragment">
                             android:layout_height="56dp"
                             android:background="@color/red_main"
                             android:text="next"
+                            android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent" />

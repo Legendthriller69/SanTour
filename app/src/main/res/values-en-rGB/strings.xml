@@ -55,13 +55,20 @@
     <string name="latitude">Latitude :</string>
     <string name="difficulties">Difficulties</string>
     <string name="descriptionPOD">Description POD</string>
-    <string name="txt_aboutpage">SanTour is a tracker application. In other words, it allows you to record the paths with the points of interest or vice versa, the difficult points you can cross. These recorded tracks will be used to feed applications that will use this data to make new trips available.</string>
     <string name="noPOIForThisTrack">There\'s no POI for this track</string>
     <string name="typeTrack">Choose the type of track</string>
     <string name="beginTrack">Begin</string>
     <string name="endTrack">End</string>
+    <string name="txt_aboutpage1">" SanTour is an application that presents hiking routes. This application is used by professionals, called \"trackers\" who will record tracks. These tracks will be for different types of transport (on foot, snowshoe, bike or even roller)."</string>
+    <string name="txt_aboutpage2">" The trackers will specify, on their tracks, the points of interest of the route as well as its points of difficulty (if the path is rocky, steep or if there are passages subject to vertigo)"</string>
+    <string name="txt_aboutpage3">" There is a second type of user for SanTour. These people can not create tracks but can see all the existing tracks created by the trackers."</string>
     <string name="nameOfPoi">"Name of POI : "</string>
     <string name="descOfPoi">"Description of POI : "</string>
     <string name="nameOfPod">"Name of POD : "</string>
     <string name="descOfPod">"Description of POD : "</string>
+    <string name="walk">Walk</string>
+    <string name="bike">Bike</string>
+    <string name="racket">Snowshoe</string>
+    <string name="roller">Roller</string>
+    <string name="chooseType">Choose the type of the record</string>
 </resources>
