@@ -49,9 +49,9 @@
     <string name="choice_picture_gallery">Galerie</string>
     <string name="list_pod">Liste der POD</string>
     <string name="list_poi">Liste der POI</string>
-    <string name="create_track">Spur erstellen</string>
-    <string name="noPOIForThisTrack">Es gibt keinen POI für diese Spur</string>
-    <string name="noPODForTrack">Es gibt keinen POD für diese Spur</string>
+    <string name="create_track">Strecke erstellen</string>
+    <string name="noPOIForThisTrack">Es gibt keinen POI für diese Strecke</string>
+    <string name="noPODForTrack">Es gibt keinen POD für diese Strecke</string>
     <string name="longitude">Längengrad: </string>
     <string name="latitude">Breitengrad: </string>
     <string name="difficulties">Schwierigkeiten</string>

@@ -50,7 +50,11 @@ public class LoginActivity extends AppCompatActivity {
 
         setTitle(getString(R.string.Login));
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        try {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         //initialize elements
         txtMail = (EditText) findViewById(R.id.txtMail);
