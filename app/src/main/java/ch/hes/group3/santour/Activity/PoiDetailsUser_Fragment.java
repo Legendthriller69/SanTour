@@ -92,8 +92,8 @@ public class PoiDetailsUser_Fragment extends Fragment {
 
             }
         });
-        txtName.setText("Name of POI : " + poi.getName());
-        txtDescription.setText("Description of POI : " + poi.getDescription());
+        txtName.setText(R.string.nameOfPoi + poi.getName());
+        txtDescription.setText(R.string.descOfPoi + poi.getDescription());
 
         //set values from the poi
         return view;

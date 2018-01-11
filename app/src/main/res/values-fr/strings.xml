@@ -60,4 +60,8 @@
     <string name="typeTrack">Veuillez choisir le type de piste</string>
     <string name="endTrack">Fin</string>
     <string name="beginTrack">Début</string>
+    <string name="nameOfPoi">Nom du POI :</string>
+    <string name="descOfPoi">Description du POI :</string>
+    <string name="nameOfPod">Nom du POD :</string>
+    <string name="descOfPod">Description du POD</string>
 </resources>

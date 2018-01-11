@@ -24,10 +24,10 @@
     <string name="save_track_confirmation_text">Sind Sie sicher, dass Sie den Rekord beenden wollen?</string>
     <string name="trackSaved">Die Strecke wurde erfolgreich gespeichert!</string>
     <string name="application_close">Schließen der Anwendung</string>
-    <string name="track_lost_message">Möchten Sie die Anwendung wirklich beenden? Deine aktuelle Spur wird verloren gehen!</string>
+    <string name="track_lost_message">Möchten Sie die Anwendung wirklich beenden? Deine aktuelle Strecke wird verloren gehen!</string>
     <string name="gpsDisabled">Das GPS ist deaktiviert. Möchten Sie es aktivieren?</string>
     <string name="activateGPS">GPS aktivieren</string>
-    <string name="notActivateGPS">Nicht aktivieren</string>
+    <string name="notActivateGPS">GPS nicht aktivieren</string>
     <string name="check_location_activity">Fehler: Bitte überprüfen Sie, ob Ihr GPS aktiviert ist</string>
     <string name="youAreHere">Sie sind hier</string>
     <string name="distance">Entfernung</string>
@@ -53,11 +53,16 @@
     <string name="noPOIForThisTrack">Es gibt keinen POI für diese Spur</string>
     <string name="noPODForTrack">Es gibt keinen POD für diese Spur</string>
     <string name="longitude">Längengrad: </string>
-    <string name="latitude">Breite: </string>
+    <string name="latitude">Breitengrad: </string>
     <string name="difficulties">Schwierigkeiten</string>
     <string name="descriptionPOD">Beschreibung POD</string>
-    <string name="txt_aboutpage">SanTour est une application de tracker. Autrement dit, elle permet d\'enregistrer les parcours avec les points intéressant ou inversément les points de diffcultés que vous pouvez croiser. Ces trajets enregistrés serviront à alimenter des applications qui utiliseront ces données pour mettre à disposition de nouveaux trajets</string>
+    <string name="txt_aboutpage">SanTour ist eine Tracker-Anwendung. Mit anderen Worten, es erlaubt Ihnen, die Strecken mit den Sehenswürdigkeiten aufzuzeichnen oder umgekehrt, die schwierigen Punkte, die Sie kreuzen können. Diese aufgezeichneten Strecken werden dazu verwendet, Anwendungen zu speisen, die diese Daten nutzen, um neue Strecken zur Verfügung zu stellen.</string>
     <string name="typeTrack">Wählen Sie die Art der Strecke</string>
     <string name="endTrack">Ende</string>
     <string name="beginTrack">Anfang</string>
+
+    <string name="nameOfPoi">Name des POI :</string>
+    <string name="descOfPoi">Beschreibung des POI :</string>
+    <string name="nameOfPod">Name des POD :</string>
+    <string name="descOfPod">Beschreibung des POD</string>
 </resources>
