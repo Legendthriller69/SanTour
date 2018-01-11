@@ -1,5 +1,6 @@
 package ch.hes.group3.santour.Activity;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -92,8 +93,11 @@ public class PoiDetailsUser_Fragment extends Fragment {
 
             }
         });
-        txtName.setText(R.string.nameOfPoi + poi.getName());
-        txtDescription.setText(R.string.descOfPoi + poi.getDescription());
+        Resources res = getResources();
+        String name = res.getString(R.string.nameOfPoi);
+        String description = res.getString(R.string.descOfPoi);
+        txtName.setText(name + poi.getName());
+        txtDescription.setText(description + poi.getDescription());
 
         //set values from the poi
         return view;

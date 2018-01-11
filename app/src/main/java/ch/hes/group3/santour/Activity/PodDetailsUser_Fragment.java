@@ -1,5 +1,6 @@
 package ch.hes.group3.santour.Activity;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -92,8 +93,12 @@ public class PodDetailsUser_Fragment extends Fragment {
         pod = (POD) bundle.getSerializable("POD");
 
         //set all elements values
-        txtName.setText(R.string.nameOfPod + pod.getName());
-        txtDescription.setText(R.string.descOfPod + pod.getDescription());
+        Resources res = getResources();
+        String name = res.getString(R.string.nameOfPod);
+        String description = res.getString(R.string.descOfPod);
+
+        txtName.setText( name + pod.getName());
+        txtDescription.setText(description + pod.getDescription());
         setDifficulties();
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, categories);
         listViewCategories.setAdapter(adapter);

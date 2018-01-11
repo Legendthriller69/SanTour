@@ -61,8 +61,8 @@
     <string name="endTrack">Ende</string>
     <string name="beginTrack">Anfang</string>
 
-    <string name="nameOfPoi">Name des POI :</string>
-    <string name="descOfPoi">Beschreibung des POI :</string>
-    <string name="nameOfPod">Name des POD :</string>
-    <string name="descOfPod">Beschreibung des POD</string>
+    <string name="nameOfPoi">"Name des POI : "</string>
+    <string name="descOfPoi">"Beschreibung des POI : "</string>
+    <string name="nameOfPod">"Name des POD : "</string>
+    <string name="descOfPod">"Beschreibung des POD : "</string>
 </resources>

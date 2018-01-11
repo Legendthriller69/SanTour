@@ -111,9 +111,9 @@
     <string name="endTrack">End</string>
 
     <!-- DETAILS USER VIEWS -->
-    <string name="nameOfPoi">Name of POI :</string>
-    <string name="descOfPoi">Description of POI :</string>
-    <string name="nameOfPod">Name of POD :</string>
-    <string name="descOfPod">Description of POD</string>
+    <string name="nameOfPoi">"Name of POI : "</string>
+    <string name="descOfPoi">"Description of POI : "</string>
+    <string name="nameOfPod">"Name of POD : "</string>
+    <string name="descOfPod">"Description of POD : "</string>
 
 </resources>

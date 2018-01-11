@@ -60,8 +60,8 @@
     <string name="typeTrack">Choose the type of track</string>
     <string name="beginTrack">Begin</string>
     <string name="endTrack">End</string>
-    <string name="nameOfPoi">Name of POI :</string>
-    <string name="descOfPoi">Description of POI :</string>
-    <string name="nameOfPod">Name of POD :</string>
-    <string name="descOfPod">Description of POD</string>
+    <string name="nameOfPoi">"Name of POI : "</string>
+    <string name="descOfPoi">"Description of POI : "</string>
+    <string name="nameOfPod">"Name of POD : "</string>
+    <string name="descOfPod">"Description of POD : "</string>
 </resources>
