@@ -14,8 +14,8 @@
     <string name="loading">Aufladung</string>
     <string name="waiting">Bitte warten</string>
     <string name="trackName">Name der Strecke</string>
-    <string name="addPOD">POD hinzufügen</string>
-    <string name="addPOI">POI hinzufügen</string>
+    <string name="addPOD">POD zufügen</string>
+    <string name="addPOI">POI zufügen</string>
     <string name="CreatePODFirst">Bitte erstellen Sie zuerst einen POD</string>
     <string name="CreatePOIFirst">Bitte erstellen Sie zuerst einen POI</string>
     <string name="saveTrackFirst">Bitte speichern Sie zuerst Ihre Strecke</string>
