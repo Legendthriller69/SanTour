@@ -11,8 +11,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="1100dp">
+            android:layout_height="wrap_content">
 
 
             <Button
@@ -20,6 +19,8 @@
                 android:layout_width="200dp"
                 android:layout_height="80dp"
                 android:layout_marginEnd="150dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="150dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/red_main"
@@ -29,42 +30,39 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/Duree"
                 app:layout_constraintTop_toTopOf="@+id/btnListPOI"
-                app:layout_constraintVertical_bias="1.0"
-                android:layout_marginRight="150dp"
-                android:layout_marginLeft="8dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <Button
                 android:id="@+id/btnListPOI"
                 android:layout_width="200dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="150dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="60dp"
                 android:background="@color/red_main"
                 android:text="@string/list_poi"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/Distance"
                 app:layout_constraintHorizontal_bias="0.322"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Distance"
-                android:layout_marginLeft="150dp" />
+                app:layout_constraintTop_toBottomOf="@+id/Distance" />
 
             <TextView
                 android:id="@+id/TitleDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="150dp"
-                android:layout_marginTop="75dp"
+                android:layout_marginTop="50dp"
                 android:text="@string/distance"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Map"
-                android:layout_marginLeft="150dp" />
+                app:layout_constraintTop_toBottomOf="@+id/Map" />
 
             <TextView
                 android:id="@+id/TitleDuree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="150dp"
+                android:layout_marginRight="150dp"
                 android:text="@string/duration"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/TitleDistance"
@@ -72,8 +70,7 @@
                 app:layout_constraintHorizontal_bias="0.68"
                 app:layout_constraintStart_toEndOf="@+id/TitleDistance"
                 app:layout_constraintTop_toTopOf="@+id/TitleDistance"
-                app:layout_constraintVertical_bias="1.0"
-                android:layout_marginRight="150dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/Distance"
@@ -114,7 +111,7 @@
             <ch.hes.group3.santour.Activity.CustomMapView
                 android:id="@+id/Map"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="550dp"
                 android:layout_alignEnd="@+id/TitlePOI"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/TitlePOI"
