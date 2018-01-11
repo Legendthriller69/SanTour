@@ -58,9 +58,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/txtV_GpsUseLat"
-                app:layout_constraintTop_toBottomOf="@+id/txtV_GpsUseLat"
-                 />
+                app:layout_constraintTop_toBottomOf="@+id/txtV_GpsUseLat" />
 
             <TextView
                 android:id="@+id/txtV_PodDescripUser"
@@ -86,6 +86,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/ListV_PodUser"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
