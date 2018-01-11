@@ -60,7 +60,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/txtV_GpsUseLat"
                 app:layout_constraintTop_toBottomOf="@+id/txtV_GpsUseLat"
-                tools:text="@string/namePOD" />
+                 />
 
             <TextView
                 android:id="@+id/txtV_PodDescripUser"
@@ -83,31 +83,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/ListV_PodUser"
-                app:layout_constraintEnd_toEndOf="@+id/txtV_PodDescripUser"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtV_PodDescripUser"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtV_PodDescripUser"
-                tools:text="@string/difficulties"
-                android:layout_marginRight="8dp" />
+                tools:text="@string/difficulties" />
 
             <ListView
                 android:id="@+id/ListV_PodUser"
-                android:layout_width="360dp"
-                android:layout_height="165dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/txtV_PodDescripUser"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/txtV_PodDifficulites"
-                app:layout_constraintTop_toBottomOf="@+id/txtV_PodDifficulites"
-                android:layout_marginRight="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/txtV_PodDifficulites" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
