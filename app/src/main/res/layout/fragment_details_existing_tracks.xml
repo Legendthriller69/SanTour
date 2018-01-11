@@ -108,7 +108,7 @@
             <ch.hes.group3.santour.Activity.CustomMapView
                 android:id="@+id/Map"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="350dp"
                 android:layout_alignEnd="@+id/TitlePOI"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/TitlePOI"
