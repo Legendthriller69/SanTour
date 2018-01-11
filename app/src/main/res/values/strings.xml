@@ -52,7 +52,9 @@
 
 
     <!-- ABOUT FRAGMENT -->
-    <string name="txt_aboutpage">SanTour est une application de tracker. Autrement dit, elle permet d\'enregistrer les parcours avec les points intéressant ou inversément les points de diffcultés que vous pouvez croiser. Ces trajets enregistrés serviront à alimenter des applications qui utiliseront ces données pour mettre à disposition de nouveaux trajets</string>
+    <string name="txt_aboutpage1">" SanTour is an application that presents hiking routes. This application is used by professionals, called \"trackers\" who will record tracks. These tracks will be for different types of transport (on foot, snowshoe, bike or even roller)."</string>
+    <string name="txt_aboutpage2">" The trackers will specify, on their tracks, the points of interest of the route as well as its points of difficulty (if the path is rocky, steep or if there are passages subject to vertigo)"</string>
+    <string name="txt_aboutpage3">" There is a second type of user for SanTour. These people can not create tracks but can see all the existing tracks created by the trackers."</string>
 
     <!-- SETTINGS FRAGMENT -->
     <string name="txt_settingLanguage">Select your language</string>

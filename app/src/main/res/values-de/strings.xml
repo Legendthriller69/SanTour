@@ -56,13 +56,20 @@
     <string name="latitude">Breitengrad: </string>
     <string name="difficulties">Schwierigkeiten</string>
     <string name="descriptionPOD">Beschreibung POD</string>
-    <string name="txt_aboutpage">SanTour ist eine Tracker-Anwendung. Mit anderen Worten, es erlaubt Ihnen, die Strecken mit den Sehenswürdigkeiten aufzuzeichnen oder umgekehrt, die schwierigen Punkte, die Sie kreuzen können. Diese aufgezeichneten Strecken werden dazu verwendet, Anwendungen zu speisen, die diese Daten nutzen, um neue Strecken zur Verfügung zu stellen.</string>
     <string name="typeTrack">Wählen Sie die Art der Strecke</string>
     <string name="endTrack">Ende</string>
     <string name="beginTrack">Anfang</string>
+    <string name="txt_aboutpage1">" SanTour ist eine Anwendung, die Wanderrouten präsentiert. Diese Anwendung wird von Profis verwendet, die \"Tracker\" genannt werden und Tracks aufnehmen. Diese Tracks werden für verschiedene Arten von Transport (zu Fuß, Schneeschuh, Fahrrad oder Roller) sein."</string>
+    <string name="txt_aboutpage2">" Die Trackers geben auf ihren Spuren die Sehenswürdigkeiten der Strecke und ihre Schwierigkeitspunkte an (wenn der Weg felsig, steil oder schwindelerregend ist)."</string>
+    <string name="txt_aboutpage3">" Es gibt einen zweiten Benutzertyp für SanTour. Diese Personen können keine Strecke erstellen, können jedoch alle vorhandenen Strecken anzeigen, die von den Trackers erstellt wurden."</string>
 
     <string name="nameOfPoi">"Name des POI : "</string>
     <string name="descOfPoi">"Beschreibung des POI : "</string>
     <string name="nameOfPod">"Name des POD : "</string>
     <string name="descOfPod">"Beschreibung des POD : "</string>
+    <string name="walk">Füss</string>
+    <string name="bike">Fahrrad</string>
+    <string name="racket">Schneeschuh</string>
+    <string name="roller">Roller</string>
+    <string name="chooseType">Wählen Sie den Typ des Datensatzes</string>
 </resources>
