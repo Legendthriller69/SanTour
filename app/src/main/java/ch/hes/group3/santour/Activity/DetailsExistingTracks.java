@@ -163,7 +163,7 @@ public class DetailsExistingTracks extends Fragment implements OnMapReadyCallbac
         }
 
         PolylineOptions polylineOptions = new PolylineOptions();
-        polylineOptions.addAll(points).width(5).color(Color.RED);
+        polylineOptions.addAll(points).width(8).color(Color.RED);
         mMap.addPolyline(polylineOptions);
     }
 
