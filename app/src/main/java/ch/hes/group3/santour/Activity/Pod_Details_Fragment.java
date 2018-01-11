@@ -3,6 +3,7 @@ package ch.hes.group3.santour.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +100,7 @@ public class Pod_Details_Fragment extends Fragment {
         @Override
         public void onClick(View view) {
             track = MainActivity.getTrack();
-            pod.setPodCategories(podCategoryList);
+            pod.setPodCategories(adapterCategory.getPodCategories());
 
             //update or add the poi
             if (index != -1) {
