@@ -76,7 +76,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/txtV_NamePoIUser"
                 app:layout_constraintTop_toBottomOf="@+id/txtV_NamePoIUser"
-                tools:text="@string/des" />
+                />
 
         </android.support.constraint.ConstraintLayout>
 
