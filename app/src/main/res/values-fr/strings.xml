@@ -58,4 +58,6 @@
     <string name="difficulties">Difficulté</string>
     <string name="descriptionPOD">Description POD</string>
     <string name="typeTrack">Veuillez choisir le type de piste</string>
+    <string name="endTrack">Fin</string>
+    <string name="beginTrack">Début</string>
 </resources>

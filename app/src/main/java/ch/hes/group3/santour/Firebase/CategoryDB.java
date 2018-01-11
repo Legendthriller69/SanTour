@@ -49,7 +49,7 @@ public class CategoryDB {
                 List<Category> categories = new ArrayList<>();
                 for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
                     Category category = categorySnapshot.getValue(Category.class);
-                    category.setId(dataSnapshot.getKey());
+                    category.setId(categorySnapshot.getKey());
                     categories.add(category);
                 }
                 dataListener.onSuccess(categories);
