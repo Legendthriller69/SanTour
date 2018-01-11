@@ -13,7 +13,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtMail;
     private EditText txtPassword;
     private Button btnSignIn;
-    private ImageView imgView;
 
     // progress bar
     private ProgressDialog progressing;
@@ -40,9 +38,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLastLanguage();
         setContentView(R.layout.activity_login);
 
-        loadLastLanguage();
 
         //ask for permissions
         Permissions permissions = new Permissions();

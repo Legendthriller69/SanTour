@@ -1,6 +1,5 @@
 <resources>
     <!-- FRAGMENT TITLE -->
-    <string name="Login">Login</string>
     <string name="Home">Home</string>
     <string name="Recording">Record tracks</string>
     <string name="about">About</string>
@@ -11,6 +10,7 @@
     <!-- LOGIN ACTIVITY -->
     <string name="password">Password</string>
     <string name="mail">Mail</string>
+    <string name="Login">Login</string>
         <!-- Toast -->
     <string name="enterValidMail">Please enter a valid address mail</string>
     <string name="enterPassword">Please enter a password</string>

@@ -71,4 +71,5 @@
     <string name="racket">Snowshoe</string>
     <string name="roller">Roller</string>
     <string name="chooseType">Choose the type of the record</string>
+    <string name="LoginTest">Login</string>
 </resources>

@@ -7,7 +7,7 @@
     <string name="settings">Paramètres</string>
     <string name="tracks">Mes pistes</string>
     <string name="password">Mot de passe</string>
-    <string name="mail">E-mail</string>
+    <string name="mail">Mail</string>
     <string name="enterValidMail">Veuillez entrer une adresse e-mail valide</string>
     <string name="enterPassword">Veuillez entrer un mot de passe</string>
     <string name="userNotFound">Utilisateur non-trouvé</string>
@@ -71,4 +71,5 @@
     <string name="racket">Raquette à neige</string>
     <string name="roller">Roller</string>
     <string name="chooseType">Choisissez le type d\'enregistrement</string>
+    <string name="LoginTest">Connexion</string>
 </resources>
