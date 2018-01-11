@@ -79,7 +79,6 @@ public class Pod_Details_Fragment extends Fragment {
                     adapterCategory = new CategoriePod_Adapter(getContext(), podCategoryList, categories);
                 } else {
                     adapterCategory = new CategoriePod_Adapter(getContext(), pod.getPodCategories(), categories, true);
-                    Log.e("CATEGORIES", "GET ALL CATEGORIES " + pod.getPodCategories().size() + "size pod categories " + categories.size() + " categories size");
                 }
                 mListView.setAdapter(adapterCategory);
 
