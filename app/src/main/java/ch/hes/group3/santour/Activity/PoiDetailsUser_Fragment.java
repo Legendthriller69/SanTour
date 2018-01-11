@@ -92,10 +92,8 @@ public class PoiDetailsUser_Fragment extends Fragment {
 
             }
         });
-        txtName.setText(poi.getName());
-        txtDescription.setText(poi.getDescription());
-        //txtLatitude.setText("Latitude : " + poi.getPosition().getLatitude());
-        //txtLongitude.setText("Longitude : " + poi.getPosition().getLongitude());
+        txtName.setText("Name of POI : " + poi.getName());
+        txtDescription.setText("Description of POI : " + poi.getDescription());
 
         //set values from the poi
         return view;

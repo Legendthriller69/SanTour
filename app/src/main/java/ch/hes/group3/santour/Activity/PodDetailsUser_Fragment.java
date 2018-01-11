@@ -92,10 +92,8 @@ public class PodDetailsUser_Fragment extends Fragment {
         pod = (POD) bundle.getSerializable("POD");
 
         //set all elements values
-        txtLatitude.setText("Lattitude: " + pod.getPosition().getLatitude() + "");
-        txtLongitude.setText("Longitude: " +pod.getPosition().getLongitude() + "");
-        txtName.setText(pod.getName());
-        txtDescription.setText(pod.getDescription());
+        txtName.setText("Name of POD : " + pod.getName());
+        txtDescription.setText("Description of POD : " + pod.getDescription());
         setDifficulties();
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, categories);
         listViewCategories.setAdapter(adapter);
