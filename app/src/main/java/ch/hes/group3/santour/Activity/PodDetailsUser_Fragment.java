@@ -67,8 +67,8 @@ public class PodDetailsUser_Fragment extends Fragment {
         //set all elements values
         //txtLatitude.setText(pod.getPosition().getLatitude() + "");
         //txtLongitude.setText(pod.getPosition().getLongitude() + "");
-        txtName.setText(pod.getName());
-        txtDescription.setText(pod.getDescription());
+        txtName.setText("Name of POD : " + pod.getName());
+        txtDescription.setText("Description of POD : " + pod.getDescription());
         setDifficulties();
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, categories);
         listViewCategories.setAdapter(adapter);
